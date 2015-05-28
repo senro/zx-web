@@ -1,6 +1,10 @@
-function remoteCallback(position){
+$(function(){
     $('#offline').hide();
     $('#online').show().html('baidu map:').append('<div id="userMap" class="userMap"></div>');
+})();
+
+function remoteCallback(position){
+
     window.BMap_loadScriptTime = (new Date).getTime();
     $.getScript('http://api.map.baidu.com/getscript?v=2.0&ak=XoGIq1S4vnlzaTVuTQZsHSPi&services=&t=20150525152504',function(){
         //alert('load script success!');
