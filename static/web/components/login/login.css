@@ -1,0 +1,21 @@
+/**
+ * Created with WebStorm.
+ * User: qiuyun
+ * Date: 15-8-30
+ * Time: 下午2:40
+ * To change this template use File | Settings | File Templates.
+ */
+body {
+    background-color: #f1f1f1;
+    font: 12px/1.5 "microsoft yahei", "simhei", "宋体", tahoma, arial, sans-serif;
+}
+
+.bg {
+    min-width: 960px;
+    background: url(../images/bg.jpg) no-repeat center top;
+}
+
+.container {
+    width: 960px;
+    margin: 0 auto;
+}

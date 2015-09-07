@@ -1,0 +1,27 @@
+/**
+ * Created with WebStorm.
+ * User: qiuyun
+ * Date: 15-8-30
+ * Time: ä¸‹åˆ2:53
+ * To change this template use File | Settings | File Templates.
+ */
+.userPic{
+    display: block;
+    margin: 0 auto 10px;
+}
+.select-identity{
+    width: 215px;
+}
+.input-email{
+    width: 215px;
+}
+.textarea-description{
+    width: 215px;
+    margin: 5px 0 0 0;
+}
+.select{
+    height: 26px;
+}
+.input-name{
+    width: 157px;
+}

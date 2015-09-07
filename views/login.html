@@ -1,27 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>标题</title>
-    <meta name="description" content="描述"/>
-    <meta name="keywords" content="关键词"/>
-    <meta name="copyright" content="苏州蜗牛数字科技股份有限公司"/>
-    <meta name="author" content="584233821@qq.com(senro)"/>
-    <link rel="stylesheet" type="text/css" href="http://static.woniu.com/stylesheets/base.css"/>
-    <link rel="stylesheet" type="text/css" href="css/.css"/>
-    <!--[if lte IE 9]>
-        <script type="text/javascript" src="http://static.woniu.com/scripts/html5/html5shiv-printshiv-3.js"></script>
-    <![endif]-->
-</head>
-<body>
-<div class="bg">
-    <div class="container">
-
-    </div>
+<% include header.html %>
+<div class="container-fluid">
+    <form class="form-horizontal" method="post">
+        <fieldset>
+            <legend>用户登陆</legend>
+            <div class="control-group">
+                <label class="control-label" for="username">用户名</label>
+                <div class="controls">
+                    <input type="text" class="input-xlarge" id="username" name="username">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="password">密码</label>
+                <div class="controls">
+                    <input type="password" class="input-xlarge" id="password" name="password">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">登陆</button>
+            </div>
+        </fieldset>
+    </form>
 </div>
-<script type="text/javascript" src="http://static.woniu.com/script/jquery/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="http://static.woniu.com/script/module/statistics/0.1/statistics.js"></script>
-<script type="text/javascript" src="js/Senro.2.7.custom.min.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
-</body>
-</html>
+<% include footer.html %>

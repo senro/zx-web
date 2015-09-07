@@ -1,0 +1,16 @@
+/**
+ * Created with WebStorm.
+ * User: qiuyun
+ * Date: 15-8-30
+ * Time: 下午2:25
+ * To change this template use File | Settings | File Templates.
+ */
+legend{
+    text-align: center;
+}
+.form-actions{
+    margin: 10px 0 0 0 ;
+}
+.tc{
+    text-align: center;
+}

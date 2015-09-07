@@ -1,0 +1,41 @@
+<div class="container-fluid container-index">
+    <div class="bar">
+        <form class="form-horizontal" method="post">
+            <fieldset>
+                <div class="control-group control-group-cellphone tc">
+
+                    <input type="text" placeholder="搜索，比如 瓦工" class="input-xlarge input-search" id="searchInput" name="searchText">
+
+                    <select class="select select-identity" name="identity" id="identity">
+                        <option value="0">业主</option>
+                        <option value="1">电工</option>
+                    </select>
+
+                    <select class="select select-distance" name="distance" id="distance">
+                        <option value="0">附近1公里</option>
+                        <option value="1">电工</option>
+                    </select>
+
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="map" id="map">
+
+    </div>
+    <div class="nav">
+        <a class="navBtn" href="javascript:;">菜单</a>
+    </div>
+    <div class="navBar">
+        <div class="userPic">
+            <img class="userPicImg" src="static/images/userPic.png" alt=""/>
+        </div>
+        <a class="navBarBtn" href="javascript:;">个人中心</a>
+        <a class="navBarBtn" href="javascript:;">收藏夹</a>
+        <a class="navBarBtn" href="javascript:;">设置</a>
+        <a class="navBarBtn" href="javascript:;">退出</a>
+    </div>
+    <div class="mask"></div>
+</div>
+<link rel="stylesheet" type="text/css" href="components/main/main.css"/>

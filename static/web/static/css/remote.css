@@ -1,0 +1,9 @@
+.online{
+	text-align: center;
+	font-weight: bold;
+}
+.userMap{
+	height:500px;
+	width:100%;
+	background-color: #000;
+}

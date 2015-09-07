@@ -1,0 +1,20 @@
+.offline{
+    text-align:center;
+    font-weight:bold;
+    font-size:25px;
+    line-height:200px;
+}
+.online{
+    display:none;
+}
+.offlineReload{
+    display:block;
+    width:100px;
+    height:50px;
+    line-height:50px;
+    border:1px solid #ccc;
+    text-align:center;
+    text-decoration:none;
+    color:red;
+    margin:20px auto 0;
+}
