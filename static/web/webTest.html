@@ -33,7 +33,8 @@
             'message: ' + error.message + '\n');
         }
 
-        var GPSWatcher = navigator.geolocation.watchPosition(onSuccess, onError, { maximumAge: 3000, timeout: 30000, enableHighAccuracy: true });
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        //var GPSWatcher = navigator.geolocation.watchPosition(onSuccess, onError, { maximumAge: 3000, timeout: 30000, enableHighAccuracy: true });
 
         //navigator.geolocation.clearWatch(watchID);
     });
