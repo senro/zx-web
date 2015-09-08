@@ -1,7 +1,7 @@
 var protocol = window.location.protocol + '//',
     host = window.location.host,
-    apiHost='http://localhost:9526/',
-    baseUrl=protocol + host+ '/web';
+    apiHost='http://zx.yearn.cc/',
+    baseUrl='file:///D:/senro/senro/app/nativescript/easydecoration-zx.yearn.cc/static/web/';
 
 window.apiHost=apiHost;
 window.baseUrl=baseUrl;
