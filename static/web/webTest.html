@@ -25,15 +25,16 @@
     </style>
 </head>
 <body>
+<div class="btn btn-contacts">
+    调用通讯录
+</div>
 <div class="btn btn-alert">
     发送消息给手机
 </div>
 <div class="btn btn-camera">
     调用摄像机
 </div>
-<div class="btn btn-contacts">
-    调用通讯录
-</div>
+
 <img class="img" id="cameraImg" src="" alt=""/>
 
 <script type="text/javascript" src="http://static.woniu.com/script/jquery/jquery-1.9.1.min.js"></script>
@@ -84,6 +85,13 @@
         var cameraCode=$('#cameraCode').html();
 
         window.parent.postMessage(cameraCode,'*');
+        return false;
+    });
+    $('.btn-contacts').click(function(){
+        //navigator.notification.alert("i am from zx.yearn.cc",function(){});
+        var Code=$('#contactsCode').html();
+
+        window.parent.postMessage(Code,'*');
         return false;
     });
 
