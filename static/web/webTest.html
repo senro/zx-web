@@ -26,7 +26,7 @@
 <div class="btn btn-camera">
     调用摄像机
 </div>
-
+<img id="cameraImg" src="" alt=""/>
 
 <script type="text/javascript" src="http://static.woniu.com/script/jquery/jquery-1.9.1.min.js"></script>
 <script id="cameraCode" type="text/html">
@@ -36,17 +36,21 @@
 
     function onSuccess(imageData) {
         if(imageData){
-            alert('获取图片成功！');
+            //alert('获取图片成功！');
         }
+        //var image = document.getElementById('myImage');
+        //image.src = "data:image/jpeg;base64," + imageData;
+        $('#iframe')[0].contentWindow.postMessage(imageData,'*');
     }
 
     function onFail(message) {
-    alert('Failed because: ' + message);
+        alert('Failed because: ' + message);
     }
 </script>
 <script type="text/javascript">
     window.addEventListener('message',function(e){
-        alert(e.data);
+        //alert(e.data);
+        $('#cameraImg').attr('src',"data:image/jpeg;base64," + e.data);
         //window.parent.postMessage(color,'*');
     },false);
     alert($('.btn').width());
