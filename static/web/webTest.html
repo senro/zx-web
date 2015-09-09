@@ -23,7 +23,7 @@
     </style>
 </head>
 <body>
-<div class="btn">
+<div class="btn btn-alert">
     发送消息给手机
 </div>
 <div class="btn btn-camera">
@@ -59,7 +59,7 @@
     alert($('.btn').width());
    //window.parent.alertTest('haha!');
    //window.contactTest();
-   $('.btn').click(function(){
+   $('.btn-alert').click(function(){
        //navigator.notification.alert("i am from zx.yearn.cc",function(){});
        window.parent.postMessage('navigator.notification.alert("i am from zx.yearn.cc",function(){});','*');
        return false;
