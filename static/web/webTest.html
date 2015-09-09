@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="http://static.woniu.com/stylesheets/base.css"/>
     <style>
         .btn{
-            width: 200px;
+            width: 100%;
             height: 100px;
             background-color: red;
         }
@@ -28,7 +28,7 @@
         alert(e.data);
         //window.parent.postMessage(color,'*');
     },false);
-    alert(window.parent.GPS);
+    alert($('.btn').width());
    //window.parent.alertTest('haha!');
    //window.contactTest();
    $('.btn').click(function(){
