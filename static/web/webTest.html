@@ -69,8 +69,6 @@
 </script>
 <script type="text/javascript">
     window.addEventListener('message',function(e){
-        alert('this msg from:'+e.origin);
-        //alert(JSON.stringify(e));
         if(e.origin=="file:///"){
             var id=e.data.split('|:|')[0],
                     data=e.data.split('|:|')[1];
