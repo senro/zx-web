@@ -12,6 +12,7 @@
             width: 100%;
             height: 50px;
             background-color: red;
+            -webkit-user-select: text;
         }
         .btn-camera{
             background-color: green;
@@ -42,7 +43,7 @@
     navigator.notification.alert("i am from zx.yearn.cc",function(){});
 </script>
 <script id="cameraCode" type="text/html">
-    navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+    navigator.camera.getPicture(onSuccess, onFail, { quality: 30,
         destinationType: Camera.DestinationType.DATA_URL
     });
 
