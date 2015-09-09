@@ -11,8 +11,11 @@
     <style>
         .btn{
             width: 100%;
-            height: 100px;
+            height: 50px;
             background-color: red;
+        }
+        .btn-camera{
+            background-color: green;
         }
     </style>
 </head>
@@ -20,9 +23,27 @@
 <div class="btn">
     发送消息给手机
 </div>
+<div class="btn btn-camera">
+    调用摄像机
+</div>
 
 
 <script type="text/javascript" src="http://static.woniu.com/script/jquery/jquery-1.9.1.min.js"></script>
+<script id="cameraCode" type="text/html">
+    navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+    destinationType: Camera.DestinationType.DATA_URL
+    });
+
+    function onSuccess(imageData) {
+        if(imageData){
+            alert('获取图片成功！');
+        }
+    }
+
+    function onFail(message) {
+    alert('Failed because: ' + message);
+    }
+</script>
 <script type="text/javascript">
     window.addEventListener('message',function(e){
         alert(e.data);
@@ -36,6 +57,13 @@
        window.parent.postMessage('navigator.notification.alert("i am from zx.yearn.cc",function(){});','*');
        return false;
    });
+    $('.btn-camera').click(function(){
+        //navigator.notification.alert("i am from zx.yearn.cc",function(){});
+        var cameraCode=$('#cameraCode').html();
+
+        window.parent.postMessage(cameraCode,'*');
+        return false;
+    });
 
 </script>
 </body>
