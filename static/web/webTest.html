@@ -32,8 +32,8 @@
    //window.parent.alertTest('haha!');
    //window.contactTest();
    $('.btn').click(function(){
-       //navigator.notification.alert("i am from zx.yearn.cc",function(){},"test","test");
-       window.parent.postMessage('alert("i am from zx.yearn.cc");','*');
+       //navigator.notification.alert("i am from zx.yearn.cc",function(){});
+       window.parent.postMessage('navigator.notification.alert("i am from zx.yearn.cc",function(){});','*');
        return false;
    });
 
