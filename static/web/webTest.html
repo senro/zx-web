@@ -71,18 +71,20 @@
     window.addEventListener('message',function(e){
         alert('this msg from:'+e.origin);
         //alert(JSON.stringify(e));
-        var id=e.data.split('|:|')[0],
-            data=e.data.split('|:|')[1];
+        if(e.origin=="file:///"){
+            var id=e.data.split('|:|')[0],
+                    data=e.data.split('|:|')[1];
 
-        switch(id){
-            case 'contactsCode':
-                alert(data);
-                break;
-            case 'cameraCode':
-                $('#cameraImg').attr('src',"data:image/jpeg;base64," + data);
-                break;
+            switch(id){
+                case 'contactsCode':
+                    alert(data);
+                    break;
+                case 'cameraCode':
+                    $('#cameraImg').attr('src',"data:image/jpeg;base64," + data);
+                    break;
+            }
         }
-        
+
         //window.parent.postMessage(color,'*');
     },false);
     //alert($('.btn').width());
