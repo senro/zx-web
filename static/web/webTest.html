@@ -22,6 +22,10 @@
    alert(window.parent.GPS);
    window.parent.alertTest('haha!');
    //window.contactTest();
+   window.addEventListener('message',function(e){
+       alert(e.data);
+       //window.parent.postMessage(color,'*');
+   },false);
 
 </script>
 </body>
