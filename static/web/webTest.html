@@ -32,7 +32,8 @@
    //window.parent.alertTest('haha!');
    //window.contactTest();
    $('.btn').click(function(){
-       window.parent.postMessage('navigator.notification.alert("i am from zx.yearn.cc",function(){},"test","test")','*');
+       //navigator.notification.alert("i am from zx.yearn.cc",function(){},"test","test");
+       window.parent.postMessage('alert("i am from zx.yearn.cc");','*');
        return false;
    });
 
