@@ -69,8 +69,8 @@
 </script>
 <script type="text/javascript">
     window.addEventListener('message',function(e){
-        alert(e.origin);
-        alert(e.data);
+        alert(JSON.stringify(e));
+        //alert(e.data);
         //$('#cameraImg').attr('src',"data:image/jpeg;base64," + e.data);
         //window.parent.postMessage(color,'*');
     },false);
