@@ -19,13 +19,14 @@
 
 <script type="text/javascript" src="http://static.woniu.com/script/jquery/jquery-1.9.1.min.js"></script>
 <script type="text/javascript">
-   alert(window.parent.GPS);
+    window.addEventListener('message',function(e){
+        alert(e.data);
+        //window.parent.postMessage(color,'*');
+    },false);
+    alert(window.parent.GPS);
    window.parent.alertTest('haha!');
    //window.contactTest();
-   window.addEventListener('message',function(e){
-       alert(e.data);
-       //window.parent.postMessage(color,'*');
-   },false);
+
 
 </script>
 </body>
