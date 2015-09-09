@@ -69,8 +69,8 @@
 </script>
 <script type="text/javascript">
     window.addEventListener('message',function(e){
-        alert(e.origin);
-        if(e.origin=="file:///"){
+        //alert(e.origin);
+        if(e.origin=="file://"){
             var id=e.data.split('|:|')[0],
                     data=e.data.split('|:|')[1];
 
