@@ -52,7 +52,7 @@
         }
         //var image = document.getElementById('myImage');
         //image.src = "data:image/jpeg;base64," + imageData;
-        $('#iframe')[0].contentWindow.postMessage(imageData,'*');
+        $('#iframe')[0].contentWindow.postMessage('cameraCode|:|'+imageData,'*');
     }
 
     function onFail(message) {
@@ -61,7 +61,7 @@
 </script>
 <script id="contactsCode" type="text/html">
     navigator.contacts.pickContact(function(contact){
-        $('#iframe')[0].contentWindow.postMessage(JSON.stringify(contact),'http://zx.yearn.cc/?contactsCode');
+        $('#iframe')[0].contentWindow.postMessage('contactsCode|:|'+JSON.stringify(contact),'*');
         //console.log('The following contact has been selected:' + JSON.stringify(contact));
     },function(err){
         console.log('Error: ' + err);
@@ -69,29 +69,39 @@
 </script>
 <script type="text/javascript">
     window.addEventListener('message',function(e){
-        alert(JSON.stringify(e));
-        //alert(e.data);
-        //$('#cameraImg').attr('src',"data:image/jpeg;base64," + e.data);
+        alert('this msg from:'+e.origin);
+        //alert(JSON.stringify(e));
+        var id=e.data.split('|:|')[0],
+            data=e.data.split('|:|')[1];
+
+        switch(id){
+            case 'contactsCode':
+                alert(data);
+                break;
+            case 'cameraCode':
+                $('#cameraImg').attr('src',"data:image/jpeg;base64," + data);
+                break;
+        }
+        
         //window.parent.postMessage(color,'*');
     },false);
     //alert($('.btn').width());
    $('.btn-alert').click(function(){
-       var alertCode=$('#alertCode').html();
-       window.parent.postMessage(alertCode,'*');
+       var code=$('#alertCode').html();
+
+       window.parent.postMessage(code,'*');
        return false;
    });
     $('.btn-camera').click(function(){
-        //navigator.notification.alert("i am from zx.yearn.cc",function(){});
-        var cameraCode=$('#cameraCode').html();
+        var code=$('#cameraCode').html();
 
-        window.parent.postMessage(cameraCode,'*');
+        window.parent.postMessage(code,'*');
         return false;
     });
     $('.btn-contacts').click(function(){
-        //navigator.notification.alert("i am from zx.yearn.cc",function(){});
-        var Code=$('#contactsCode').html();
+        var code=$('#contactsCode').html();
 
-        window.parent.postMessage(Code,'*');
+        window.parent.postMessage(code,'*');
         return false;
     });
 
