@@ -8,12 +8,17 @@
     <meta name="copyright" content="苏州蜗牛数字科技股份有限公司"/>
     <meta name="author" content="584233821@qq.com(senro)"/>
     <link rel="stylesheet" type="text/css" href="http://static.woniu.com/stylesheets/base.css"/>
+    <style>
+        .btn{
+            width: 200px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
 </head>
 <body>
-<div class="bg">
-    <div class="container">
-
-    </div>
+<div class="btn">
+    发送消息给手机
 </div>
 
 
@@ -24,9 +29,12 @@
         //window.parent.postMessage(color,'*');
     },false);
     alert(window.parent.GPS);
-   window.parent.alertTest('haha!');
+   //window.parent.alertTest('haha!');
    //window.contactTest();
-
+   $('.btn').click(function(){
+       window.parent.postMessage('i am from zx.yearn.cc msg','*');
+       return false;
+   });
 
 </script>
 </body>
