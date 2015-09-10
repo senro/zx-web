@@ -10,7 +10,7 @@ define(function(require, exports, module){
     var xhr=require('xhr');
 
     var signals=require('signals');
-    
+
     //获取定位信息
     signals.getCurrPos.add(function(position){
         $('#Lng').val(position.coords.longitude);
