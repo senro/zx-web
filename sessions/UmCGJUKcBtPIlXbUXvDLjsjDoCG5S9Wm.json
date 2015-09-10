@@ -1,11 +1,11 @@
 {
   "cookie": {
     "originalMaxAge": 900000,
-    "expires": "2015-09-10T13:13:41.988Z",
+    "expires": "2015-09-10T13:15:06.167Z",
     "httpOnly": true,
     "path": "/"
   },
-  "__lastAccess": 1441889921988,
+  "__lastAccess": 1441890006167,
   "user": {
     "id": 1,
     "username": "test1",
