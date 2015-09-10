@@ -18,6 +18,7 @@ define(function (require, exports, module) {
                 switch(msgId){
                     case 'getCurrPos':
                         //exports.getCurrPos=JSON.parse(msgData);
+                        console.log(msgData);
                         signals.getCurrPos.dispatch(JSON.parse(msgData));
                         break;
                     case 'cameraCode':
