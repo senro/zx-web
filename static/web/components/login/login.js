@@ -17,6 +17,8 @@ define(function(require, exports, module){
             success:function(data){
                 if(data.status==1){
                     window.location.href=window.baseUrl+'/index.html#/userCenter';
+                }else if(data.status==1001){
+                    window.location.href=window.baseUrl+'/index.html#/register';
                 }else{
                     alert(data.msg);
                 }
