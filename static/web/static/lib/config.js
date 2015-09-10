@@ -1,6 +1,6 @@
 var protocol = window.location.protocol + '//',
     host = window.location.host,
-    apiHost='/web',
+    apiHost='/web/',
     baseUrl=protocol+host+'/web';
 
 window.apiHost=apiHost;
