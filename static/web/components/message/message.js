@@ -23,8 +23,7 @@ define(function (require, exports, module) {
                         //$('#cameraImg').attr('src',"data:image/jpeg;base64," + msgData);
                         break;
                     case 'pickContact':
-                        alert(msgData);
-                        //signals.getCurrPos.dispatch(JSON.parse(msgData));
+                        signals.pickContact.dispatch(JSON.parse(msgData));
                         break;
 
                 }

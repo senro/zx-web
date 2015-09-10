@@ -5,6 +5,9 @@
  * Time: 下午2:25
  * To change this template use File | Settings | File Templates.
  */
+body{
+    -webkit-user-select: none;
+}
 legend{
     text-align: center;
 }

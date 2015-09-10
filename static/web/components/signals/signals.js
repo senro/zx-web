@@ -9,6 +9,7 @@ define(function(require, exports, module){
     var signal=require('signal');
 
     module.exports = {
-        getCurrPos : new signal.Signal()
+        getCurrPos : new signal.Signal(),
+        pickContact : new signal.Signal()
     };
 });
