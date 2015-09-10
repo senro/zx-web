@@ -8,6 +8,7 @@
 define(function(require, exports, module){
     var $=require('jquery');
     var xhr=require('xhr');
+    var signals=require('signals');
 
     $('.btn-login').click(function(){
         $.ajax({
@@ -16,13 +17,31 @@ define(function(require, exports, module){
             data: $('#loginForm').serialize(),
             success:function(data){
                 if(data.status==1){
-                    window.location.href=window.baseUrl+'/index.html#/userCenter';
+                    $.ajax({
+                        url:window.apiHost+'getUserInfo',
+                        type:'get',
+                        success:function(data){
+                            if(data.status==1){
+                                window.location.href=window.baseUrl+'/index.html#/main';
+                            }else{
+                                window.location.href=window.baseUrl+'/index.html#/userCenter';
+                            }
+                        }
+                    });
+
                 }else if(data.status==1001){
                     window.location.href=window.baseUrl+'/index.html#/register';
                 }else{
                     alert(data.msg);
                 }
             }
+        });
+        return false;
+    });
+    $('.btn-getLocation').click(function(){
+        window.parent.postMessage(require('components/cordova/geolocation/getCurrPos'),'*');
+        signals.getCurrPos.add(function(position){
+             console.log(position);
         });
         return false;
     });

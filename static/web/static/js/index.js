@@ -6,6 +6,10 @@
  * To change this template use File | Settings | File Templates.
  */
 define(function(require, exports, module){
+    //初始化消息接收器
+    var message=require('message');
+    message.init();
+
     require('components/util/utilRouter.js');
     var router = require('router');
     var cookie = require('cookie');

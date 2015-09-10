@@ -57,6 +57,51 @@ exports.doRegister = function(req, res){
     }
 
 };
+exports.getUserInfo = function(req, res){
+    if(req.session.user!=null){
+        models.User.findOne({ where: {
+            username: req.session.user.username,
+            name: {
+                $ne:null
+            },
+            sex: {
+                $ne:null
+            },
+            identity: {
+                $ne:null
+            },
+            description:{
+                $ne:null
+            }
+        }
+        }).then(function(user) {
+            // project will be the first entry of the Projects table with the title 'aProject' || null
+            if(user){
+                res.send({
+                    status: 1,
+                    msg:'获取用户资料成功！',
+                    username:user.get().username,
+                    name:user.get().name,
+                    sex:user.get().sex,
+                    identity:user.get().identity,
+                    email:user.get().email||'',
+                    description:user.get().description,
+                    createdAt:user.get().createdAt
+                });
+                res.end();
+            }else {
+                res.send({ status: 0,msg:'请完善用户资料！' });
+                res.end();
+            }
+
+        });
+
+    } else {
+        res.send({ status: -99 ,msg:'请先登录！' });
+        res.end();
+    }
+
+};
 exports.doLogin = function(req, res){
     //console.log(req.query.username,req.query.password);
     if(req.param('username')&&req.param('password')){

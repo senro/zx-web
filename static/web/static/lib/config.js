@@ -13,6 +13,9 @@ seajs.config({
         'bootstrap': 'static/js/bootstrap/3.2.0/'
     },
     alias: {
+        "signal": "spm_modules/signal/signal.js",
+        "signals": "components/signals/signals.js",
+        "message": "components/message/message.js",
         "router": "components/router/router.js",
         "template":"spm_modules/template/template-debug.js",
         "page": "spm_modules/page/page.js",
@@ -58,3 +61,4 @@ seajs.config({
         'sweetalert':'spm_modules/sweetalert/dist/sweetalert.min.js'
     }
 });
+
