@@ -192,7 +192,7 @@ exports.doLogin = function(req, res){
 exports.logout = function(req, res){
     req.session.user=null;
     res.clearCookie('userObj');
-    res.redirect('/');
+    res.redirect('/web/');
 };
 exports.home = function(req, res){
     if(req.session.user!=null){
