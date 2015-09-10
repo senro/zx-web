@@ -27,10 +27,10 @@ app.use(express.static(path.join(__dirname, 'static')));
 //路由控制
 app.get('/', routes.index);
 app.get('/login', routes.login);
-app.post('/register', routes.doRegister);
-app.post('/saveUserInfo', routes.doSaveUserInfo);
-app.post('/login', routes.doLogin);
-app.get('/logout', routes.logout);
+app.post('/web/register', routes.doRegister);
+app.post('/web/saveUserInfo', routes.doSaveUserInfo);
+app.post('/web/login', routes.doLogin);
+app.get('/web/logout', routes.logout);
 app.get('/home', routes.home);
 
 // catch 404 and forward to error handler
