@@ -40,7 +40,7 @@ define(function(require, exports, module){
     });
     $('.btn-getLocation').click(function(){
         signals.getCurrPos.add(function(position){
-            alert(position);
+            alert('你的坐标是：',position.coords.latitude,position.coords.longitude);
         });
         window.parent.postMessage(require('components/cordova/geolocation/getCurrPos'),'*');
         return false;

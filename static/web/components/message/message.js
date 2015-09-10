@@ -17,15 +17,12 @@ define(function (require, exports, module) {
 
                 switch(msgId){
                     case 'getCurrPos':
-                        //exports.getCurrPos=JSON.parse(msgData);
-                        alert(msgData);
                         signals.getCurrPos.dispatch(JSON.parse(msgData));
                         break;
                     case 'cameraCode':
                         //$('#cameraImg').attr('src',"data:image/jpeg;base64," + msgData);
                         break;
                     case 'pickContact':
-                        //exports.getCurrPos=JSON.parse(msgData);
                         alert(msgData);
                         //signals.getCurrPos.dispatch(JSON.parse(msgData));
                         break;
