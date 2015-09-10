@@ -68,6 +68,7 @@ exports.getAllUsers = function(req, res){
         models.User.findAll().then(function(users) {
             // project will be the first entry of the Projects table with the title 'aProject' || null
             if(users){
+                console.log(users);
                 var resUsers=[],resUser={};
                 for(var i=0;i<users.length;i++){
                     var user=users[i];
