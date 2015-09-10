@@ -12,6 +12,6 @@ define(function (require, exports, module) {
         "},function(err){",
             "console.log('Error: ' + err);",
         "});"
-    ].join("");
+    ].join("\n");
 
 });
