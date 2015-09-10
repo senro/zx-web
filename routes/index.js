@@ -3,12 +3,7 @@ var models  = require('../models');
 exports.index = function(req, res,next){
     //res.send('respond with a resource');
     //res.render('index', { title: 'Index' });
-    models.User.findAll().then(function(users) {
-        res.render('index', {
-            title: 'Express',
-            users: users
-        });
-    });
+    res.redirect('/web/');
 };
 exports.login = function(req, res){
     res.render('login', { title: '用户登陆'});
