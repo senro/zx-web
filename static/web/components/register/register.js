@@ -13,6 +13,7 @@ define(function(require, exports, module){
 
     //获取定位信息
     signals.getCurrPos.add(function(position){
+        alert('获取地理位置成功：'+position.coords.longitude+','+position.coords.latitude);
         $('#Lng').val(position.coords.longitude);
         $('#Lat').val(position.coords.latitude);
     });
