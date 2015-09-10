@@ -10,6 +10,13 @@ define(function(require, exports, module){
     var xhr=require('xhr');
     var signals=require('signals');
 
+    //获取定位信息
+    signals.getCurrPos.add(function(position){
+        $('#Lng').val(position.coords.longitude);
+        $('#Lat').val(position.coords.latitude);
+    });
+    window.parent.postMessage(require('components/cordova/geolocation/getCurrPos'),'*');
+
     $('.btn-login').click(function(){
         $.ajax({
             url:window.apiHost+'login',
@@ -38,11 +45,5 @@ define(function(require, exports, module){
         });
         return false;
     });
-    $('.btn-getLocation').click(function(){
-        signals.getCurrPos.add(function(position){
-            alert('你的坐标是：'+position.coords.latitude+','+position.coords.longitude);
-        });
-        window.parent.postMessage(require('components/cordova/geolocation/getCurrPos'),'*');
-        return false;
-    });
+
 });

@@ -44,6 +44,17 @@ exports.doRegister = function(req, res){
                 if(created){
                     req.session.user=user.dataValues;
                     res.cookie('userObj',JSON.stringify({username:user.get().username,createdAt:user.get().createdAt}),{maxAge:900000});
+                    //如果有位置坐标，则保存
+                    if(req.param('Lng')&&req.param('Lat')){
+                        models.User.update({
+                            lng: req.param('Lng')||null,
+                            lat: req.param('Lat')||null
+                        },{
+                            where: {username: req.session.user.username}
+                        }).then(function(array) {
+                            console.log('保存地理坐标成功！');
+                        });
+                    }
                     res.send({ status: 1,msg:'注册成功！',username:user.get().username,createdAt:user.get().createdAt });
                     res.end();
                 }else{
@@ -53,6 +64,44 @@ exports.doRegister = function(req, res){
             });
     } else {
         res.send({ status: 0,msg:'请填写用户名和密码！' });
+        res.end();
+    }
+
+};
+exports.getAllUsers = function(req, res){
+    if(req.session.user!=null){
+        models.User.findAll().then(function(users) {
+            // project will be the first entry of the Projects table with the title 'aProject' || null
+            if(users){
+                var resUsers=[],resUser={};
+                for(var i=0;i<users.length;i++){
+                    var user=users[i];
+                    resUser.id=user.id;
+                    resUser.name=user.name;
+                    resUser.cellphone=user.username;
+                    resUser.identity=user.identity;
+                    resUser.description=user.description;
+                    resUser.lastLoginTime=user.updatedAt;
+                    resUser.userPic='static/images/userPic.png';
+                    resUser.Lng=user.Lng;
+                    resUser.Lat=user.Lat;
+                    resUsers.push(resUser);
+                }
+                res.send({
+                    status: 1,
+                    msg:'获取所有用户成功！',
+                    data:resUsers
+                });
+                res.end();
+            }else {
+                res.send({ status: 0,msg:'请完善用户资料！' });
+                res.end();
+            }
+
+        });
+
+    } else {
+        res.send({ status: -99 ,msg:'请先登录！' });
         res.end();
     }
 
@@ -114,6 +163,17 @@ exports.doLogin = function(req, res){
                 if(user){
                     req.session.user=user.dataValues;
                     res.cookie('userObj',JSON.stringify({username:user.get().username,createdAt:user.get().createdAt}),{maxAge:900000});
+                    //如果有位置坐标，则保存
+                    if(req.param('Lng')&&req.param('Lat')){
+                        models.User.update({
+                            lng: req.param('Lng')||null,
+                            lat: req.param('Lat')||null
+                        },{
+                            where: {username: req.session.user.username}
+                        }).then(function(array) {
+                            console.log('保存地理坐标成功！');
+                        });
+                    }
                     res.send({ status: 1,msg:'登录成功！',username:user.get().username,createdAt:user.get().createdAt });
                     res.end();
                 }else {

@@ -7,7 +7,7 @@ define(function (require, exports, module) {
 
     var $loginInfo = cookie('get', 'userObj');
     if (!$loginInfo) {
-        window.location.href=window.baseUrl+'/index.html#/login';
+        window.location.href=window.baseUrl+'/index.html#/register';
         return true;
     }
 

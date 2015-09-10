@@ -9,6 +9,12 @@ define(function(require, exports, module){
     var $=require('jquery');
     var xhr=require('xhr');
 
+    //获取定位信息
+    signals.getCurrPos.add(function(position){
+        $('#Lng').val(position.coords.longitude);
+        $('#Lat').val(position.coords.latitude);
+    });
+    window.parent.postMessage(require('components/cordova/geolocation/getCurrPos'),'*');
     $('.btn-register').click(function(){
         $.ajax({
             url:window.apiHost+'register',

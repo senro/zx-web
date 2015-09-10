@@ -43,29 +43,7 @@ define(function(require, exports, module){
         alert(e.message);
     });
     map.addControl(geolocationControl);
-    //通过用户数据，生成到地图
-    var mapUsers=[{
-        id:'1',
-        name:'王师傅',
-        cellphone:'15606130909',
-        identity:'瓦工',
-        description:'专业瓦工！',
-        lastLoginTime:'2015-09-04 14:20',
-        userPic:'static/images/userPic.png',
-        Lng:116.504,
-        Lat:39.815
-    },
-    {
-        id:'2',
-        name:'李师傅',
-        cellphone:'15606130909',
-        identity:'瓦工',
-        description:'专业瓦工！',
-        lastLoginTime:'2015-09-04 14:20',
-        userPic:'static/images/userPic.png',
-        Lng:116.404,
-        Lat:39.915
-    }];
+
     var template=require('template');
 
     var sContentTemplate =
@@ -81,11 +59,24 @@ define(function(require, exports, module){
         ;
     var render = template.compile(sContentTemplate);
 
-    for(var i=0;i<mapUsers.length;i++){
-        var mapUser=mapUsers[i];
-        var sContent = render(mapUser);
-        addUserToMap(map,mapUser.Lng,mapUser.Lat,sContent);
-    }
+    //通过用户数据，生成到地图
+    $.ajax({
+        url:window.apiHost+'getAllUsers',
+        type:'get',
+        success:function(data){
+            if(data.status==1){
+                var mapUsers=data.data;
+                for(var i=0;i<mapUsers.length;i++){
+                    var mapUser=mapUsers[i];
+                    var sContent = render(mapUser);
+                    addUserToMap(map,mapUser.Lng,mapUser.Lat,sContent);
+                }
+            }else{
+                window.location.href=window.baseUrl+'/index.html#/login';
+            }
+        }
+    });
+
 
     function addUserToMap(map,Lng,Lat,sContent){
         //经度 Longitude 简写Lng纬度 Latitude 简写Lat
