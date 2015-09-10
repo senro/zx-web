@@ -39,10 +39,11 @@ define(function(require, exports, module){
         return false;
     });
     $('.btn-getLocation').click(function(){
-        window.parent.postMessage(require('components/cordova/geolocation/getCurrPos'),'*');
+        alert('准备定位！');
         signals.getCurrPos.add(function(position){
-             console.log(position);
+            console.log(position);
         });
+        window.parent.postMessage(require('components/cordova/geolocation/getCurrPos'),'*');
         return false;
     });
 });
