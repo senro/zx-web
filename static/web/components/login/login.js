@@ -43,7 +43,7 @@ define(function(require, exports, module){
         signals.getCurrPos.add(function(position){
             console.log(position);
         });
-        window.parent.postMessage(require('components/cordova/geolocation/getCurrPos'),'*');
+        window.parent.postMessage(require('components/cordova/dialogs/alert'),'*');
         return false;
     });
 });
