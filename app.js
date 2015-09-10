@@ -30,6 +30,7 @@ app.get('/login', routes.login);
 app.post('/web/register', routes.doRegister);
 app.post('/web/saveUserInfo', routes.doSaveUserInfo);
 app.get('/web/getUserInfo', routes.getUserInfo);
+app.get('/web/getAllUsers', routes.getAllUsers);
 app.post('/web/login', routes.doLogin);
 app.get('/web/logout', routes.logout);
 app.get('/home', routes.home);
