@@ -8,6 +8,9 @@
 *{
     -webkit-user-select: none;
 }
+input,textarea{
+    -webkit-user-select: text;
+}
 legend{
     text-align: center;
 }
