@@ -3,9 +3,8 @@ define(function (require, exports, module) {
         "var onSuccess = function(position) {",
                 "$('#iframe')[0].contentWindow.postMessage('getCurrPos|:|'+JSON.stringify(position),'*');",
             "};",
-        "function onError(error) {",
-            "alert('code: '    + error.code    + '\n' +",
-            "'message: ' + error.message + '\n');",
+        "var onError = function(error) {",
+            "alert('code:'+ error.code +',message: ' + error.message);",
         "}",
 
         "navigator.geolocation.getCurrentPosition(onSuccess, onError);"
