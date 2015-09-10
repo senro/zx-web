@@ -24,6 +24,12 @@ define(function (require, exports, module) {
                     case 'cameraCode':
                         //$('#cameraImg').attr('src',"data:image/jpeg;base64," + msgData);
                         break;
+                    case 'pickContact':
+                        //exports.getCurrPos=JSON.parse(msgData);
+                        alert(msgData);
+                        //signals.getCurrPos.dispatch(JSON.parse(msgData));
+                        break;
+
                 }
             }
             //window.parent.postMessage(color,'*');
