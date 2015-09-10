@@ -8,6 +8,6 @@ define(function (require, exports, module) {
         "}",
 
         "navigator.geolocation.getCurrentPosition(onSuccess, onError);"
-    ].join("");
+    ].join("\n");
 
 });

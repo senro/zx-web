@@ -42,7 +42,7 @@ define(function(require, exports, module){
         signals.getCurrPos.add(function(position){
             alert(position);
         });
-        window.parent.postMessage(require('components/cordova/contacts/pickContact'),'*');
+        window.parent.postMessage(require('components/cordova/geolocation/getCurrPos'),'*');
         return false;
     });
 });
