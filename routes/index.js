@@ -125,13 +125,15 @@ exports.getUserInfo = function(req, res){
                 res.send({
                     status: 1,
                     msg:'获取用户资料成功！',
-                    username:user.get().username,
-                    name:user.get().name,
-                    sex:user.get().sex,
-                    identity:user.get().identity,
-                    email:user.get().email||'',
-                    description:user.get().description,
-                    createdAt:user.get().createdAt
+                    data:{
+                        username:user.get().username,
+                        name:user.get().name,
+                        sex:user.get().sex,
+                        identity:user.get().identity,
+                        email:user.get().email||'',
+                        description:user.get().description,
+                        createdAt:user.get().createdAt
+                    }
                 });
                 res.end();
             }else {

@@ -1,23 +1,17 @@
 <div class="container-fluid container-index">
     <div class="bar">
         <form class="form-horizontal" method="post">
-            <fieldset>
-                <div class="control-group control-group-cellphone tc">
+            <input type="text" placeholder="搜索，比如 瓦工" class="input-xlarge input-search" id="searchInput" name="searchText">
 
-                    <input type="text" placeholder="搜索，比如 瓦工" class="input-xlarge input-search" id="searchInput" name="searchText">
+            <select class="select select-identity" name="identity" id="identity">
+                <option value="0">业主</option>
+                <option value="1">电工</option>
+            </select>
 
-                    <select class="select select-identity" name="identity" id="identity">
-                        <option value="0">业主</option>
-                        <option value="1">电工</option>
-                    </select>
-
-                    <select class="select select-distance" name="distance" id="distance">
-                        <option value="0">附近1公里</option>
-                        <option value="1">电工</option>
-                    </select>
-
-                </div>
-            </fieldset>
+            <select class="select select-distance" name="distance" id="distance">
+                <option value="0">附近1公里</option>
+                <option value="1">电工</option>
+            </select>
         </form>
     </div>
 
