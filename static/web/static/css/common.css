@@ -23,3 +23,8 @@ legend{
 .control-group{
     margin-top: 20px;
 }
+.userPic,.userPicImg{
+    display: block;
+    width: 100px;
+    height: 100px;
+}
