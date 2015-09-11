@@ -18,19 +18,32 @@ define(function(require, exports, module){
         $('#Lat').val(position.coords.latitude);
     });
     window.parent.postMessage(require('components/cordova/geolocation/getCurrPos'),'*');
+
     $('.btn-register').click(function(){
-        $.ajax({
-            url:window.apiHost+'register',
-            type:'post',
-            data: $('#registerForm').serialize(),
-            success:function(data){
-                if(data.status==1){
-                    window.location.href=window.baseUrl+'/index.html#/userCenter';
-                }else{
-                    alert(data.msg);
-                }
+        var username=$('#username').val(),
+            password=$('#password').val();
+
+        if(username!=''&&password!=''){
+            if(/^1[0-9]{10}$/.test(username)){
+                $.ajax({
+                    url:window.apiHost+'register',
+                    type:'post',
+                    data: $('#registerForm').serialize(),
+                    success:function(data){
+                        if(data.status==1){
+                            window.location.href=window.baseUrl+'/index.html#/userCenter';
+                        }else{
+                            alert(data.msg);
+                        }
+                    }
+                });
+            }else{
+                alert('请填写正确的手机号！');
             }
-        });
+        }else{
+            alert('请完善信息！');
+        }
+
         return false;
     });
 });

@@ -9,6 +9,21 @@ define(function(require, exports, module){
     var $=require('jquery');
     var xhr=require('xhr');
 
+    //获取用户信息
+    $.ajax({
+        url:window.apiHost+'getUserInfo',
+        type:'get',
+        success:function(data){
+            if(data.status==1){
+                $('#name').val(data.data.name);
+                $('#email').val(data.data.email);
+                $('#description').val(data.data.description);
+                $('#sex').find('option[value='+data.data.sex+']').attr('selected','selected');
+                $('#identity').find('option[value='+data.data.identity+']').attr('selected','selected');
+            }
+        }
+    });
+
     $('.btn-save').click(function(){
         var canSubmit=true;
         $('#userInfoForm').find('input[required=required],textarea[required=required]').each(function(index){

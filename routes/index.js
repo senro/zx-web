@@ -90,7 +90,7 @@ exports.getAllUsers = function(req, res){
                 });
                 res.end();
             }else {
-                res.send({ status: 0,msg:'请完善用户资料！' });
+                res.send({ status: 0,msg:'目前没有用户！' });
                 res.end();
             }
 
