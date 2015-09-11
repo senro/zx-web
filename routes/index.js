@@ -69,9 +69,10 @@ exports.getAllUsers = function(req, res){
             // project will be the first entry of the Projects table with the title 'aProject' || null
             if(users){
                 console.log(users);
-                var resUsers=[],resUser={};
+                var resUsers=[],resUser;
                 for(var i=0;i<users.length;i++){
-                    var user=users[i];
+                    var user=users[i].dataValues;
+                    resUser={};
                     resUser.id=user.id;
                     resUser.name=user.name;
                     resUser.cellphone=user.username;
