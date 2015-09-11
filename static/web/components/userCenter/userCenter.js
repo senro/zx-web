@@ -51,4 +51,14 @@ define(function(require, exports, module){
 
         return false;
     });
+    $('.userPic').click(function(){
+        //获取图片
+        signals.getPicture.add(function(imgSrc){
+            $('.userPic').attr('src',imgSrc);
+        });
+        window.parent.postMessage(require('components/cordova/camera/getPicture'),'*');
+        return false;
+    });
+
+
 });

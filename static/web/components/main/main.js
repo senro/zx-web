@@ -105,4 +105,13 @@ define(function(require, exports, module){
         $('.navBar').animate({left:-$('.navBar').width()},200);
         return false;
     });
+
+    $('.userPicImg').click(function(){
+        //获取图片
+        signals.getPicture.add(function(imgSrc){
+            $('.userPicImg').attr('src',imgSrc);
+        });
+        window.parent.postMessage(require('components/cordova/camera/getPicture'),'*');
+        return false;
+    });
 });

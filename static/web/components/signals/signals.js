@@ -10,6 +10,7 @@ define(function(require, exports, module){
 
     module.exports = {
         getCurrPos : new signal.Signal(),
+        getPicture : new signal.Signal(),
         pickContact : new signal.Signal()
     };
 });

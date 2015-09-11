@@ -19,8 +19,8 @@ define(function (require, exports, module) {
                     case 'getCurrPos':
                         signals.getCurrPos.dispatch(JSON.parse(msgData));
                         break;
-                    case 'cameraCode':
-                        //$('#cameraImg').attr('src',"data:image/jpeg;base64," + msgData);
+                    case 'getPicture':
+                        signals.getPicture.dispatch("data:image/jpeg;base64," + msgData);
                         break;
                     case 'pickContact':
                         signals.pickContact.dispatch(JSON.parse(msgData));
