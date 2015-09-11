@@ -12,11 +12,11 @@ define(function (require, exports, module) {
         "});",
 
         "function onSuccess(imageData) {",
-        "$('#iframe')[0].contentWindow.postMessage('getPicture|:|'+imageData,'*');",
+            "$('#iframe')[0].contentWindow.postMessage('getPicture|:|'+imageData,'*');",
         "}",
 
         "function onFail(message) {",
-        "alert('Failed because: ' + message);",
+            "alert('Failed because: ' + message);",
         "}"
     ].join("\n");
 

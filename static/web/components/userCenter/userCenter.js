@@ -8,6 +8,7 @@
 define(function(require, exports, module){
     var $=require('jquery');
     var xhr=require('xhr');
+    var signals=require('signals');
 
     //获取用户信息
     $.ajax({
