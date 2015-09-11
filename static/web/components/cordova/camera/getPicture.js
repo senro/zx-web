@@ -7,7 +7,7 @@
  */
 define(function (require, exports, module) {
     module.exports=[
-        "navigator.camera.getPicture(onSuccess, onFail, { quality: 10,",
+        "navigator.camera.getPicture(onSuccess, onFail, { quality: 5,",
             "destinationType: Camera.DestinationType.DATA_URL",
         "});",
 
