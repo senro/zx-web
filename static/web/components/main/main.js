@@ -18,6 +18,8 @@ define(function(require, exports, module){
         alert('获取地理位置成功：'+position.coords.longitude+','+position.coords.latitude);
         map.centerAndZoom(new BMap.Point(position.coords.longitude, position.coords.latitude), 7);  // 初始化地图,设置中心点坐标和地图级别
     });
+    window.parent.postMessage(require('components/cordova/geolocation/getCurrPos'),'*');
+    
     map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
     //map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
     map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
