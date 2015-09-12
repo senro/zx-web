@@ -20,6 +20,10 @@ define(function(require, exports, module){
     });
     window.parent.postMessage(require('components/cordova/geolocation/getCurrPos'),'*');
 
+    //设置默认位置北京
+    var beijingPoint = new BMap.Point(116.32715863448607,39.990912172420714);
+    map.centerAndZoom(beijingPoint, 10);  // 初始化地图,设置中心点坐标和地图级别
+
     map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
     //map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
     map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
@@ -89,20 +93,6 @@ define(function(require, exports, module){
     function addUserToMap(map,Lng,Lat,sContent){
         //经度 Longitude 简写Lng纬度 Latitude 简写Lat
         var point = new BMap.Point(Lng, Lat);
-
-        var marker = new BMap.Marker(point);
-        var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
-        //map.centerAndZoom(point, 15);
-        map.addOverlay(marker);
-        marker.addEventListener("click", function(){
-            this.openInfoWindow(infoWindow);
-            //图片加载完毕重绘infowindow
-            $('img')[0].onload = function (){
-                infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
-            }
-        });
-
-
         //坐标转换
         var convertor = new BMap.Convertor();
         var pointArr = [];
@@ -113,7 +103,17 @@ define(function(require, exports, module){
         var translateCallback = function (data){
             if(data.status === 0) {
 
-
+                var marker = new BMap.Marker(data.points[0]);
+                var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+                //map.centerAndZoom(point, 15);
+                map.addOverlay(marker);
+                marker.addEventListener("click", function(){
+                    this.openInfoWindow(infoWindow);
+                    //图片加载完毕重绘infowindow
+                    $('img').onload = function (){
+                        infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+                    }
+                });
             }
         }
     }
