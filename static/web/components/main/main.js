@@ -61,7 +61,7 @@ define(function(require, exports, module){
                 '<p>{{identity}}</p>'+
                 '<p>{{description}}</p>'+
                 '<p>{{cellphone}}</p>'+
-                '<p>最后一次登录于：{{lastLoginTime}}</p>'+
+                '<p>最后一次登录于：{{lastLoginTime.split("T")[0]}}</p>'+
                 '<p><a href="#{{id}}">收藏TA</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#{{cellphone}}">联系TA</a></p>'+
                 '</div>'
         ;
