@@ -10,8 +10,8 @@ module.exports = function(sequelize, DataTypes) {
       email:DataTypes.STRING,
       description:DataTypes.STRING,
       userPic:DataTypes.STRING,
-      Lng:DataTypes.INTEGER,
-      Lat:DataTypes.INTEGER
+      Lng:DataTypes.STRING,
+      Lat:DataTypes.STRING
   }
 //      {
 //    classMethods: {

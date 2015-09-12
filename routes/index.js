@@ -39,11 +39,12 @@ exports.doRegister = function(req, res){
                 if(created){
                     req.session.user=user.dataValues;
                     res.cookie('userObj',JSON.stringify({username:user.get().username,createdAt:user.get().createdAt}),{maxAge:900000});
+                    //console.log('location'+String(req.param('Lng'))+','+String(req.param('Lat')));
                     //如果有位置坐标，则保存
                     if(req.param('Lng')&&req.param('Lat')){
                         models.User.update({
-                            lng: req.param('Lng')||null,
-                            lat: req.param('Lat')||null
+                            Lng: String(req.param('Lng'))||null,
+                            Lat: String(req.param('Lat'))||null
                         },{
                             where: {username: req.session.user.username}
                         }).then(function(array) {
@@ -68,7 +69,7 @@ exports.getAllUsers = function(req, res){
         models.User.findAll().then(function(users) {
             // project will be the first entry of the Projects table with the title 'aProject' || null
             if(users){
-                console.log(users);
+                //console.log(users);
                 var resUsers=[],resUser;
                 for(var i=0;i<users.length;i++){
                     var user=users[i].dataValues;
@@ -80,8 +81,8 @@ exports.getAllUsers = function(req, res){
                     resUser.description=user.description;
                     resUser.lastLoginTime=user.updatedAt;
                     resUser.userPic='static/images/userPic.png';
-                    resUser.Lng=user.Lng;
-                    resUser.Lat=user.Lat;
+                    resUser.Lng=Number(user.Lng);
+                    resUser.Lat=Number(user.Lat);
                     resUsers.push(resUser);
                 }
                 res.send({
@@ -165,8 +166,8 @@ exports.doLogin = function(req, res){
                     //如果有位置坐标，则保存
                     if(req.param('Lng')&&req.param('Lat')){
                         models.User.update({
-                            lng: req.param('Lng')||null,
-                            lat: req.param('Lat')||null
+                            Lng: String(req.param('Lng'))||null,
+                            Lat: String(req.param('Lat'))||null
                         },{
                             where: {username: req.session.user.username}
                         }).then(function(array) {
