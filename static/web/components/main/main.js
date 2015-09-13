@@ -87,10 +87,6 @@ define(function(require, exports, module){
                     //addUserToMap(map,mapUser.Lng,mapUser.Lat,sContent);
                 }
                 //经度 Longitude 简写Lng纬度 Latitude 简写Lat
-                //坐标转换
-                var convertor = new BMap.Convertor();
-                convertor.translate(pointArr, 1, 5, translateCallback);
-
                 //坐标转换完之后的回调函数
                 var translateCallback = function (data){
                     if(data.status === 0) {
@@ -114,7 +110,10 @@ define(function(require, exports, module){
                         }
 
                     }
-                }
+                };
+                //坐标转换
+                var convertor = new BMap.Convertor();
+                convertor.translate(pointArr, 1, 5, translateCallback);
             }else{
                 window.location.href=window.baseUrl+'/index.html#/login';
             }
