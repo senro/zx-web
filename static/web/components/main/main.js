@@ -78,10 +78,42 @@ define(function(require, exports, module){
         success:function(data){
             if(data.status==1){
                 var mapUsers=data.data;
+                var pointArr = [];
+
                 for(var i=0;i<mapUsers.length;i++){
                     var mapUser=mapUsers[i];
-                    var sContent = render(mapUser);
-                    addUserToMap(map,mapUser.Lng,mapUser.Lat,sContent);
+                    var point = new BMap.Point(mapUser.Lng, mapUser.Lat);
+                    pointArr.push(point);
+                    //addUserToMap(map,mapUser.Lng,mapUser.Lat,sContent);
+                }
+                //经度 Longitude 简写Lng纬度 Latitude 简写Lat
+                //坐标转换
+                var convertor = new BMap.Convertor();
+                convertor.translate(pointArr, 1, 5, translateCallback);
+
+                //坐标转换完之后的回调函数
+                var translateCallback = function (data){
+                    if(data.status === 0) {
+                        for(var i=0;i<mapUsers.length;i++){
+                            var mapUser=mapUsers[i];
+                            mapUsers[i].TranlatedPointer=data.points[i];
+                            var sContent = render(mapUser);
+
+                            var marker = new BMap.Marker(mapUsers[i].TranlatedPointer);
+                            var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+                            //map.centerAndZoom(point, 15);
+                            map.addOverlay(marker);
+                            marker.addEventListener("click", function(){
+                                this.openInfoWindow(infoWindow);
+                                //图片加载完毕重绘infowindow
+                                $('img').onload = function (){
+                                    infoWindow.redraw();   //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+                                }
+                            });
+                            //addUserToMap(map,mapUser.Lng,mapUser.Lat,sContent);
+                        }
+
+                    }
                 }
             }else{
                 window.location.href=window.baseUrl+'/index.html#/login';
