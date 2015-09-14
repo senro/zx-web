@@ -41,7 +41,7 @@ exports.doRegister = function(req, res){
                     res.cookie('userObj',JSON.stringify({username:user.get().username,createdAt:user.get().createdAt}),{maxAge:900000});
                     //console.log('location'+String(req.param('Lng'))+','+String(req.param('Lat')));
                     //如果有位置坐标，则保存
-                    if(req.param('Lng')&&req.param('Lat')){
+                    if(req.param('Lng')!=''&&req.param('Lat')!=''){
                         models.User.update({
                             Lng: String(req.param('Lng'))||null,
                             Lat: String(req.param('Lat'))||null
@@ -164,7 +164,7 @@ exports.doLogin = function(req, res){
                     req.session.user=user.dataValues;
                     res.cookie('userObj',JSON.stringify({username:user.get().username,createdAt:user.get().createdAt}),{maxAge:900000});
                     //如果有位置坐标，则保存
-                    if(req.param('Lng')&&req.param('Lat')){
+                    if(req.param('Lng')!=''&&req.param('Lat')!=''){
                         models.User.update({
                             Lng: String(req.param('Lng'))||null,
                             Lat: String(req.param('Lat'))||null
