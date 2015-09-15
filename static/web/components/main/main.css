@@ -18,6 +18,9 @@ body,html{
     z-index: 999;
     height: 6%;
 }
+.input-search{
+    width: 100px;
+}
 .map{
     height: 94%;
     background-color: #000;
