@@ -19,6 +19,9 @@ define(function(require, exports, module){
     });
     window.parent.postMessage(require('components/cordova/geolocation/getCurrPos'),'*');
 
+    //$('#Lng').val(114.21892734521);
+    //$('#Lat').val(29.575429778924);
+
     $('.btn-register').click(function(){
         var username=$('#username').val(),
             password=$('#password').val();

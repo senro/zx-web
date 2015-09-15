@@ -1,4 +1,5 @@
 var models  = require('../models');
+var http = require('http');
 
 exports.index = function(req, res,next){
     //res.send('respond with a resource');
@@ -41,14 +42,29 @@ exports.doRegister = function(req, res){
                     res.cookie('userObj',JSON.stringify({username:user.get().username,createdAt:user.get().createdAt}),{maxAge:900000});
                     //console.log('location'+String(req.param('Lng'))+','+String(req.param('Lat')));
                     //如果有位置坐标，则保存
-                    if(req.param('Lng')!=''&&req.param('Lat')!=''){
-                        models.User.update({
-                            Lng: String(req.param('Lng'))||null,
-                            Lat: String(req.param('Lat'))||null
-                        },{
-                            where: {username: req.session.user.username}
-                        }).then(function(array) {
-                            console.log('保存地理坐标成功！');
+                    if(req.param('Lng')!=''&& req.param('Lat')!=''){
+                        http.get("http://api.map.baidu.com/geoconv/v1/?coords="+req.param('Lng')+','+req.param('Lat')+'&ak=XoGIq1S4vnlzaTVuTQZsHSPi&from=1&to=5', function(res) {
+                            console.log("Got response: " + res.statusCode);
+                            if(res.statusCode==200){
+                                res.on('data', function (chunk) {
+                                    console.log('BODY: ' + JSON.parse(chunk));
+                                    if(JSON.parse(chunk).status==0){
+                                        //坐标转换成功
+                                        models.User.update({
+                                            Lng: String(JSON.parse(chunk).result[0].x)||null,
+                                            Lat: String(JSON.parse(chunk).result[0].y)||null
+                                        },{
+                                            where: {username: req.session.user.username}
+                                        }).then(function(array) {
+                                            console.log('保存地理坐标成功！');
+
+                                        });
+                                    }
+                                });
+                            }
+
+                        }).on('error', function(e) {
+                            console.log("Got error: " + e.message);
                         });
                     }
                     res.send({ status: 1,msg:'注册成功！',username:user.get().username,createdAt:user.get().createdAt });
