@@ -5,3 +5,9 @@
  * Time: 下午2:40
  * To change this template use File | Settings | File Templates.
  */
+.container-logo .logo{
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
