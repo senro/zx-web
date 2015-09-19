@@ -8,13 +8,16 @@
 body,html{
     height: 100%;
 }
+body{
+    font-family: '微软雅黑', arial, sans-serif;
+}
 .container-index{
     position: relative;
     height: 100%;
 }
 .bar{
     width: 100%;
-    background-color: #ccc;
+    background-color: #fff;
     z-index: 999;
     height: 6%;
     padding: 5px;
@@ -75,21 +78,23 @@ body,html{
     z-index: 999;
     background-color: #fff;
 }
-.userPic{
-    height: 117px;
+.container-index .userPic{
+    height: auto;
     padding: 10px;
-    background-color: #ccc;
+    background-color: #6bd1ce;
+    text-align: center;
 }
 .userPicImg{
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 10px auto;
 }
 .navBarBtn{
     display: block;
     height: 45px;
+    padding: 0 20px;
     line-height: 45px;
     text-align: center;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #e3e3e3;
     text-decoration: none;
 }
 .navBarBtn:hover{
