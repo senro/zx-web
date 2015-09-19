@@ -9,7 +9,11 @@ define(function(require, exports, module){
 
     var $=require('jquery');
     var signals=require('signals');
+    var cookie=require('cookie');
 
+    window.userObj=JSON.parse(cookie('get','userObj'));
+
+    $('.userName').html(window.userObj.username);
     // 百度地图API功能
 
     var map = new BMap.Map("map");    // 创建Map实例
