@@ -73,10 +73,14 @@ body{
     position: absolute;
     left: -165px;
     top: 0;
-    width: 165px;
+    width: 175px;
     height: 100%;
     z-index: 999;
     background-color: #fff;
+    -moz-box-shadow: 10px 0px 25px -6px #000000;
+    -webkit-box-shadow: 10px 0px 25px -6px #000000;
+    box-shadow: 10px 0px 25px -6px #000000;
+
 }
 .container-index .userPic{
     height: auto;
@@ -86,6 +90,7 @@ body{
 }
 .userPicImg{
     display: block;
+    border-radius: 3px;
     margin: 0 auto 10px auto;
 }
 .navBarBtn{

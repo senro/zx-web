@@ -13,7 +13,7 @@ define(function(require, exports, module){
 
     window.userObj=JSON.parse(cookie('get','userObj'));
 
-    $('.userName').html(window.userObj.username);
+    $('.username').html(window.userObj.username);
     // 百度地图API功能
 
     var map = new BMap.Map("map");    // 创建Map实例
