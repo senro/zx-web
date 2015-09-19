@@ -150,7 +150,7 @@ define(function(require, exports, module){
     });
     $('.mask').click(function(){
         $('.mask').hide();
-        $('.navBar').animate({left:-$('.navBar').width()},200);
+        $('.navBar').animate({left:-$('.navBar').width()-50},200);
         return false;
     });
 
