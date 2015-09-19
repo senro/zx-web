@@ -21,8 +21,8 @@ define(function (require,exports,module) {
     };
     //注册
     routerCallbacks.register=function(){
-        $body.load(window.baseUrl+'/components/register/register.html',function(html){
-            require.async('components/register/register.js',function(register){
+        $body.load(window.baseUrl+'/components/register/register.html'+'?'+Math.random(),function(html){
+            require.async('components/register/register.js'+'?'+Math.random(),function(register){
 
             });
         });
