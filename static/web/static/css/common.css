@@ -9,9 +9,9 @@
     -webkit-user-select: none;
 }
 body{
-    background-color: #66e6ef;
+    /*background-color: #66e6ef;*/
 }
-.container{
+.container-fluid{
     background-color: #fff;
 }
 input,textarea{
