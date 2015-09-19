@@ -60,9 +60,9 @@ seajs.config({
         'mock':'spm_modules/mock/mock.js',
         'sweetalert':'spm_modules/sweetalert/dist/sweetalert.min.js'
     }
-    ,
-    map: [
-        [ /^(.*\/web\/components\/.*\.(?:css|js))(?:.*)$/i, '$1?'+Math.random() ]
-    ]
+//    ,
+//    map: [
+//        [ /^(.*\/web\/components\/.*\.(?:css|js))(?:.*)$/i, '$1?'+Math.random() ]
+//    ]
 });
 

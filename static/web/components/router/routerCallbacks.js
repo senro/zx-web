@@ -5,16 +5,16 @@ define(function (require,exports,module) {
     var $body = $('body');
     //首页
     routerCallbacks.main=function(){
-        $body.load(window.baseUrl+'/components/main/main.html',function(html){
-            require.async('components/main/main.js',function(main){
+        $body.load(window.baseUrl+'/components/main/main.html'+'?'+Math.random(),function(html){
+            require.async('components/main/main.js'+'?'+Math.random(),function(main){
 
             });
         });
     };
     //登录
     routerCallbacks.login=function(){
-        $body.load(window.baseUrl+'/components/login/login.html',function(html){
-            require.async('components/login/login.js',function(login){
+        $body.load(window.baseUrl+'/components/login/login.html'+'?'+Math.random(),function(html){
+            require.async('components/login/login.js'+'?'+Math.random(),function(login){
 
             });
         });
