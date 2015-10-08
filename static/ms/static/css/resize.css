@@ -122,6 +122,9 @@ and (min-device-width: 320px) {
     .page3-body{
         transform-origin: 0% 10%;
         transform:scale(0.3,0.3);
+
+        -webkit-transform-origin: 0% 10%;
+        -webkit-transform:scale(0.3,0.3);
     }
 
     /*page4*/
@@ -140,6 +143,9 @@ and (min-device-width: 320px) {
     .page4-items-1{
         transform-origin: 0% 10%;
         transform: scale(0.9,0.9);
+
+        -webkit-transform-origin: 0% 10%;
+        -webkit-transform: scale(0.9,0.9);
         /* position: absolute; */
         left: 0;
     }
@@ -147,6 +153,9 @@ and (min-device-width: 320px) {
     .page4-items-2{
         transform-origin: 0% 10%;
         transform: scale(0.9,0.9);
+
+        -webkit-transform-origin: 0% 10%;
+        -webkit-transform: scale(0.9,0.9);
         right: 0;
     }
 
