@@ -5,48 +5,6 @@
 and (-webkit-min-device-pixel-ratio: 2)
 and (max-device-width: 480px)
 and (min-device-width: 320px) {
-    /*nav*/
-    .login-infos{
-        display: none;
-    }
-    .nav{
-        position: relative;
-    }
-    .nav-btns{
-        float: right;
-        position: relative;
-        width: 88px;
-        margin: 45px 10px 0 0;
-    }
-    .nav-btn{
-        display: none;
-        height: 40px;
-        line-height: 40px;
-        text-decoration: none ;
-        color: #fff ;
-        padding: 0;
-        background-color: #1F2A3F;
-        /* width: 100%; */
-        text-align: center;
-        float: none;
-    }
-    .nav-btn.active{
-        background-color: #00B7FF;
-        border:0
-    }
-    .nav-btn-line{
-        display: none;
-    }
-    .nav-btn-icon{
-        position: absolute;
-        right: 10px;
-        top:0;
-        width: 88px;
-        height: 45px;
-        background: url(../images/mobile/nav-btn-icon.png) no-repeat 47px center;
-        z-index: 998;
-        display: block;
-    }
 
     /*page1*/
     .page1-tit{
@@ -58,9 +16,6 @@ and (min-device-width: 320px) {
     }
     .page1-tit p{
         font-size: 16px;
-    }
-    .page1-boxs{
-        /*margin-top: -29px;*/
     }
     .page1-box{
         width: 94px;
@@ -89,14 +44,16 @@ and (min-device-width: 320px) {
     .page-tit{
         font-size: 24px;
     }
+
+    /*page2*/
     .page2-body{
-        margin-top: -60px;
         width: 345px;
         height: 290px;
         background-size: 67% 42%;
     }
     .page2-body-feature{
         width: 146px;
+        top: 95%;
     }
     .page2-body-feature-tit{
         font-size: 16px;
@@ -107,24 +64,15 @@ and (min-device-width: 320px) {
     .page2-body-feature-item{
         font-size:14px;
     }
-    .page2-body-feature1{
-        left: 50%;
-        top: 209px;
-        margin-left: -146px;
-    }
-    .page2-body-feature2{
-        right: 50%;
-        top: 212px;
-        margin-right: -160px;
-    }
+
 
     /*page3*/
     .page3-body{
         transform-origin: 0% 10%;
         transform:scale(0.3,0.3);
-
-        -webkit-transform-origin: 0% 10%;
-        -webkit-transform:scale(0.3,0.3);
+        -webkit-transform-origin: -17% 10%;
+        -webkit-transform: scale(0.25,0.25);
+        top: 30%;
     }
 
     /*page4*/
@@ -132,7 +80,6 @@ and (min-device-width: 320px) {
         max-width: 979px;
         height: 370px ;
         background: url(../images/pc/page4/page4-body.png) no-repeat;
-        margin: 16px auto 0;
         background-size: 102%;
         position: relative;
     }
@@ -146,7 +93,6 @@ and (min-device-width: 320px) {
 
         -webkit-transform-origin: 0% 10%;
         -webkit-transform: scale(0.9,0.9);
-        /* position: absolute; */
         left: 0;
     }
 
@@ -160,20 +106,16 @@ and (min-device-width: 320px) {
     }
 
     /*page5*/
-    .page5 .page-tit{
-        margin-top: 51px;
-    }
     .page5-cont{
         color: #1F6D76 ;
         font-size: 12px;
-        width: 100%;
-        margin: 5px auto 20px;
+        width: 90%;
     }
     .page5-footer-tit{
         font-size: 14px;
     }
     .page5-footer{
-        margin-top: -214px;
+        top: 73%;
     }
     .page5-footer-items {
         margin-top: 10px;
@@ -212,8 +154,11 @@ and (max-device-width: 568px)
 and (-webkit-min-device-pixel-ratio: 2) {
     /*page5*/
     .page5-body{
-        transform-origin: 9% 10%;
+        transform-origin: -31% 10%;
         transform: scale(0.4,0.4);
+        -webkit-transform-origin: -31% 10%;
+        -webkit-transform: scale(0.4,0.4);
+        top: 37%;
     }
 }
 
@@ -241,55 +186,8 @@ and (orientation: landscape) {
 and (min-device-width: 375px)
 and (max-device-width: 667px)
 and (-webkit-min-device-pixel-ratio: 2) {
-    /**
-     * Created with PhpStorm.
-     * User: Administrator
-     * Date: 2015/10/1
-     * Time: 11:22
-     * To change this template use File | Settings | File Templates.
-     */
-    .login-infos{
-        display: none;
-    }
-    .nav{
-        position: relative;
-    }
-    .nav-btns{
-        float: right;
-        position: relative;
-        width: 88px;
-        margin: 45px 10px 0 0;
-    }
-    .nav-btn{
-        display: none;
-        height: 40px;
-        line-height: 40px;
-        text-decoration: none ;
-        color: #fff ;
-        padding: 0;
-        background-color: #1F2A3F;
-        /* width: 100%; */
-        text-align: center;
-        float: none;
-    }
-    .nav-btn.active{
-        background-color: #00B7FF;
-        border:0
-    }
-    .nav-btn-line{
-        display: none;
-    }
-    .nav-btn-icon{
-        position: absolute;
-        right: 10px;
-        top:0;
-        width: 88px;
-        height: 45px;
-        background: url(../images/mobile/nav-btn-icon.png) no-repeat 47px center;
-        z-index: 998;
-        display: block;
-    }
 
+    /*page1*/
     .page1-tit{
         width: 380px;
         background-size: 80% 80%;
@@ -311,14 +209,6 @@ and (-webkit-min-device-pixel-ratio: 2) {
     .page1-box-num{
         font-size: 21px;
     }
-    .page1-boxs{
-        /*transform-origin: 8% 10%;*/
-        /*transform:scale(0.5,0.5);*/
-        /*margin-top: 62px;*/
-    }
-    .page1-footer{
-
-    }
 
     /*page2*/
     .page2-body-feature-tit{
@@ -339,30 +229,9 @@ and (-webkit-min-device-pixel-ratio: 2) {
     }
     .page2-body-feature{
         width: 156px;
-    }
-    .page2-body-feature1{
-        left: 158px;
-        top: 266px;
-    }
-    .page2-body-feature2{
-        right: 155px;
-        top: 266px;
+        top: 108%;
     }
 
-    /*page3*/
-    .page3-body{
-        transform-origin: 3% 10%;
-        transform: scale(0.3,0.3);
-    }
-
-    /*page5*/
-    .page5-body{
-        transform-origin: 9% 10%;
-        transform: scale(0.5,0.5);
-    }
-    .page5-footer-tit{
-        margin-top: 92px;
-    }
 }
 
 /* Portrait */
@@ -399,20 +268,9 @@ and (-webkit-min-device-pixel-ratio: 3) {
         margin-left: 18px;
     }
 
-    /*page3*/
-    .page3-body {
-        transform-origin: 5% -19%;
-        transform: scale(0.3, 0.3);
-    }
-
     /*page5*/
     .page5 .page5-tit {
         margin-top: 80px;
-    }
-
-    .page5-body {
-        transform-origin: 16% -7%;
-        transform: scale(0.5, 0.5);
     }
 
     .page5-footer-tit {
@@ -455,9 +313,16 @@ and (min-device-width: 768px)
 and (max-device-width: 1024px)
 and (-webkit-min-device-pixel-ratio: 1) {
     /*page1*/
+    .page1-box-num{
+        font-size: 28px;
+    }
     .page1-box{
         margin-left: 46px;
         margin-top: -69px;
+        width: 196px;
+        height: 93px;
+        font-size: 16px;
+        background-size: 100% 100%;
     }
 
     /*page2*/
@@ -469,8 +334,11 @@ and (-webkit-min-device-pixel-ratio: 1) {
 
     /*page3*/
     .page3-body{
-        transform-origin: 39% -20%;
+        transform-origin: -75% 12%;
         transform: scale(0.6,0.6);
+        -webkit-transform-origin: -75% 12%;
+        -webkit-transform: scale(0.6,0.6);
+        top: 35%;
     }
 
     /*page4*/
@@ -478,17 +346,23 @@ and (-webkit-min-device-pixel-ratio: 1) {
         max-width: 979px;
         height: 370px ;
         background: url(../images/pc/page4/page4-body.png) no-repeat;
-        margin: 16px auto 0;
         background-size: 102%;
-        position: relative;
     }
     /*page5*/
     .page5 .page-tit{
-        margin-top: 102px;
+        top: 20%;
     }
     .page5-body{
         transform-origin: 53% -7%;
         transform: scale(0.5,0.5);
+        -webkit-transform-origin: -187% -7%;
+        -webkit-transform: scale(0.8,0.8);
+        top: 42%;
+    }
+    .page5-footer-item {
+        background-size: 100%;
+        height: 55px;
+        width: 131px;
     }
 }
 

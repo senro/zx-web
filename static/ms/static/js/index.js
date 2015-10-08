@@ -46,24 +46,39 @@ $navBtn.mouseleave(function(){
 });
 
 /*移动端菜单*/
-if(windowWidth<=828){
-    /*mobile nav*/
-    var $navBtnIcon=$('.nav-btn-icon');
+initMobileNav();
 
-    $navBtnIcon.click(function(){
-        if($navBtn.is(':visible')){
-            $navBtn.hide();
-        }else{
-            $navBtn.show().css({
-                display:'block'
-            });
-        }
-        return false;
-    });
+$(window).resize(function(){
+    windowWidth=$(window).width();
+    initMobileNav();
+});
 
-    $body.click(function(){
-        setTimeout(function(){
-            $navBtn.hide();
-        },200);
-    });
+function initMobileNav(){
+
+    if(windowWidth<=1024){
+        /*mobile nav*/
+        var $navBtnIcon=$('.nav-btn-icon');
+
+        $navBtnIcon.add($body).unbind('click');
+
+        $navBtnIcon.click(function(){
+            if($navBtn.is(':visible')){
+                $navBtn.hide();
+            }else{
+                $navBtn.show().css({
+                    display:'block'
+                });
+            }
+            return false;
+        });
+
+        $body.click(function(){
+            setTimeout(function(){
+                $navBtn.hide();
+            },200);
+        });
+    }else{
+        $navBtn.show();
+        $body.unbind('click');
+    }
 }

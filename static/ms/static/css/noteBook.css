@@ -5,9 +5,44 @@
  * Time: 10:11
  * To change this template use File | Settings | File Templates.
  */
-.page-tit{
-    margin-top: 84px;
+.login-infos{
+    display: none;
 }
-.page5 .page-tit{
-    margin-top: 98px;
+.nav{
+    position: relative;
+}
+.nav-btns{
+    float: right;
+    position: relative;
+    width: 88px;
+    margin: 45px 10px 0 0;
+}
+.nav-btn{
+    display: none;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: none ;
+    color: #fff ;
+    padding: 0;
+    background-color: #1F2A3F;
+    /* width: 100%; */
+    text-align: center;
+    float: none;
+}
+.nav-btn.active{
+    background-color: #00B7FF;
+    border:0
+}
+.nav-btn-line{
+    display: none;
+}
+.nav-btn-icon{
+    position: absolute;
+    right: 10px;
+    top:0;
+    width: 88px;
+    height: 45px;
+    background: url(../images/mobile/nav-btn-icon.png) no-repeat 47px center;
+    z-index: 998;
+    display: block;
 }
