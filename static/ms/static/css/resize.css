@@ -129,6 +129,7 @@ and (min-device-width: 320px) {
     /*footer*/
     .footer {
         font-size: 12px;
+        line-height: 18px;
     }
 }
 
