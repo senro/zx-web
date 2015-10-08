@@ -81,7 +81,9 @@ $(function() {
                 },200);
             });
         }else{
-            $navBtn.add($navBtnLine).show();
+            $navBtn.add($navBtnLine).css({
+                display:'block'
+            });
             $body.unbind('click');
         }
     }
