@@ -60,7 +60,7 @@ and (min-device-width: 320px) {
         font-size: 16px;
     }
     .page1-boxs{
-        margin-top: -29px;
+        /*margin-top: -29px;*/
     }
     .page1-box{
         width: 94px;
@@ -305,7 +305,7 @@ and (-webkit-min-device-pixel-ratio: 2) {
     .page1-boxs{
         /*transform-origin: 8% 10%;*/
         /*transform:scale(0.5,0.5);*/
-        margin-top: 62px;
+        /*margin-top: 62px;*/
     }
     .page1-footer{
 
@@ -382,37 +382,44 @@ and (min-device-width: 414px)
 and (max-device-width: 736px)
 and (-webkit-min-device-pixel-ratio: 3) {
     /*page1*/
-    .page1-tit p{
+    .page1-tit p {
         font-size: 17px;
     }
-    .page1-box{
+
+    .page1-box {
         margin-left: 18px;
     }
+
     /*page3*/
-    .page3-body{
+    .page3-body {
         transform-origin: 5% -19%;
-        transform: scale(0.3,0.3);
+        transform: scale(0.3, 0.3);
     }
+
     /*page5*/
-    .page5 .page5-tit{
+    .page5 .page5-tit {
         margin-top: 80px;
     }
+
     .page5-body {
         transform-origin: 16% -7%;
         transform: scale(0.5, 0.5);
     }
-    .page5-footer-tit{
+
+    .page5-footer-tit {
         margin-top: 100px;
     }
+
     .page5-footer-items {
         margin-top: 10px;
     }
-    .page5-footer-item{
+
+    .page5-footer-item {
         background-size: 100%;
         height: 37px;
         width: 61px;
     }
-
+}
 /* Portrait */
 @media only screen
 and (min-device-width: 414px)
