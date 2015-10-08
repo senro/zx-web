@@ -37,7 +37,7 @@ $(function() {
     $navBtn.mouseenter(function(){
         var $this=$(this);
 
-        $navBtnLine.show().css({
+        $navBtnLine.css({
             width:$this.outerWidth()
         }).animate({
             left:$this.position().left
@@ -81,7 +81,7 @@ $(function() {
                 },200);
             });
         }else{
-            $navBtn.show();
+            $navBtn.add($navBtnLine).show();
             $body.unbind('click');
         }
     }
