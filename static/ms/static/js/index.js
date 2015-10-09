@@ -34,35 +34,39 @@ $(function() {
         return false;
     });
 
-    $navBtn.mouseenter(function(){
-        var $this=$(this);
-
-        $navBtnLine.css({
-            width:$this.outerWidth()
-        }).animate({
-            left:$this.position().left
-        },200);
-    });
-
-    $navBtn.mouseleave(function(){
-        $navBtnLine.hide();
-    });
-
-    /*移动端菜单*/
-    initMobileNav();
+    /*初始化菜单*/
+    initNav();
 
     $(window).resize(function(){
         windowWidth=$(window).width();
-        initMobileNav();
+        initNav();
     });
+    function initPCNav(){
+        $navBtn.mouseenter(function(){
+            var $this=$(this);
 
-    function initMobileNav(){
+            $navBtnLine.show().css({
+                width:$this.outerWidth()
+            }).animate({
+                left:$this.position().left
+            },200);
+        });
+
+        $navBtn.mouseleave(function(){
+            $navBtnLine.hide();
+            return false;
+        });
+    }
+    function initNav(){
 
         if(windowWidth<=1024){
             /*mobile nav*/
             var $navBtnIcon=$('.nav-btn-icon');
 
+            //reset
             $navBtnIcon.add($body).unbind('click');
+            $navBtn.unbind('mouseenter').unbind('mouseleave');
+            $navBtnLine.hide();
 
             $navBtnIcon.click(function(){
                 if($navBtn.is(':visible')){
@@ -81,10 +85,15 @@ $(function() {
                 },200);
             });
         }else{
-            $navBtn.add($navBtnLine).css({
+            //reset
+            $navBtn.add($navBtnLine).show().css({
                 display:'block'
             });
+            $navBtn.unbind('mouseenter').unbind('mouseleave');
             $body.unbind('click');
+
+            initPCNav();
         }
     }
+
 });
