@@ -30,7 +30,7 @@ $(function() {
         $navBtnLine=$('.nav-btn-line');
 
     $navBtn.click(function(){
-        runPage.go($(this).index());
+        runPage.go($navBtn.index(this));
         return false;
     });
 
