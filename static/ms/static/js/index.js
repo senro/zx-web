@@ -3,36 +3,15 @@ $(function() {
 
     var windowWidth=$(window).width();
 
-    var runPage;
-    runPage = new FullPage({
-        id: 'pages',
-        slideTime: 500,
-        effect: {
-            transform: {
-                translate: 'Y',
-                scale: [1, 1],
-                rotate: [0, 0]
-            },
-            opacity: [0, 1]
-        },
-        mode: 'wheel,touch,nav:navBar',
-        easing: 'ease',
-        callback: function(index, thisPage){
-
-
-        }
-
+    $('#pages').fullpage({
+        anchors: ['page1', 'page2', 'page3', 'page4','page5'],
+        menu: '#navBar'
     });
 
     /*nav*/
     var $body=$('body'),
         $navBtn=$('.nav-btn'),
         $navBtnLine=$('.nav-btn-line');
-
-    $navBtn.click(function(){
-        runPage.go($navBtn.index(this));
-        return false;
-    });
 
     /*初始化菜单*/
     initNav();
