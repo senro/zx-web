@@ -8,7 +8,10 @@
 $(function () {
     'use strict';
     $(document).on("pageInit", "#page-login", function(e, id, page) {
-
+        $('.loginBtn').click(function(){
+            $.router.loadPage("#page-list");  //加载内联页面
+            return false;
+        });
     });
     $(document).on("pageInit", "#page-list", function(e, id, page) {
 
