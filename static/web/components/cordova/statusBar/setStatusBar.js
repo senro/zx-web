@@ -7,7 +7,7 @@
  */
 define(function (require, exports, module) {
     module.exports=[
-        "StatusBar.styleLightContent();"
+        "StatusBar.backgroundColorByHexString('#000');"
     ].join("\n");
 
 });
