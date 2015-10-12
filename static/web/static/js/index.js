@@ -10,7 +10,7 @@ define(function(require, exports, module){
     var message=require('message');
     message.init();
     //set statusBar
-    require('components/cordova/statusBar/setStatusBar.js');
+    window.parent.postMessage(require('components/cordova/statusBar/setStatusBar.js'),'*');
 
     require('components/util/utilRouter.js');
     var router = require('router');
