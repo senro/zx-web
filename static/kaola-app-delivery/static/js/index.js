@@ -7,6 +7,12 @@
  */
 $(function () {
     'use strict';
+    $(document).on("pageInit", "#page-login", function(e, id, page) {
+
+    });
+    $(document).on("pageInit", "#page-list", function(e, id, page) {
+
+    });
     $(document).on("pageInit", "#page-detail", function(e, id, page) {
         // 加载flag
         var loading = false;
