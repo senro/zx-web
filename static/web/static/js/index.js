@@ -9,7 +9,7 @@ define(function(require, exports, module){
     //初始化消息接收器
     var message=require('message');
     message.init();
-    //set statusBar
+    //设置ios状态栏的背景
     window.parent.postMessage(require('components/cordova/statusBar/setStatusBar.js'),'*');
 
     require('components/util/utilRouter.js');
