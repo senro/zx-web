@@ -9,6 +9,7 @@ $(function () {
     'use strict';
     $(document).on("pageInit", "#page-login", function(e, id, page) {
         $('.loginBtn').click(function(){
+            alert('click loginBtn!');
             $.router.loadPage("#page-list");  //加载内联页面
             return false;
         });
