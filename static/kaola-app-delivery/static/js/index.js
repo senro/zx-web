@@ -89,7 +89,7 @@ $(function () {
                 $.refreshScroller();
             }, 1000);
         });
-        
+
         /*由于sm.js引用了fastClick，里面有针对ios6-7系统检测，所以ios6-7可能需要自己重写在scroll里的checkbox等动作*/
         //sm.js:1050
         // On some iOS devices, the targetElement supplied with the event is invalid if the layer
