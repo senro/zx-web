@@ -89,14 +89,7 @@ $(function () {
                 $.refreshScroller();
             }, 1000);
         });
-
-        //确认发货
-        $(document).on('click','.sendBtn', function () {
-            $.confirm('确认发货?', function () {
-                $.alert('ok，已经发货！');
-            });
-        });
-
+        
         /*由于sm.js引用了fastClick，里面有针对ios6-7系统检测，所以ios6-7可能需要自己重写在scroll里的checkbox等动作*/
         //sm.js:1050
         // On some iOS devices, the targetElement supplied with the event is invalid if the layer
@@ -104,6 +97,14 @@ $(function () {
         // for this to function correctly, it must be called *after* the event target is checked!
         // See issue #57; also filed as rdar://13048589 .
 
+    });
+
+    //确认发货
+    $(document).on('click','.sendBtn', function () {
+        $.confirm('确认发货?', function () {
+            $.alert('ok，已经发货！');
+        });
+        return false;
     });
 
     $.init();

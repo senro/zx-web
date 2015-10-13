@@ -33,7 +33,9 @@ i.icon.icon-form-plus {
     height: 1.45rem;
     background-image: url("../images/i-form-plus.png");
 }
-
+.panel.panel-left.panel-reveal{
+    width: 7rem;
+}
 .none{
     display: none;
 }
