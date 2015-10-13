@@ -2550,7 +2550,7 @@ $.device = (function ($) {
                       '{{yearPicker}}' +
                       // '<a href="#" class="link close-picker">{{closeText}}</a>' +
                   '</div>' +
-              '</div>',
+              '</div>'
           /* Callbacks
           onMonthAdd
           onChange
@@ -3152,12 +3152,12 @@ $.device = (function ($) {
               weekHeaderHTML = '<div class="picker-calendar-week-days">' + weekHeaderHTML + '</div>';
           }
           pickerClass = 'picker-modal picker-calendar ' + (p.params.cssClass || '');
-          var toolbarHTML = p.params.toolbar ? p.params.toolbarTemplate.replace(/{{closeText}}/g, p.params.toolbarCloseText) : '';
+          var toolbarHTML = p.params.toolbar ? p.params.toolbarTemplate.replace(/\{\{closeText\}\}/g, p.params.toolbarCloseText) : '';
           if (p.params.toolbar) {
               toolbarHTML = p.params.toolbarTemplate
-                  .replace(/{{closeText}}/g, p.params.toolbarCloseText)
-                  .replace(/{{monthPicker}}/g, (p.params.monthPicker ? p.params.monthPickerTemplate : ''))
-                  .replace(/{{yearPicker}}/g, (p.params.yearPicker ? p.params.yearPickerTemplate : ''));
+                  .replace(/\{\{closeText\}\}/g, p.params.toolbarCloseText)
+                  .replace(/\{\{monthPicker\}\}/g, (p.params.monthPicker ? p.params.monthPickerTemplate : ''))
+                  .replace(/\{\{yearPicker\}\}/g, (p.params.yearPicker ? p.params.yearPickerTemplate : ''));
           }
 
           pickerHTML =
@@ -3387,7 +3387,7 @@ $.device = (function ($) {
           toolbarTemplate: '<header class="bar bar-nav">\
           <button class="button button-link pull-right close-picker">确定</button>\
           <h1 class="title"></h1>\
-          </header>',
+          </header>'
       };
       params = params || {};
       for (var def in defaults) {
@@ -3792,7 +3792,7 @@ $.device = (function ($) {
           pickerClass = 'picker-modal picker-columns ' + (p.params.cssClass || '') + (p.params.rotateEffect ? ' picker-3d' : '');
           pickerHTML =
               '<div class="' + (pickerClass) + '">' +
-                  (p.params.toolbar ? p.params.toolbarTemplate.replace(/{{closeText}}/g, p.params.toolbarCloseText) : '') +
+                  (p.params.toolbar ? p.params.toolbarTemplate.replace(/\{\{closeText\}\}/g, p.params.toolbarCloseText) : '') +
                   '<div class="picker-modal-inner picker-items">' +
                       colsHTML +
                       '<div class="picker-center-highlight"></div>' +
@@ -4068,7 +4068,7 @@ $.device = (function ($) {
           var arr = [];
           for (var i = 0; i <= 23; i++) { arr.push(i); }
           return arr;
-        })(),
+        })()
       },
       // Divider
       {
@@ -4081,7 +4081,7 @@ $.device = (function ($) {
           var arr = [];
           for (var i = 0; i <= 59; i++) { arr.push(i < 10 ? '0' + i : i); }
           return arr;
-        })(),
+        })()
       }
     ]
   };
@@ -4413,7 +4413,7 @@ $.device = (function ($) {
             useTransform: true,
 
             //other options
-            eventPassthrough: undefined, //if you  want to use native scroll, you can set to: true or horizontal
+            eventPassthrough: undefined //if you  want to use native scroll, you can set to: true or horizontal
         };
 
         for (var i in options) {
@@ -6291,7 +6291,7 @@ $.device = (function ($) {
             var ptr = $(pageContent).hasClass('pull-to-refresh-content');
             var options = {
                 probeType: 1,
-                mouseWheel: true,
+                mouseWheel: true
             };
             if (ptr) {
                 options.ptr = true;
@@ -6318,7 +6318,7 @@ $.device = (function ($) {
     };
     Scroller.prototype = {
         _defaults: {
-            type: 'native',
+            type: 'native'
         },
         _bindEventToDomWhenJs: function() {
             //"scrollStart", //the scroll started.
@@ -6580,7 +6580,7 @@ $.device = (function ($) {
         "initPullToRefresh": initPullToRefreshJS,
         "pullToRefreshDone": pullToRefreshDoneJS, 
         "pullToRefreshTrigger": pullToRefreshTriggerJS, 
-        "destroyPullToRefresh": destroyPullToRefreshJS, 
+        "destroyPullToRefresh": destroyPullToRefreshJS
     };
 }(Zepto); // jshint ignore:line
 
@@ -7281,7 +7281,7 @@ $.device = (function ($) {
         $(forward[i].pageid).each(function() {
           var $page = $(this);
           if($page.data("page-remote")) $page.remove();
-        });;
+        });
       }
       this.state.setItem("forward", "[]");  //clearforward
 
