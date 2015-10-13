@@ -12,13 +12,13 @@ $(function () {
 
     $(document).on("pageInit", "#page-login", function(e, id, page) {
         windowWidth=$(window).width();
-        $('.page').width(windowWidth);
+        $('body').width(windowWidth);
     });
     $(document).on("pageInit", "#page-list", function(e, id, page) {
-        alert($(window).width());
+        //alert($(window).width());
     });
     $(document).on("pageInit", "#page-detail", function(e, id, page) {
-        alert($(window).width());
+        //alert($(window).width());
         // 加载flag
         var loading = false;
         // 最多可加载的条目
