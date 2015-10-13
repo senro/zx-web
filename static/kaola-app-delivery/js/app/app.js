@@ -110,13 +110,29 @@ App.page('login',function(){
 });
 App.page('goodsList',function(){
     this.init = function(){
-        $('.btn-delGoodID').on('tap', function(){
+        $('body').on('tap','.btn-delGoodID',function(){
+            var $this=$(this);
             J.confirm('警告','删除xxx商品名称？',function(){
                 //J.showToast('已经删除');
-                $(this).remove();
+                $this.parents('.goodsListItem').remove();
             },function(){
-                J.showToast('取消删除')
+                //J.showToast('取消删除');
             });
+        });
+        $('.btn-addGoodsID').on('tap', function(){
+            var $this=$(this);
+            $('.goodsListItems').append(
+                '<li class="goodsListItem clearfix">'+
+                '<div class="item-inner">'+
+                '<span class="item-title">xxx商品名称</span>'+
+                '&nbsp;&nbsp;&nbsp;&nbsp;'+
+                '<span class="item-text">xxx小区</span>'+
+                '</div>'+
+                '<a class="btn-del btn-delGoodID" href="javascript:;">'+
+                '<i class="icon minus"></i>'+
+                '</a>'+
+                '</li>'
+            );
         });
     }
 });
@@ -131,12 +147,17 @@ App.page('orderList',function(){
             setTimeout(function () {
                 var html = '';
                 for(var i=0;i<10;i++){
-                    html += ' <li data-icon="checkbox-unchecked" data-selected="selected">'+
-                    '<div class="item-media">'+
-                    '<img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style=\'width: 4rem;\'>'+
+                    html += '<li class="orderListItem clearfix" data-selected="selected">'+
+                    '<div class="item-media"><img src="http://gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i3/TB10LfcHFXXXXXKXpXXXXXXXXXX_!!0-item_pic.jpg_250x250q60.jpg" style=\"width: 4rem;\"></div>'+
+                    '<div class="item-inner">'+
+                    '<div class="item-title-row">'+
+                    '<div class="item-title">xxx商品名称</div>'+
                     '</div>'+
-                    '<strong>xxx商品名称</strong>'+
-                    '<p>黄晓晨-13525256666</p>'+
+                    '<div class="item-text">黄小厨-13525255655</div>'+
+                    '</div>'+
+                    '<div class="item-after">'+
+                    '<i class="icon checkbox-unchecked"></i>'+
+                    '</div>'+
                     '</li>';
                 }
                 $('#up_refresh_article ul.list').append(html);

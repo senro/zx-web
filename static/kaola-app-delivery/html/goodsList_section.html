@@ -6,22 +6,35 @@
         <h1 class="title">考拉社区</h1>
     </header>
     <article class="active" id="list_article"  data-scroll="true">
-        <ul class="list">
-            <li>
-                <strong>xxx商品名称</strong>
-                <p>xxx小区</p>
-                <a data-icon="minus" class="btn-delGoodID" href="javascript:;"></a>
+        <ul class="list goodsListItems">
+            <li class="goodsListItem clearfix">
+                <div class="item-inner">
+                    <span class="item-title">xxx商品名称</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="item-text">xxx小区</span>
+                </div>
+                <a class="btn-del btn-delGoodID" href="javascript:;">
+                    <i class="icon minus"></i>
+                </a>
             </li>
-            <li>
-                <strong>xxx商品名称</strong>
-                <p>xxx小区</p>
-                <a data-icon="minus" href="javascript:;"></a>
-            </li>
-            <li>
-                <input type="text" class="input input-addGoodsID" placeholder="请输入要添加的商品ID">
-                <a data-icon="plus" href="javascript:;"></a>
+            <li class="goodsListItem clearfix">
+                <div class="item-inner">
+                    <span class="item-title">xxx商品名称</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="item-text">xxx小区</span>
+                </div>
+                <a class="btn-del btn-delGoodID" href="javascript:;">
+                    <i class="icon minus"></i>
+                </a>
             </li>
         </ul>
-        <a href="#orderList_section" class="button block" data-target="section">去订单列表</a>
+        <div class="row-addGoodsID clearfix noborder">
+            <input type="text" class="input input-addGoodsID" placeholder="请输入要添加的商品ID">
+            <a data-icon="plus" class="button btn-addGoodsID" href="javascript:;"></a>
+        </div>
+        <footer>
+            <a href="#orderList_section" class="button block btn-gotoOrderList" data-target="section">去订单列表</a>
+        </footer>
+
     </article>
 </section>
