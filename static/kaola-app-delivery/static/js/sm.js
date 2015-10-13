@@ -7265,7 +7265,7 @@ $.device = (function ($) {
 
   //加载一个页面,传入的参数是页面id或者url
   Router.prototype.loadPage = function(url) {
-
+      alert('ready go!');
     this.getPage(url, function(page) {
 
       var pageid = this.getCurrentPage()[0].id;
@@ -7286,7 +7286,7 @@ $.device = (function ($) {
       this.state.setItem("forward", "[]");  //clearforward
 
       page.insertAfter($(".page")[0]);
-        alert('ready go!');
+
       this.animatePages(this.getCurrentPage(), page);
 
       var id = this.genStateID();
