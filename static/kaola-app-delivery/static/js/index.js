@@ -12,8 +12,8 @@ $(function () {
 
     $(document).on("pageInit", "#page-login", function(e, id, page) {
         windowWidth=$(window).width();
-        //$('body').width(windowWidth);
-        $('meta[name=viewport]').attr('content','user-scalable=no, width='+windowWidth+', initial-scale=1');
+        $('html,body').width(windowWidth);
+        //$('meta[name=viewport]').attr('content','user-scalable=no, width='+windowWidth+', initial-scale=1');
     });
     $(document).on("pageInit", "#page-list", function(e, id, page) {
         //alert($(window).width());
