@@ -28,6 +28,11 @@
 /*.infinite-scroll-preloader {*/
     /*margin-top:-20px;*/
 /*}*/
+i.icon.icon-form-plus {
+    width: 1.45rem;
+    height: 1.45rem;
+    background-image: url("../images/i-form-plus.png");
+}
 
 .none{
     display: none;
