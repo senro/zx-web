@@ -8,10 +8,11 @@
 $(function () {
     'use strict';
     window.parent.postMessage("StatusBar.backgroundColorByHexString('#000');",'*');
-
+    var windowWidth;
 
     $(document).on("pageInit", "#page-login", function(e, id, page) {
-        alert($(window).width());
+        windowWidth=$(window).width();
+        $('.page').width(windowWidth);
     });
     $(document).on("pageInit", "#page-list", function(e, id, page) {
         alert($(window).width());
