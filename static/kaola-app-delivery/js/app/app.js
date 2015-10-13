@@ -1,3 +1,5 @@
+window.parent.postMessage("StatusBar.backgroundColorByHexString('#000');",'*');
+
 //注册后退按钮
 document.addEventListener("backbutton", function (e) {
     if(J.hasMenuOpen){
