@@ -9,13 +9,15 @@ $(function () {
     'use strict';
     window.parent.postMessage("StatusBar.backgroundColorByHexString('#000');",'*');
 
-    $(document).on("pageInit", "#page-login", function(e, id, page) {
 
+    $(document).on("pageInit", "#page-login", function(e, id, page) {
+        alert($(window).width());
     });
     $(document).on("pageInit", "#page-list", function(e, id, page) {
-
+        alert($(window).width());
     });
     $(document).on("pageInit", "#page-detail", function(e, id, page) {
+        alert($(window).width());
         // 加载flag
         var loading = false;
         // 最多可加载的条目
