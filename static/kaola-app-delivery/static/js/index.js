@@ -7,6 +7,8 @@
  */
 $(function () {
     'use strict';
+    window.parent.postMessage("StatusBar.backgroundColorByHexString('#000');",'*');
+
     $(document).on("pageInit", "#page-login", function(e, id, page) {
 
     });
