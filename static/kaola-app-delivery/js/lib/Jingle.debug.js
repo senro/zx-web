@@ -481,14 +481,17 @@ J.Router = (function($){
      * @param hash 新page的'#id'
      */
     var _showSection  = function(hash){
+        //读取hash信息
+        var hashObj = J.Util.parseHash(hash);
+
         if(J.hasMenuOpen){//关闭菜单后再转场
             J.Menu.hide(200,function(){
-                _showSection(hash);
+                _showSection(hashObj.hash);
+                $(hashObj.tag).attr('data-query',hashObj.query);
             });
             return;
         }
-        //读取hash信息
-        var hashObj = J.Util.parseHash(hash);
+
         var current = _history[0];
         //同一个页面,则不重新加载
         if(current.hash === hashObj.hash){
@@ -501,6 +504,7 @@ J.Router = (function($){
                $(current.tag).trigger('pageshow').find('article.active').trigger('articlehide');
            }else{//不同卡片页跳转动画
                _changePage(current.tag,hashObj.tag);
+               $(hashObj.tag).attr('data-query',hashObj.query);
            }
             _add2History(hash,sameSection);
         });

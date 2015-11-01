@@ -1,3 +1,10 @@
+*{
+    -webkit-user-select: none;
+}
+input,textarea{
+    -webkit-user-select: text;
+}
+
 .list li{
     display: block;
     padding: 5px;
@@ -9,24 +16,31 @@
 .item-inner{
     float: left;
     margin: 0 0 0 5px;
+    line-height: 23px;
 }
 .item-after{
     float: right;
     margin: 20px 0 0 0;
 }
 .item-title{
-    font-size: 1.2rem;
+    font-size: 0.8rem;
 }
 .item-text{
-    font-size: 1.0rem;
+    font-size: 1.2rem;
 }
 .list>li>a.btn-del{
     float: right;
     padding: 10px;
     margin: 5px 5px 0 0;
 }
+.row-addGoodsID{
+    padding-bottom: 60px;
+}
 .goodsListItem .item-inner{
     line-height: 44px;
+}
+.goodsListItem .item-title{
+    font-size: 1.2rem;
 }
 .input-addGoodsID{
     float: left;
@@ -54,4 +68,10 @@
 }
 .form-login .input-row{
 
+}
+.textCenter{
+    text-align: center;
+}
+.btn-sendGoods{
+    padding: 0 15px;
 }

@@ -1,0 +1,46 @@
+<section id="userCenter_section" class="active" data-target="section">
+    <header>
+        <nav class="left">
+            <a href="#" data-icon="undo" data-target="back">返回</a>
+        </nav>
+        <h1 class="title">用户中心</h1>
+    </header>
+    <article class="active" data-scroll="false">
+        <img class="userPic" src="static/images/userPic.png" alt=""/>
+        <form class="input-group form-userInfo" id="userInfoForm">
+            <div class="input-row">
+                <label>姓名:</label>
+                <input type="text" class="input input-name" placeholder="请填写姓名" id="name" name="name" required="required" data-vd-msg="请填写姓名">
+                <select class="select select-sex" name="sex" id="sex">
+                    <option value="" selected="selected">选择性别</option>
+                    <option value="先生">先生</option>
+                    <option value="女士">女士</option>
+                </select>
+            </div>
+            <div class="input-row">
+                <label>身份:</label>
+                <select class="select select-identity" name="identity" id="identity">
+                    <option value="" selected="selected">选择身份</option>
+                    <option value="电工">电工</option>
+                    <option value="瓦工">瓦工</option>
+                    <option value="木工">木工</option>
+                    <option value="油漆工">油漆工</option>
+                    <option value="保洁">保洁</option>
+                    <option value="设计师">设计师</option>
+                    <option value="监工">监工</option>
+                    <option value="业主">业主</option>
+                </select>
+            </div>
+            <div class="input-row">
+                <label>邮箱:</label>
+                <input type="text" class="input input-email" id="email" name="email" placeholder="可不填">
+            </div>
+            <div class="input-row">
+                <label for="description">需求:</label>
+                <textarea class="textarea textarea-description" id="description" placeholder="需求描述请限制在200以内！" maxlength="200" name="description" required="required" data-vd-msg="请填写您的需求！"></textarea>
+            </div>
+            <a href="#" class="button block btn-save">保存</a>
+        </form>
+    </article>
+</section>
+<link rel="stylesheet" type="text/css" href="components/userCenter_section/userCenter_section.css"/>

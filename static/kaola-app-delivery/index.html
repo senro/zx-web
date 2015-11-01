@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Jingle V0.4</title>
+    <title>考拉小助手</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -17,8 +17,7 @@
         <div class="header">菜单</div>
         <div class="center">
             <ul class="menu">
-                <li><a href="#login_section" data-target="section">退出</a></li>
-                <li><a href="#">左划关闭</a></li>
+                <li><a href="#login_section" id="logout" data-target="section">退出</a></li>
             </ul>
         </div>
     </aside>
@@ -36,13 +35,13 @@
             <form class="input-group form-login" id="login_form">
                 <div class="input-row">
                     <label>手机号</label>
-                    <input type="text" name="mobile" class="input input-cellphone" placeholder="请输入手机号">
+                    <input type="text" name="username" class="input input-cellphone" maxlength="11" placeholder="请输入手机号">
                 </div>
                 <div class="input-row">
                     <label>密码</label>
                     <input class="input input-password" name="password" type="password" placeholder="请输入密码">
                 </div>
-                <a href="#goodsList_section" class="button block btn-login" data-target="section">登录</a>
+                <a href="#" class="button block btn-login" data-target="section">登录</a>
             </form>
         </article>
     </section>

@@ -1,0 +1,73 @@
+/**
+ * Created with WebStorm.
+ * User: qiuyun
+ * Date: 15-8-30
+ * Time: 下午3:28
+ * To change this template use File | Settings | File Templates.
+ */
+.input{
+    border-radius: 3px;
+}
+.input-search{
+    width: 112px;
+    height: 20px;
+    line-height: 20px;
+}
+.select{
+    border-radius: 3px;
+    height: 36px;
+    line-height: 20px;
+}
+.map{
+    /* height: 100%; */
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 51px;
+    bottom: 0;
+    background-color: #000;
+}
+
+.searchbar {
+    height: 3.2rem;
+    padding: 8px 0;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+}
+.searchbar .search-input {
+    margin-right: 10px;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+.search-input .icon {
+    position: absolute;
+    top: 50%;
+    left: .3rem;
+    font-size: .9rem;
+    color: #b4b4b4;
+    -webkit-transform: translate3D(0, -50%, 0);
+    -ms-transform: translate3D(0, -50%, 0);
+    -o-transform: translate3D(0, -50%, 0);
+    transform: translate3D(0, -50%, 0);
+}
+.searchbar .search-input input {
+    height: 2.0rem;
+    margin: 0;
+    /* float: left; */
+    padding-left: 28px;
+}
+.searchbar .button.button-fill {
+    line-height: 1.35rem;
+    color: #fff;
+    background: #0894ec;
+    border: none;
+}

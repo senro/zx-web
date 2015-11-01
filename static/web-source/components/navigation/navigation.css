@@ -1,0 +1,14 @@
+/**
+ * Created with PhpStorm.
+ * User: Administrator
+ * Date: 2015/10/31
+ * Time: 19:03
+ * To change this template use File | Settings | File Templates.
+ */
+.userPic{
+    text-align: center;
+}
+.userPicImg{
+    display: block;
+    margin: 10px auto 10px auto;
+}

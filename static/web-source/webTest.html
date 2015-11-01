@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>标题</title>
+    <meta name="description" content="描述"/>
+    <meta name="keywords" content="关键词"/>
+    <meta name="author" content="584233821@qq.com(senro)"/>
+    <link rel="stylesheet" type="text/css" href="http://static.woniu.com/stylesheets/base.css"/>
+    <style>
+        .btn{
+            width: 100%;
+            height: 50px;
+            background-color: red;
+            -webkit-user-select: none;
+        }
+        .btn-camera{
+            background-color: green;
+        }
+        .btn-contacts{
+            background-color: #ffff00;
+        }
+        .img{
+            width: 100%;
+            height: 5000px;
+            -webkit-user-select: none;
+        }
+        .nav{
+            display:-moz-box; /* Firefox */
+            display:-webkit-box; /* Safari and Chrome */
+            display:box;
+            position: fixed;
+            bottom:0;
+            left:0;
+            width: 100%;
+            height: 40px;
+        }
+        .navBtn{
+            display: block;
+            -moz-box-flex:1.0; /* Firefox */
+            -webkit-box-flex:1.0; /* Safari 和 Chrome */
+            box-flex:1.0;
+            height:100%;
+            text-decoration: none;
+            text-align: center;
+            color:#fff;
+            background-color: #00B7FF;
+            border-right: 1px solid #fff;
+        }
+        .verticalMiddle{
+            display: -webkit-box;
+            -webkit-box-orient: horizontal;
+            -webkit-box-pack: center;
+            -webkit-box-align: center;
+
+            display: -moz-box;
+            -moz-box-orient: horizontal;
+            -moz-box-pack: center;
+            -moz-box-align: center;
+
+            display: -o-box;
+            -o-box-orient: horizontal;
+            -o-box-pack: center;
+            -o-box-align: center;
+
+            display: -ms-box;
+            -ms-box-orient: horizontal;
+            -ms-box-pack: center;
+            -ms-box-align: center;
+
+            display: box;
+            box-orient: horizontal;
+            box-pack: center;
+            box-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="btn btn-contacts">
+    调用通讯录
+</div>
+<div class="btn btn-alert">
+    发送消息给手机
+</div>
+<div class="btn btn-camera">
+    调用摄像机
+</div>
+
+<img class="img" id="cameraImg" src="" alt=""/>
+
+<div class="nav">
+    <a class="navBtn verticalMiddle" href="javascript:;">菜单</a>
+    <a class="navBtn verticalMiddle" href="javascript:;">菜单</a>
+    <a class="navBtn verticalMiddle" href="javascript:;">菜单</a>
+</div>
+<script type="text/javascript" src="http://static.woniu.com/script/jquery/jquery-1.9.1.min.js"></script>
+<script id="alertCode" type="text/html">
+    navigator.notification.alert("i am from zx.yearn.cc",function(){});
+</script>
+<script id="cameraCode" type="text/html">
+    navigator.camera.getPicture(onSuccess, onFail, { quality: 30,
+        destinationType: Camera.DestinationType.DATA_URL
+    });
+
+    function onSuccess(imageData) {
+        if(imageData){
+            //alert('获取图片成功！');
+        }
+        //var image = document.getElementById('myImage');
+        //image.src = "data:image/jpeg;base64," + imageData;
+        $('#iframe')[0].contentWindow.postMessage('cameraCode|:|'+imageData,'*');
+    }
+
+    function onFail(message) {
+        alert('Failed because: ' + message);
+    }
+</script>
+<script id="contactsCode" type="text/html">
+    navigator.contacts.pickContact(function(contact){
+        $('#iframe')[0].contentWindow.postMessage('contactsCode|:|'+JSON.stringify(contact),'*');
+        //console.log('The following contact has been selected:' + JSON.stringify(contact));
+    },function(err){
+        console.log('Error: ' + err);
+    });
+</script>
+<script type="text/javascript">
+    window.addEventListener('message',function(e){
+        //alert(e.origin);
+        if(e.origin=="file://"){
+            var id=e.data.split('|:|')[0],
+                    data=e.data.split('|:|')[1];
+
+            switch(id){
+                case 'contactsCode':
+                    alert(data);
+                    break;
+                case 'cameraCode':
+                    $('#cameraImg').attr('src',"data:image/jpeg;base64," + data);
+                    break;
+            }
+        }
+        //window.parent.postMessage(color,'*');
+    },false);
+   $('.btn-alert').click(function(){
+       var code=$('#alertCode').html();
+
+       window.parent.postMessage(code,'*');
+       return false;
+   });
+    $('.btn-camera').click(function(){
+        var code=$('#cameraCode').html();
+
+        window.parent.postMessage(code,'*');
+        return false;
+    });
+    $('.btn-contacts').click(function(){
+        var code=$('#contactsCode').html();
+
+        window.parent.postMessage(code,'*');
+        return false;
+    });
+
+</script>
+</body>
+</html>

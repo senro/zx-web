@@ -5,7 +5,7 @@
  * Time: 16:16
  * To change this template use File | Settings | File Templates.
  */
-define(function (require, exports, module) {
+define('components/cordova/camera/getPicture', [], function (require, exports, module) {
     module.exports=[
         "navigator.camera.getPicture(onSuccess, onFail, { quality: 1,",
             "destinationType: Camera.DestinationType.DATA_URL",

@@ -5,8 +5,8 @@
  * Time: 18:51
  * To change this template use File | Settings | File Templates.
  */
-define(function(require, exports, module){
-    var signal=require('signal');
+define('components/signals/signals', ['spm_modules/signal/signal'], function(require, exports, module){
+    var signal=require('spm_modules/signal/signal');
 
     module.exports = {
         getCurrPos : new signal.Signal(),

@@ -8,7 +8,7 @@
  'Speed: '             + position.coords.speed             + '\n' +
  'Timestamp: '         + position.timestamp                + '\n');
 * */
-define(function (require, exports, module) {
+define('components/cordova/geolocation/getCurrPos', [], function (require, exports, module) {
     module.exports=[
         "var onSuccess = function(position) {",
                 "$('#iframe')[0].contentWindow.postMessage('getCurrPos|:|'+JSON.stringify(position),'*');",

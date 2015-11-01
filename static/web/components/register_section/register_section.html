@@ -1,0 +1,27 @@
+<section id="register_section" class="active" data-target="section">
+    <header>
+        <!--<nav class="left">-->
+        <!--<a id="menu" data-icon="menu" href="#"></a>-->
+        <!--</nav>-->
+        <h1 class="title">注册</h1>
+    </header>
+    <article class="active" data-scroll="false">
+        <form class="input-group form-register" id="registerForm">
+            <div class="input-row">
+                <label>手机号</label>
+                <input type="text" name="username" id="username" class="input input-cellphone" maxlength="11" placeholder="请输入手机号">
+            </div>
+            <div class="input-row">
+                <label>密码</label>
+                <input class="input input-password" id="password" name="password" type="password" placeholder="请输入密码">
+            </div>
+            <input type="hidden" id="Lng" name="Lng"/>
+            <input type="hidden" id="Lat" name="Lat"/>
+            <div class="textRight">
+                <a href="#login_section" data-target="section" class="form-link goLogin">立即登录>></a>
+            </div>
+            <a href="#" class="button block btn-register">注册</a>
+        </form>
+    </article>
+</section>
+<link rel="stylesheet" href="/web/components/register_section/register_section.css">
