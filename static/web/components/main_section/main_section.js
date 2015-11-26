@@ -94,7 +94,7 @@ define('components/main_section/main_section', ['spm_modules/zepto/zepto', 'spm_
                             addUserToMap(map,mapUser.Lng,mapUser.Lat,sContent);
                         }
                     }else{
-                        J.Router.goTo('#login');
+                        J.Router.goTo('#login_section');
                     }
                 }
             });

@@ -46,7 +46,7 @@ define('components/register_section/register_section', ['spm_modules/zepto/zepto
                                 if(data.status==1){
                                     J.Router.goTo('#userCenter_section');
                                 }else{
-                                    alert(data.msg);
+                                    J.showToast(data.msg,'error');
                                 }
                             },
                             beforeSend: function () {
@@ -57,10 +57,10 @@ define('components/register_section/register_section', ['spm_modules/zepto/zepto
                             }
                         });
                     }else{
-                        alert('请填写正确的手机号！');
+                        J.showToast('请填写正确的手机号！','error');
                     }
                 }else{
-                    alert('请完善信息！');
+                    J.showToast('请完善信息！','error');
                 }
 
                 return false;

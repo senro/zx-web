@@ -94,7 +94,7 @@ define(function(require, exports, module){
                             addUserToMap(map,mapUser.Lng,mapUser.Lat,sContent);
                         }
                     }else{
-                        J.Router.goTo('#login');
+                        J.Router.goTo('#login_section');
                     }
                 }
             });

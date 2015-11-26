@@ -36,7 +36,7 @@ define(function(require, exports, module){
                     var $currInput=$(this);
                     if($currInput.val()==''){
                         canSubmit=false;
-                        alert($currInput.data('vd-msg'));
+                        J.showToast($currInput.data('vd-msg'),'error');
                         return false;
                     }
                 });

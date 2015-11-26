@@ -48,9 +48,9 @@ define(function (require, exports, module) {
                                 });
 
                             }else if(data.status==1001){
-                                J.Router.goTo('#register_section');
+                                J.showToast('该账号还没有注册，请先注册！','error');
                             }else{
-                                alert(data.msg);
+                                J.showToast(data.msg,'error');
                             }
                         },
                         beforeSend: function () {
@@ -61,7 +61,7 @@ define(function (require, exports, module) {
                         }
                     });
                 }else{
-                    alert('请完善信息！');
+                    J.showToast('请完善信息！','error');
                 }
 
                 return false;
