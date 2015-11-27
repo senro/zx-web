@@ -410,6 +410,10 @@ define('components/util/utilFunctions', ['spm_modules/zepto/0.0.1/zepto', 'spm_m
 });
 /*!spm_modules/get-query-string/0.0.1/get-query-string.js*/
 ;define("spm_modules/get-query-string/0.0.1/get-query-string",[],function(){function n(n,e){var t=e||document.location.search||document.location.hash,o=null;return n&&""!==t?(o=t.match(new RegExp("(^|&|[?#])"+n+"=([^&]*)(&|$)")),null===o?o:decodeURIComponent(o[2])):o}return n});
+/*!spm_modules/wn-core/0.0.4/wn-core.js*/
+;define("spm_modules/wn-core/0.0.4/wn-core",["spm_modules/zepto/0.0.1/zepto","spm_modules/zepto/0.0.1/zepto"],function(n,e,i){var t=n("spm_modules/zepto/0.0.1/zepto"),o=n("spm_modules/zepto/0.0.1/zepto"),r=function(){t.extend({visibleHidden:function(n){return n.css({visibility:"hidden"}),!1},visibleShow:function(n){return n.css({visibility:"visible"}),!1}})};r.prototype={constructor:r,console:function(n){!function(){for(var n,e=function(){},i=["assert","clear","count","debug","dir","dirxml","error","exception","group","groupCollapsed","groupEnd","info","log","markTimeline","profile","profileEnd","table","time","timeEnd","timeStamp","trace","warn"],t=i.length,o=window.console=window.console||{};t--;)n=i[t],o[n]||(o[n]=e)}(),console&&console.log(n)},len:function(n){for(var n=n||"",e=0,i=n.split(""),t=0;t<i.length;t++)i[t].charCodeAt(0)<299?e++:e+=2;return e},random:function(n,e){return Math.floor(n+Math.random()*(e-n))},isIE6:function(){var n="undefined"==typeof document.body.style.maxHeight;return n?!0:!1},addScript:function(n,e){var i=document.createElement("script"),t=e||o("head"),r="?v="+(new Date).getTime();for(var l in n)i[l]=n[l];return i.src=n.src+r,t.after(i),!1},getItems:function(n){var e;if(n.find("div").length>0)e=1==n.find("div").length?n.find("div"):n.find("div").siblings();else if(n.find("li").length>0)e=1==n.find("li").length?n.find("li"):n.find("li").siblings();else if(n.find("a").length>0)e=1==n.find("a").length?n.find("a"):n.find("a").siblings();else{if(!(n.find("img").length>0))return null;e=1==n.find("img").length?n.find("img"):n.find("img").siblings()}return e},parseArgus:function(n,e){function i(n){return n instanceof t?"$":"object"==typeof n?"object":!1}var o=0;for(var r in e)e[r]="object"==i(n[0])?n[0][r]?n[0][r]:e[r]:n[o]?n[o]:e[r],o++}},i.exports=r});
+/*!spm_modules/tab/0.0.2/tab.js*/
+;define("spm_modules/tab/0.0.2/tab",["spm_modules/zepto/0.0.1/zepto","spm_modules/wn-core/0.0.4/wn-core"],function(e,r,s){var n=e("spm_modules/zepto/0.0.1/zepto"),a=e("spm_modules/wn-core/0.0.4/wn-core"),o=new a,t=o.parseArgus;s.exports=function(e,r,s,a,o,d){function u(e){return i.eq(f).hide().removeClass("active"),l.eq(f).removeClass(s),i.eq(e).show().addClass("active"),l.eq(e).addClass(s),!1}function c(e){return i.eq(f).fadeOut(200).removeClass("active"),l.eq(f).removeClass(s),i.eq(e).fadeIn(200).addClass(s),l.eq(e).addClass(s),!1}var m={btns:n,conts:n,current:"",trigerType:"mouseover",transType:"normal",currIndex:0};t(arguments,m);var e=m.btns,r=m.conts,s=m.current,a=m.trigerType,o=m.transType,d=m.currIndex,l=e,i=r,p=a||"mouseover",v=o||"normal",q=d||0,f=d||0;l.eq(q).addClass(s);for(var C=0;C<i.length;C++)C!=q?i.eq(C).hide():i.eq(C).show();return l.bind(p,function(){var e=l.index(this);switch(v){case"normal":u(e);break;case"fade":c(e)}return f=e,!1}),!1}});
 /*!components/gatherMain_section/gatherMain_section.js*/
 ;/**
  * Created with PhpStorm.
@@ -418,14 +422,14 @@ define('components/util/utilFunctions', ['spm_modules/zepto/0.0.1/zepto', 'spm_m
  * Time: 15:44
  * To change this template use File | Settings | File Templates.
  */
-define('components/gatherMain_section/gatherMain_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+define('components/gatherMain_section/gatherMain_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
     var $=require('spm_modules/zepto/0.0.1/zepto');
     var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
     var cookie=require('spm_modules/cookie/0.0.1/cookie');
     var App=require('components/util/App');
     var utilFunctions=require('components/util/utilFunctions');
     var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
-
+    var tab=require('spm_modules/tab/0.0.2/tab');
     var template=require('spm_modules/template/3.0.0/template');
     template.helper('$',$);
     template.helper('decodeURIComponent', decodeURIComponent);
@@ -451,6 +455,12 @@ define('components/gatherMain_section/gatherMain_section', ['spm_modules/zepto/0
             J.Scroll('#gatherMain-websiteCats-box-cats',{hScroll:true,hScrollbar : false});
             J.Scroll('#gatherMain-websiteCats-box-catsCont',{hScroll:true,hScrollbar : false});
 
+            tab({
+                btns:$currentSection.find('.tabBtn'),
+                conts:$currentSection.find('.tabCont'),
+                current:'button-link-active-lock',
+                trigerType:'tap'
+            });
         }
     });
 
@@ -499,10 +509,6 @@ define('components/gatherCheapBuy_section/gatherCheapBuy_section', ['spm_modules
     });
 
 });
-/*!spm_modules/wn-core/0.0.4/wn-core.js*/
-;define("spm_modules/wn-core/0.0.4/wn-core",["spm_modules/zepto/0.0.1/zepto","spm_modules/zepto/0.0.1/zepto"],function(n,e,i){var t=n("spm_modules/zepto/0.0.1/zepto"),o=n("spm_modules/zepto/0.0.1/zepto"),r=function(){t.extend({visibleHidden:function(n){return n.css({visibility:"hidden"}),!1},visibleShow:function(n){return n.css({visibility:"visible"}),!1}})};r.prototype={constructor:r,console:function(n){!function(){for(var n,e=function(){},i=["assert","clear","count","debug","dir","dirxml","error","exception","group","groupCollapsed","groupEnd","info","log","markTimeline","profile","profileEnd","table","time","timeEnd","timeStamp","trace","warn"],t=i.length,o=window.console=window.console||{};t--;)n=i[t],o[n]||(o[n]=e)}(),console&&console.log(n)},len:function(n){for(var n=n||"",e=0,i=n.split(""),t=0;t<i.length;t++)i[t].charCodeAt(0)<299?e++:e+=2;return e},random:function(n,e){return Math.floor(n+Math.random()*(e-n))},isIE6:function(){var n="undefined"==typeof document.body.style.maxHeight;return n?!0:!1},addScript:function(n,e){var i=document.createElement("script"),t=e||o("head"),r="?v="+(new Date).getTime();for(var l in n)i[l]=n[l];return i.src=n.src+r,t.after(i),!1},getItems:function(n){var e;if(n.find("div").length>0)e=1==n.find("div").length?n.find("div"):n.find("div").siblings();else if(n.find("li").length>0)e=1==n.find("li").length?n.find("li"):n.find("li").siblings();else if(n.find("a").length>0)e=1==n.find("a").length?n.find("a"):n.find("a").siblings();else{if(!(n.find("img").length>0))return null;e=1==n.find("img").length?n.find("img"):n.find("img").siblings()}return e},parseArgus:function(n,e){function i(n){return n instanceof t?"$":"object"==typeof n?"object":!1}var o=0;for(var r in e)e[r]="object"==i(n[0])?n[0][r]?n[0][r]:e[r]:n[o]?n[o]:e[r],o++}},i.exports=r});
-/*!spm_modules/tab/0.0.2/tab.js*/
-;define("spm_modules/tab/0.0.2/tab",["spm_modules/zepto/0.0.1/zepto","spm_modules/wn-core/0.0.4/wn-core"],function(e,r,s){var n=e("spm_modules/zepto/0.0.1/zepto"),a=e("spm_modules/wn-core/0.0.4/wn-core"),o=new a,t=o.parseArgus;s.exports=function(e,r,s,a,o,d){function u(e){return i.eq(f).hide().removeClass("active"),l.eq(f).removeClass(s),i.eq(e).show().addClass("active"),l.eq(e).addClass(s),!1}function c(e){return i.eq(f).fadeOut(200).removeClass("active"),l.eq(f).removeClass(s),i.eq(e).fadeIn(200).addClass(s),l.eq(e).addClass(s),!1}var m={btns:n,conts:n,current:"",trigerType:"mouseover",transType:"normal",currIndex:0};t(arguments,m);var e=m.btns,r=m.conts,s=m.current,a=m.trigerType,o=m.transType,d=m.currIndex,l=e,i=r,p=a||"mouseover",v=o||"normal",q=d||0,f=d||0;l.eq(q).addClass(s);for(var C=0;C<i.length;C++)C!=q?i.eq(C).hide():i.eq(C).show();return l.bind(p,function(){var e=l.index(this);switch(v){case"normal":u(e);break;case"fade":c(e)}return f=e,!1}),!1}});
 /*!components/gatherGroupBuy_section/gatherGroupBuy_section.js*/
 ;/**
  * Created with PhpStorm.
