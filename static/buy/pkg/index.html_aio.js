@@ -30,61 +30,17 @@ define('components/util/deviceSetting', ['components/cordova/statusBar/setStatus
 },disabled:function(){return!u},lock:function(){return c=void 0,n||f.disable(),this},locked:function(){return!c},fireWith:function(t,e){return!u||i&&!c||(e=e||[],e=[t,e.slice?e.slice():e],r?c.push(e):l(e)),this},fire:function(){return f.fireWith(this,arguments)},fired:function(){return!!i}};return f}}(i),function(t){function e(e){return e=t(e),!(!e.width()&&!e.height())&&"none"!==e.css("display")}function n(t,e){t=t.replace(/=#\]/g,'="#"]');var n,i,r=s.exec(t);if(r&&r[2]in a&&(n=a[r[2]],i=r[3],t=r[1],i)){var o=Number(i);i=isNaN(o)?i.replace(/^["']|["']$/g,""):o}return e(t,n,i)}var i=t.zepto,r=i.qsa,o=i.matches,a=t.expr[":"]={visible:function(){return e(this)?this:void 0},hidden:function(){return e(this)?void 0:this},selected:function(){return this.selected?this:void 0},checked:function(){return this.checked?this:void 0},parent:function(){return this.parentNode},first:function(t){return 0===t?this:void 0},last:function(t,e){return t===e.length-1?this:void 0},eq:function(t,e,n){return t===n?this:void 0},contains:function(e,n,i){return t(this).text().indexOf(i)>-1?this:void 0},has:function(t,e,n){return i.qsa(this,n).length?this:void 0}},s=new RegExp("(.*):(\\w+)(?:\\(([^)]+)\\))?$\\s*"),u=/^\s*>/,c="Zepto"+ +new Date;i.qsa=function(e,o){return n(o,function(n,a,s){try{var l;!n&&a?n="*":u.test(n)&&(l=t(e).addClass(c),n="."+c+" "+n);var f=r(e,n)}catch(h){throw console.error("error performing selector: %o",o),h}finally{l&&l.removeClass(c)}return a?i.uniq(t.map(f,function(t,e){return a.call(t,e,f,s)})):f})},i.matches=function(t,e){return n(e,function(e,n,i){return!(e&&!o(t,e)||n&&n.call(t,null,i)!==t)})}}(i),function(t){function e(t,e,n,i){return Math.abs(t-e)>=Math.abs(n-i)?t-e>0?"Left":"Right":n-i>0?"Up":"Down"}function n(){l=null,h.last&&(h.el.trigger("longTap"),h={})}function i(){l&&clearTimeout(l),l=null}function r(){s&&clearTimeout(s),u&&clearTimeout(u),c&&clearTimeout(c),l&&clearTimeout(l),s=u=c=l=null,h={}}function o(t){return("touch"==t.pointerType||t.pointerType==t.MSPOINTER_TYPE_TOUCH)&&t.isPrimary}function a(t,e){return t.type=="pointer"+e||t.type.toLowerCase()=="mspointer"+e}var s,u,c,l,f,h={},p=750;t(document).ready(function(){var d,m,v,g,y=0,b=0;"MSGesture"in window&&(f=new MSGesture,f.target=document.body),t(document).bind("MSGestureEnd",function(t){var e=t.velocityX>1?"Right":t.velocityX<-1?"Left":t.velocityY>1?"Down":t.velocityY<-1?"Up":null;e&&(h.el.trigger("swipe"),h.el.trigger("swipe"+e))}).on("touchstart MSPointerDown pointerdown",function(e){(!(g=a(e,"down"))||o(e))&&(v=g?e:e.touches[0],e.touches&&1===e.touches.length&&h.x2&&(h.x2=void 0,h.y2=void 0),d=Date.now(),m=d-(h.last||d),h.el=t("tagName"in v.target?v.target:v.target.parentNode),s&&clearTimeout(s),h.x1=v.pageX,h.y1=v.pageY,m>0&&250>=m&&(h.isDoubleTap=!0),h.last=d,l=setTimeout(n,p),f&&g&&f.addPointer(e.pointerId))}).on("touchmove MSPointerMove pointermove",function(t){if(h.last){if((g=a(t,"move"))&&!o(t))return;v=g?t:t.touches[0],i(),h.x2=v.pageX,h.y2=v.pageY,y+=Math.abs(h.x1-h.x2),b+=Math.abs(h.y1-h.y2)}}).on("touchend MSPointerUp pointerup",function(n){(!(g=a(n,"up"))||o(n))&&(i(),h.x2&&Math.abs(h.x1-h.x2)>30||h.y2&&Math.abs(h.y1-h.y2)>30?c=setTimeout(function(){h.el.trigger("swipe"),h.el.trigger("swipe"+e(h.x1,h.x2,h.y1,h.y2)),h={}},0):"last"in h&&(30>y&&30>b?u=setTimeout(function(){var e=t.Event("tap");e.cancelTouch=r,h.el.trigger(e),h.isDoubleTap?(h.el&&h.el.trigger("doubleTap"),h={}):s=setTimeout(function(){s=null,h.el&&h.el.trigger("singleTap"),h={}},250)},0):h={}),y=b=0)}).on("touchcancel MSPointerCancel pointercancel",r),t(window).on("scroll",r)}),["swipe","swipeLeft","swipeRight","swipeUp","swipeDown","doubleTap","tap","singleTap","longTap"].forEach(function(e){t.fn[e]=function(t){return this.on(e,t)}})}(i),function(t){function e(t){return"tagName"in t?t:t.parentNode}if(t.os.ios){var n,i={};t(document).bind("gesturestart",function(t){{var r=Date.now();r-(i.last||r)}i.target=e(t.target),n&&clearTimeout(n),i.e1=t.scale,i.last=r}).bind("gesturechange",function(t){i.e2=t.scale}).bind("gestureend",function(){i.e2>0?(0!=Math.abs(i.e1-i.e2)&&t(i.target).trigger("pinch")&&t(i.target).trigger("pinch"+(i.e1-i.e2>0?"In":"Out")),i.e1=i.e2=i.last=0):"last"in i&&(i={})}),["pinch","pinchIn","pinchOut"].forEach(function(e){t.fn[e]=function(t){return this.bind(e,t)}})}}(i),function(t){t.fn.end=function(){return this.prevObject||t()},t.fn.andSelf=function(){return this.add(this.prevObject||t())},"filter,add,not,eq,first,last,find,closest,parents,parent,children,siblings".split(",").forEach(function(e){var n=t.fn[e];t.fn[e]=function(){var t=n.apply(this,arguments);return t.prevObject=this,t}})}(i),n.exports=i});
 /*!spm_modules/cookie/0.0.1/cookie.js*/
 ;define("spm_modules/cookie/0.0.1/cookie",[],function(e,t,c){c.exports=function(e,t,c){function n(e,t){var c=30,n=new Date;n.setTime(n.getTime()+24*c*60*60*1e3),document.cookie=e+"="+escape(t)+";expires="+n.toGMTString()}function o(e){return document.cookie.length>0&&(c_start=document.cookie.indexOf(e+"="),-1!=c_start)?(c_start=c_start+e.length+1,c_end=document.cookie.indexOf(";",c_start),-1==c_end&&(c_end=document.cookie.length),unescape(document.cookie.substring(c_start,c_end))):""}function i(e){var t=new Date;t.setTime(t.getTime()-1);var c=o(e);null!=c&&(document.cookie=e+"="+c+";expires="+t.toGMTString())}var r,s=t||"",a=c||"";switch(e){case"get":r=o(s);break;case"set":n(s,a);break;case"del":i(s)}return r||!1}});
-/*!spm_modules/template/3.0.0/template.js*/
-;!function(){function e(e){return e.replace(y,"").replace(w,",").replace(b,"").replace(x,"").replace(T,"").split(E)}function n(e){return"'"+e.replace(/('|\\)/g,"\\$1").replace(/\r/g,"\\r").replace(/\n/g,"\\n")+"'"}function t(t,r){function a(e){return p+=e.split(/\n/).length-1,s&&(e=e.replace(/\s+/g," ").replace(/<!--[\w\W]*?-->/g,"")),e&&(e=v[1]+n(e)+v[2]+"\n"),e}function o(n){var t=p;if(u?n=u(n,r):i&&(n=n.replace(/\n/g,function(){return p++,"$line="+p+";"})),0===n.indexOf("=")){var a=f&&!/^=[=#]/.test(n);if(n=n.replace(/^=[=#]?|[\s;]*$/g,""),a){var o=n.replace(/\s*\([^\)]+\)/,"");$[o]||/^(include|print)$/.test(o)||(n="$escape("+n+")")}else n="$string("+n+")";n=v[1]+n+v[2]}return i&&(n="$line="+t+";"+n),h(e(n),function(e){if(e&&!d[e]){var n;n="print"===e?w:"include"===e?b:$[e]?"$utils."+e:g[e]?"$helpers."+e:"$data."+e,x+=e+"="+n+",",d[e]=!0}}),n+"\n"}var i=r.debug,l=r.openTag,c=r.closeTag,u=r.parser,s=r.compress,f=r.escape,p=1,d={$data:1,$filename:1,$utils:1,$helpers:1,$out:1,$line:1},m="".trim,v=m?["$out='';","$out+=",";","$out"]:["$out=[];","$out.push(",");","$out.join('')"],y=m?"$out+=text;return $out;":"$out.push(text);",w="function(){var text=''.concat.apply('',arguments);"+y+"}",b="function(filename,data){data=data||$data;var text=$utils.$include(filename,data,$filename);"+y+"}",x="'use strict';var $utils=this,$helpers=$utils.$helpers,"+(i?"$line=0,":""),T=v[0],E="return new String("+v[3]+");";h(t.split(l),function(e){e=e.split(c);var n=e[0],t=e[1];1===e.length?T+=a(n):(T+=o(n),t&&(T+=a(t)))});var j=x+T+E;i&&(j="try{"+j+"}catch(e){throw {filename:$filename,name:'Render Error',message:e.message,line:$line,source:"+n(t)+".split(/\\n/)[$line-1].replace(/^\\s+/,'')};}");try{var S=new Function("$data","$filename",j);return S.prototype=$,S}catch(W){throw W.temp="function anonymous($data,$filename) {"+j+"}",W}}var r=function(e,n){return"string"==typeof n?m(n,{filename:e}):i(e,n)};r.version="3.0.0",r.config=function(e,n){a[e]=n};var a=r.defaults={openTag:"<%",closeTag:"%>",escape:!0,cache:!0,compress:!1,parser:null},o=r.cache={};r.render=function(e,n){return m(e,n)};var i=r.renderFile=function(e,n){var t=r.get(e)||d({filename:e,name:"Render Error",message:"Template not found"});return n?t(n):t};r.get=function(e){var n;if(o[e])n=o[e];else if("object"==typeof document){var t=document.getElementById(e);if(t){var r=(t.value||t.innerHTML).replace(/^\s*|\s*$/g,"");n=m(r,{filename:e})}}return n};var l=function(e,n){return"string"!=typeof e&&(n=typeof e,"number"===n?e+="":e="function"===n?l(e.call(e)):""),e},c={"<":"&#60;",">":"&#62;",'"':"&#34;","'":"&#39;","&":"&#38;"},u=function(e){return c[e]},s=function(e){return l(e).replace(/&(?![\w#]+;)|[<>"']/g,u)},f=Array.isArray||function(e){return"[object Array]"==={}.toString.call(e)},p=function(e,n){var t,r;if(f(e))for(t=0,r=e.length;r>t;t++)n.call(e,e[t],t,e);else for(t in e)n.call(e,e[t],t)},$=r.utils={$helpers:{},$include:i,$string:l,$escape:s,$each:p};r.helper=function(e,n){g[e]=n};var g=r.helpers=$.$helpers;r.onerror=function(e){var n="Template Error\n\n";for(var t in e)n+="<"+t+">\n"+e[t]+"\n\n";"object"==typeof console&&console.error(n)};var d=function(e){return r.onerror(e),function(){return"{Template Error}"}},m=r.compile=function(e,n){function r(t){try{return new c(t,l)+""}catch(r){return n.debug?d(r)():(n.debug=!0,m(e,n)(t))}}n=n||{};for(var i in a)void 0===n[i]&&(n[i]=a[i]);var l=n.filename;try{var c=t(e,n)}catch(u){return u.filename=l||"anonymous",u.name="Syntax Error",d(u)}return r.prototype=c.prototype,r.toString=function(){return c.toString()},l&&n.cache&&(o[l]=r),r},h=$.$each,v="break,case,catch,continue,debugger,default,delete,do,else,false,finally,for,function,if,in,instanceof,new,null,return,switch,this,throw,true,try,typeof,var,void,while,with,abstract,boolean,byte,char,class,const,double,enum,export,extends,final,float,goto,implements,import,int,interface,long,native,package,private,protected,public,short,static,super,synchronized,throws,transient,volatile,arguments,let,yield,undefined",y=/\/\*[\w\W]*?\*\/|\/\/[^\n]*\n|\/\/[^\n]*$|"(?:[^"\\]|\\[\w\W])*"|'(?:[^'\\]|\\[\w\W])*'|\s*\.\s*[$\w\.]+/g,w=/[^\w$]+/g,b=new RegExp(["\\b"+v.replace(/,/g,"\\b|\\b")+"\\b"].join("|"),"g"),x=/^\d[^,]*|,\d[^,]*/g,T=/^,+|,+$/g,E=/^$|,+/;"function"==typeof define?define("spm_modules/template/3.0.0/template",[],function(){return r}):"undefined"!=typeof exports?module.exports=r:this.template=r}();
 /*!components/navigation/navigation.js*/
-;define('components/navigation/navigation', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+;define('components/navigation/navigation', ['spm_modules/zepto/0.0.1/zepto'], function (require, exports, module) {
 
     var $ = require('spm_modules/zepto/0.0.1/zepto');
-    var currPage=delUrlQuery(location.href.split('#')[1]);
-    var template=require('spm_modules/template/3.0.0/template');
-    template.helper('decodeURIComponent', decodeURIComponent);
 
     function domReady() {
-        var $navigate = $('#aside_container');
-        $navigate.load(window.baseUrl+'/components/navigation/navigation.html',function(html){
-
-            // 退出
-            $('body').on('click', '#logout', function (event) {
-                var $this = $(this);
-                if ($this.hasClass('disable')) {
-                    return false;
-                }
-                if (event) {
-                    event.preventDefault();
-                }
-                $.ajax({
-                    url: apiHost + 'login/logout.do',
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data.status == 1) {
-                            J.Router.goTo('#login_section');
-                        } else {
-                            J.showToast(data.detail, 'error');
-                        }
-                    },
-                    beforeSend: function () {
-                        $this.addClass('disable');
-                    },
-                    complete: function () {
-                        $this.removeClass('disable');
-                    }
-                });
-
-            });
-        });
-
+       $('body').on('tap','.btn-refresh',function(){
+           window.location.reload();
+           return false;
+       });
     }
-    function delUrlQuery(url){
-        var str;
-        if(/\?/.test(url)){
-            str=url.split('?')[0];
-        }else{
-            str=url;
-        }
-        return str;
-    }
-
     $(document).ready(domReady);
 
 });
@@ -413,7 +369,9 @@ define('components/util/utilFunctions', ['spm_modules/zepto/0.0.1/zepto', 'spm_m
 /*!spm_modules/wn-core/0.0.4/wn-core.js*/
 ;define("spm_modules/wn-core/0.0.4/wn-core",["spm_modules/zepto/0.0.1/zepto","spm_modules/zepto/0.0.1/zepto"],function(n,e,i){var t=n("spm_modules/zepto/0.0.1/zepto"),o=n("spm_modules/zepto/0.0.1/zepto"),r=function(){t.extend({visibleHidden:function(n){return n.css({visibility:"hidden"}),!1},visibleShow:function(n){return n.css({visibility:"visible"}),!1}})};r.prototype={constructor:r,console:function(n){!function(){for(var n,e=function(){},i=["assert","clear","count","debug","dir","dirxml","error","exception","group","groupCollapsed","groupEnd","info","log","markTimeline","profile","profileEnd","table","time","timeEnd","timeStamp","trace","warn"],t=i.length,o=window.console=window.console||{};t--;)n=i[t],o[n]||(o[n]=e)}(),console&&console.log(n)},len:function(n){for(var n=n||"",e=0,i=n.split(""),t=0;t<i.length;t++)i[t].charCodeAt(0)<299?e++:e+=2;return e},random:function(n,e){return Math.floor(n+Math.random()*(e-n))},isIE6:function(){var n="undefined"==typeof document.body.style.maxHeight;return n?!0:!1},addScript:function(n,e){var i=document.createElement("script"),t=e||o("head"),r="?v="+(new Date).getTime();for(var l in n)i[l]=n[l];return i.src=n.src+r,t.after(i),!1},getItems:function(n){var e;if(n.find("div").length>0)e=1==n.find("div").length?n.find("div"):n.find("div").siblings();else if(n.find("li").length>0)e=1==n.find("li").length?n.find("li"):n.find("li").siblings();else if(n.find("a").length>0)e=1==n.find("a").length?n.find("a"):n.find("a").siblings();else{if(!(n.find("img").length>0))return null;e=1==n.find("img").length?n.find("img"):n.find("img").siblings()}return e},parseArgus:function(n,e){function i(n){return n instanceof t?"$":"object"==typeof n?"object":!1}var o=0;for(var r in e)e[r]="object"==i(n[0])?n[0][r]?n[0][r]:e[r]:n[o]?n[o]:e[r],o++}},i.exports=r});
 /*!spm_modules/tab/0.0.2/tab.js*/
-;define("spm_modules/tab/0.0.2/tab",["spm_modules/zepto/0.0.1/zepto","spm_modules/wn-core/0.0.4/wn-core"],function(e,r,s){var n=e("spm_modules/zepto/0.0.1/zepto"),a=e("spm_modules/wn-core/0.0.4/wn-core"),o=new a,t=o.parseArgus;s.exports=function(e,r,s,a,o,d){function u(e){return i.eq(f).hide().removeClass("active"),l.eq(f).removeClass(s),i.eq(e).show().addClass("active"),l.eq(e).addClass(s),!1}function c(e){return i.eq(f).fadeOut(200).removeClass("active"),l.eq(f).removeClass(s),i.eq(e).fadeIn(200).addClass(s),l.eq(e).addClass(s),!1}var m={btns:n,conts:n,current:"",trigerType:"mouseover",transType:"normal",currIndex:0};t(arguments,m);var e=m.btns,r=m.conts,s=m.current,a=m.trigerType,o=m.transType,d=m.currIndex,l=e,i=r,p=a||"mouseover",v=o||"normal",q=d||0,f=d||0;l.eq(q).addClass(s);for(var C=0;C<i.length;C++)C!=q?i.eq(C).hide():i.eq(C).show();return l.bind(p,function(){var e=l.index(this);switch(v){case"normal":u(e);break;case"fade":c(e)}return f=e,!1}),!1}});
+;define("spm_modules/tab/0.0.2/tab",["spm_modules/zepto/0.0.1/zepto","spm_modules/wn-core/0.0.4/wn-core"],function(e,r,s){var a=e("spm_modules/zepto/0.0.1/zepto"),n=e("spm_modules/wn-core/0.0.4/wn-core"),t=new n,o=t.parseArgus;s.exports=function(e,r,s,n,t,c,l,d){function i(e){return f.eq(w).hide().removeClass("active"),C.eq(w).removeClass(s),f.eq(e).show().addClass("active"),C.eq(e).addClass(s),d&&d(w,e),!1}function u(e){return f.eq(w).fadeOut(200).removeClass("active"),C.eq(w).removeClass(s),f.eq(e).fadeIn(200).addClass(s),C.eq(e).addClass(s),d&&d(w,e),!1}var m={btns:a,conts:a,current:"",trigerType:"mouseover",transType:"normal",currIndex:0,initCallback:function(){},triggerCallback:function(){}};o(arguments,m);var e=m.btns,r=m.conts,s=m.current,n=m.trigerType,t=m.transType,c=m.currIndex,p=m.initCallback,v=m.triggerCallback,C=e,f=r,q=n||"mouseover",b=t||"normal",g=c||0,w=c||0,l=p,d=v;C.eq(g).addClass(s);for(var h=0;h<f.length;h++)h!=g?f.eq(h).hide():f.eq(h).show();return l&&l(g),C.bind(q,function(){var e=C.index(this);switch(b){case"normal":i(e);break;case"fade":u(e)}return w=e,!1}),!1}});
+/*!spm_modules/template/3.0.0/template.js*/
+;!function(){function e(e){return e.replace(y,"").replace(w,",").replace(b,"").replace(x,"").replace(T,"").split(E)}function n(e){return"'"+e.replace(/('|\\)/g,"\\$1").replace(/\r/g,"\\r").replace(/\n/g,"\\n")+"'"}function t(t,r){function a(e){return p+=e.split(/\n/).length-1,s&&(e=e.replace(/\s+/g," ").replace(/<!--[\w\W]*?-->/g,"")),e&&(e=v[1]+n(e)+v[2]+"\n"),e}function o(n){var t=p;if(u?n=u(n,r):i&&(n=n.replace(/\n/g,function(){return p++,"$line="+p+";"})),0===n.indexOf("=")){var a=f&&!/^=[=#]/.test(n);if(n=n.replace(/^=[=#]?|[\s;]*$/g,""),a){var o=n.replace(/\s*\([^\)]+\)/,"");$[o]||/^(include|print)$/.test(o)||(n="$escape("+n+")")}else n="$string("+n+")";n=v[1]+n+v[2]}return i&&(n="$line="+t+";"+n),h(e(n),function(e){if(e&&!d[e]){var n;n="print"===e?w:"include"===e?b:$[e]?"$utils."+e:g[e]?"$helpers."+e:"$data."+e,x+=e+"="+n+",",d[e]=!0}}),n+"\n"}var i=r.debug,l=r.openTag,c=r.closeTag,u=r.parser,s=r.compress,f=r.escape,p=1,d={$data:1,$filename:1,$utils:1,$helpers:1,$out:1,$line:1},m="".trim,v=m?["$out='';","$out+=",";","$out"]:["$out=[];","$out.push(",");","$out.join('')"],y=m?"$out+=text;return $out;":"$out.push(text);",w="function(){var text=''.concat.apply('',arguments);"+y+"}",b="function(filename,data){data=data||$data;var text=$utils.$include(filename,data,$filename);"+y+"}",x="'use strict';var $utils=this,$helpers=$utils.$helpers,"+(i?"$line=0,":""),T=v[0],E="return new String("+v[3]+");";h(t.split(l),function(e){e=e.split(c);var n=e[0],t=e[1];1===e.length?T+=a(n):(T+=o(n),t&&(T+=a(t)))});var j=x+T+E;i&&(j="try{"+j+"}catch(e){throw {filename:$filename,name:'Render Error',message:e.message,line:$line,source:"+n(t)+".split(/\\n/)[$line-1].replace(/^\\s+/,'')};}");try{var S=new Function("$data","$filename",j);return S.prototype=$,S}catch(W){throw W.temp="function anonymous($data,$filename) {"+j+"}",W}}var r=function(e,n){return"string"==typeof n?m(n,{filename:e}):i(e,n)};r.version="3.0.0",r.config=function(e,n){a[e]=n};var a=r.defaults={openTag:"<%",closeTag:"%>",escape:!0,cache:!0,compress:!1,parser:null},o=r.cache={};r.render=function(e,n){return m(e,n)};var i=r.renderFile=function(e,n){var t=r.get(e)||d({filename:e,name:"Render Error",message:"Template not found"});return n?t(n):t};r.get=function(e){var n;if(o[e])n=o[e];else if("object"==typeof document){var t=document.getElementById(e);if(t){var r=(t.value||t.innerHTML).replace(/^\s*|\s*$/g,"");n=m(r,{filename:e})}}return n};var l=function(e,n){return"string"!=typeof e&&(n=typeof e,"number"===n?e+="":e="function"===n?l(e.call(e)):""),e},c={"<":"&#60;",">":"&#62;",'"':"&#34;","'":"&#39;","&":"&#38;"},u=function(e){return c[e]},s=function(e){return l(e).replace(/&(?![\w#]+;)|[<>"']/g,u)},f=Array.isArray||function(e){return"[object Array]"==={}.toString.call(e)},p=function(e,n){var t,r;if(f(e))for(t=0,r=e.length;r>t;t++)n.call(e,e[t],t,e);else for(t in e)n.call(e,e[t],t)},$=r.utils={$helpers:{},$include:i,$string:l,$escape:s,$each:p};r.helper=function(e,n){g[e]=n};var g=r.helpers=$.$helpers;r.onerror=function(e){var n="Template Error\n\n";for(var t in e)n+="<"+t+">\n"+e[t]+"\n\n";"object"==typeof console&&console.error(n)};var d=function(e){return r.onerror(e),function(){return"{Template Error}"}},m=r.compile=function(e,n){function r(t){try{return new c(t,l)+""}catch(r){return n.debug?d(r)():(n.debug=!0,m(e,n)(t))}}n=n||{};for(var i in a)void 0===n[i]&&(n[i]=a[i]);var l=n.filename;try{var c=t(e,n)}catch(u){return u.filename=l||"anonymous",u.name="Syntax Error",d(u)}return r.prototype=c.prototype,r.toString=function(){return c.toString()},l&&n.cache&&(o[l]=r),r},h=$.$each,v="break,case,catch,continue,debugger,default,delete,do,else,false,finally,for,function,if,in,instanceof,new,null,return,switch,this,throw,true,try,typeof,var,void,while,with,abstract,boolean,byte,char,class,const,double,enum,export,extends,final,float,goto,implements,import,int,interface,long,native,package,private,protected,public,short,static,super,synchronized,throws,transient,volatile,arguments,let,yield,undefined",y=/\/\*[\w\W]*?\*\/|\/\/[^\n]*\n|\/\/[^\n]*$|"(?:[^"\\]|\\[\w\W])*"|'(?:[^'\\]|\\[\w\W])*'|\s*\.\s*[$\w\.]+/g,w=/[^\w$]+/g,b=new RegExp(["\\b"+v.replace(/,/g,"\\b|\\b")+"\\b"].join("|"),"g"),x=/^\d[^,]*|,\d[^,]*/g,T=/^,+|,+$/g,E=/^$|,+/;"function"==typeof define?define("spm_modules/template/3.0.0/template",[],function(){return r}):"undefined"!=typeof exports?module.exports=r:this.template=r}();
 /*!components/gatherMain_section/gatherMain_section.js*/
 ;/**
  * Created with PhpStorm.
@@ -459,7 +417,20 @@ define('components/gatherMain_section/gatherMain_section', ['spm_modules/zepto/0
                 btns:$currentSection.find('.tabBtn'),
                 conts:$currentSection.find('.tabCont'),
                 current:'button-link-active-lock',
-                trigerType:'tap'
+                trigerType:'tap',
+                initCallback:function(currIndex){
+                    var $currTabCont=$currentSection.find('.tabCont').eq(currIndex);
+                    if(!$currTabCont.attr('src')){
+                        $currTabCont.attr('src',$currTabCont.attr('data-src'));
+                    }
+
+                },
+                triggerCallback:function(lastOneIndex,currIndex){
+                    var $currTabCont=$currentSection.find('.tabCont').eq(currIndex);
+                    if(!$currTabCont.attr('src')){
+                        $currTabCont.attr('src',$currTabCont.attr('data-src'));
+                    }
+                }
             });
         }
     });
@@ -473,14 +444,14 @@ define('components/gatherMain_section/gatherMain_section', ['spm_modules/zepto/0
  * Time: 15:44
  * To change this template use File | Settings | File Templates.
  */
-define('components/gatherCheapBuy_section/gatherCheapBuy_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+define('components/gatherCheapBuy_section/gatherCheapBuy_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
     var $=require('spm_modules/zepto/0.0.1/zepto');
     var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
     var cookie=require('spm_modules/cookie/0.0.1/cookie');
     var App=require('components/util/App');
     var utilFunctions=require('components/util/utilFunctions');
     var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
-
+    var tab=require('spm_modules/tab/0.0.2/tab');
     var template=require('spm_modules/template/3.0.0/template');
     template.helper('$',$);
     template.helper('decodeURIComponent', decodeURIComponent);
@@ -505,6 +476,25 @@ define('components/gatherCheapBuy_section/gatherCheapBuy_section', ['spm_modules
             });
             J.Scroll('#gatherCheapBuy-websiteCats-box-cats',{hScroll:true,hScrollbar : false});
             J.Scroll('#gatherCheapBuy-websiteCats-box-catsCont',{hScroll:true,hScrollbar : false});
+            tab({
+                btns:$currentSection.find('.tabBtn'),
+                conts:$currentSection.find('.tabCont'),
+                current:'button-link-downArrow-active',
+                trigerType:'tap',
+                initCallback:function(currIndex){
+                    var $currTabCont=$currentSection.find('.tabCont').eq(currIndex);
+                    if(!$currTabCont.attr('src')){
+                        $currTabCont.attr('src',$currTabCont.attr('data-src'));
+                    }
+
+                },
+                triggerCallback:function(lastOneIndex,currIndex){
+                    var $currTabCont=$currentSection.find('.tabCont').eq(currIndex);
+                    if(!$currTabCont.attr('src')){
+                        $currTabCont.attr('src',$currTabCont.attr('data-src'));
+                    }
+                }
+            });
         }
     });
 
@@ -555,8 +545,21 @@ define('components/gatherGroupBuy_section/gatherGroupBuy_section', ['spm_modules
             tab({
                 btns:$currentSection.find('.tabBtn'),
                 conts:$currentSection.find('.tabCont'),
-                current:'active',
-                trigerType:'tap'
+                current:'button-link-active-lock',
+                trigerType:'tap',
+                initCallback:function(currIndex){
+                    var $currTabCont=$currentSection.find('.tabCont').eq(currIndex);
+                    if(!$currTabCont.attr('src')){
+                        $currTabCont.attr('src',$currTabCont.attr('data-src'));
+                    }
+
+                },
+                triggerCallback:function(lastOneIndex,currIndex){
+                    var $currTabCont=$currentSection.find('.tabCont').eq(currIndex);
+                    if(!$currTabCont.attr('src')){
+                        $currTabCont.attr('src',$currTabCont.attr('data-src'));
+                    }
+                }
             });
         }
     });
@@ -570,14 +573,14 @@ define('components/gatherGroupBuy_section/gatherGroupBuy_section', ['spm_modules
  * Time: 15:44
  * To change this template use File | Settings | File Templates.
  */
-define('components/gatherSeaBuy_section/gatherSeaBuy_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+define('components/gatherSeaBuy_section/gatherSeaBuy_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
     var $=require('spm_modules/zepto/0.0.1/zepto');
     var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
     var cookie=require('spm_modules/cookie/0.0.1/cookie');
     var App=require('components/util/App');
     var utilFunctions=require('components/util/utilFunctions');
     var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
-
+    var tab=require('spm_modules/tab/0.0.2/tab');
     var template=require('spm_modules/template/3.0.0/template');
     template.helper('$',$);
     template.helper('decodeURIComponent', decodeURIComponent);
@@ -602,6 +605,26 @@ define('components/gatherSeaBuy_section/gatherSeaBuy_section', ['spm_modules/zep
             });
             J.Scroll('#gatherSeaBuy-websiteCats-box-cats',{hScroll:true,hScrollbar : false});
             J.Scroll('#gatherSeaBuy-websiteCats-box-catsCont',{hScroll:true,hScrollbar : false});
+
+            tab({
+                btns:$currentSection.find('.tabBtn'),
+                conts:$currentSection.find('.tabCont'),
+                current:'button-link-downArrow-active',
+                trigerType:'tap',
+                initCallback:function(currIndex){
+                    var $currTabCont=$currentSection.find('.tabCont').eq(currIndex);
+                    if(!$currTabCont.attr('src')){
+                        $currTabCont.attr('src',$currTabCont.attr('data-src'));
+                    }
+
+                },
+                triggerCallback:function(lastOneIndex,currIndex){
+                    var $currTabCont=$currentSection.find('.tabCont').eq(currIndex);
+                    if(!$currTabCont.attr('src')){
+                        $currTabCont.attr('src',$currTabCont.attr('data-src'));
+                    }
+                }
+            });
         }
     });
 
@@ -801,6 +824,66 @@ define('components/gatherIntelligentSearch/gatherIntelligentSearch_section/gathe
     });
 
 });
+/*!components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section.js*/
+;/**
+ * Created with PhpStorm.
+ * User: Administrator
+ * Date: 2015/10/23
+ * Time: 15:44
+ * To change this template use File | Settings | File Templates.
+ */
+define('components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+    var $=require('spm_modules/zepto/0.0.1/zepto');
+    var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
+    var cookie=require('spm_modules/cookie/0.0.1/cookie');
+    var App=require('components/util/App');
+    var utilFunctions=require('components/util/utilFunctions');
+    var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
+    var tab=require('spm_modules/tab/0.0.2/tab');
+    var template=require('spm_modules/template/3.0.0/template');
+    template.helper('$',$);
+    template.helper('decodeURIComponent', decodeURIComponent);
+
+    var startPage = 0,
+        pageSize = 10,
+        totalPage;
+
+    App.page('searchToBuyDetail', function () {
+        this.show=function(){
+
+        };
+        this.init = function () {
+            var $currentSection=$('#searchToBuyDetail_section');
+
+            tab({
+                btns:$currentSection.find('.tabBtn'),
+                conts:$currentSection.find('.tabCont'),
+                current:'peter-river',
+                trigerType:'tap',
+                initCallback:function(currIndex){
+                    var $currTabBtn=$currentSection.find('.tabBtn').eq(currIndex);
+                    var $currTabCont=$currentSection.find('.tabCont').eq(currIndex);
+                    $currTabBtn.removeClass('asbestos');
+                    if(!$currTabCont.attr('src')){
+                        $currTabCont.attr('src',$currTabCont.attr('data-src'));
+                    }
+
+                },
+                triggerCallback:function(lastOneIndex,currIndex){
+                    var $currTabCont=$currentSection.find('.tabCont').eq(currIndex);
+                    var $currTabBtn=$currentSection.find('.tabBtn').eq(currIndex);
+                    var $lastTabBtn=$currentSection.find('.tabBtn').eq(lastOneIndex);
+                    $lastTabBtn.addClass('asbestos');
+                    $currTabBtn.removeClass('asbestos');
+                    if(!$currTabCont.attr('src')){
+                        $currTabCont.attr('src',$currTabCont.attr('data-src'));
+                    }
+                }
+            });
+        }
+    });
+
+});
 /*!components/user_section/user_section.js*/
 ;/**
  * Created with PhpStorm.
@@ -974,828 +1057,8 @@ define('components/main_section/main_section', ['spm_modules/zepto/0.0.1/zepto',
     });
 
 });
-/*!components/warehouseManage/warehouseDetail_section/warehouseDetail_section.js*/
-;/**
- * Created with PhpStorm.
- * User: Administrator
- * Date: 2015/10/23
- * Time: 15:44
- * To change this template use File | Settings | File Templates.
- */
-define('components/warehouseManage/warehouseDetail_section/warehouseDetail_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
-    var $=require('spm_modules/zepto/0.0.1/zepto');
-    var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
-    var cookie=require('spm_modules/cookie/0.0.1/cookie');
-    var App=require('components/util/App');
-    var utilFunctions=require('components/util/utilFunctions');
-    var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
-
-    var template=require('spm_modules/template/3.0.0/template');
-    template.helper('$',$);
-    template.helper('Number',Number);
-    template.helper('decodeURIComponent', decodeURIComponent);
-
-    var startPage = 0,
-        pageSize = 10,
-        totalPage;
-
-    App.page('warehouseDetail', function () {
-        this.show=function() {
-            var $currSection = $('#warehouseDetail_section');
-            var title = getQueryString('title', $currSection.data('query'));
-            var repoId=getQueryString('repoId', $currSection.data('query'));
-            $currSection.find('.title').html(title);
-
-            //加载分仓详情
-            var item_detail_table_item_tpl="<% var count=0; %>\n<tr>\n    <th>商品名称</th>\n    <th>今日已售</th>\n    <th class=\"textRight\">库存剩余</th>\n</tr>\n<% $.each( goodsDetails.content , function(i,item){ %>\n    <tr>\n        <td>\n            <% if(item.status==0){ %>\n                <%= item.goodsName %>【<%= item.unit %>】<br/>\n            <% }else{ %>\n                <span class=\"gray\">\n                    <%= item.goodsName %>【<%= item.unit %>】<br/>\n                    【停售】\n                </span>\n\n            <% } %>\n\n        </td>\n        <td class=\"textCenter\"><%= item.todayCount %></td>\n        <td class=\"textRight\">\n            <% if( Number(item.stock) < 0){ %>\n                <span class=\"red\"><%= item.stock %></span>份\n            <% }else{ %>\n                <%= item.stock %>份\n            <% } %>\n        </td>\n    </tr>\n    <% count+=Number(item.stock) %>\n<% }) %>\n<tr>\n    <td class=\"textRight\">商品合计：</td>\n    <td class=\"textCenter\"><%= sumToday %>份</td>\n    <td class=\"textRight\">\n        <%= sumStock %>份\n    </td>\n</tr>\n<tr>\n    <td></td>\n    <td></td>\n    <td class=\"textCenter red\">\n        <% if(sumOutOfStock && sumOutOfStock<0){ %>\n            缺 <span class=\"minus\"><%= Math.abs(sumOutOfStock) %></span>份\n        <% } %>\n\n    </td>\n</tr>";
-            $.ajax({
-                url: apiHost + 'areaManagement/queryBranchWarehouseDetails.do',
-                dataType: 'json',
-                data:{
-                    key:window.userObj.account.key,
-                    repoId:repoId,
-                    page:0,
-                    size:100
-                },
-                success: function (data) {
-                    if (data.status == 1) {
-                        if(data.data){
-                            var render=template.compile(item_detail_table_item_tpl);
-                            $currSection.find('.item-detail-table').html(render(data.data));
-                            if(data.data.supplyCount>0){
-                                $currSection.find('.right').show();
-                                $currSection.find('.right').find('a').attr('href','#warehouseDetailReplenishment_section?repoId='+getQueryString('repoId', $currSection.data('query'))+'&title='+title);
-                                $currSection.find('.right').find('a span').html(data.data.supplyCount);
-                            }
-                        }
-                    } else if (data.status == '-99') {
-                        J.Router.goTo('#login_section');
-                        //根据缓存自动填写手机号
-                        if (userObj.account && userObj.account.mobile) {
-                            $('.input-cellphone').val(userObj.account.mobile);
-                        }
-                    } else {
-                        J.showToast(data.detail, 'error');
-                    }
-
-                }
-            });
-            //加载分仓接头人信息
-            var areaInfo_table_tpl="<tr>\n    <td>仓库收货人</td>\n    <td class=\"textRight\">\n        <% $.each( consigneeList , function(i,item){ %>\n            <% if(i!=consigneeList.length-1){ %>\n                <%= decodeURIComponent(item.staffName) %>(<%= item.staffMobile %>)<br/>\n            <% }else{ %>\n                <%= decodeURIComponent(item.staffName) %>(<%= item.staffMobile %>)\n            <% } %>\n        <% }) %>\n    </td>\n</tr>\n\n<tr>\n    <td>负责小区：</td>\n    <td class=\"textRight\">\n        <% $.each( villageList , function(i,item){ %>\n            <% if(i!=villageList.length-1){ %>\n                    <%= item.villageName %><br/>\n            <% }else{ %>\n                    <%= item.villageName %>\n            <% } %>\n        <% }) %>\n\n    </td>\n</tr>\n\n";
-            $.ajax({
-                url: apiHost + 'areaManagement/queryConsignee.do',
-                dataType: 'json',
-                data:{
-                    key:window.userObj.account.key,
-                    repoId:repoId
-                },
-                success: function (data) {
-                    if (data.status == 1) {
-                        if(data.data){
-                            var render=template.compile(areaInfo_table_tpl);
-                            $currSection.find('.areaInfo-table').html(render(data.data));
-                        }
-                    } else if (data.status == '-99') {
-                        J.Router.goTo('#login_section');
-                        //根据缓存自动填写手机号
-                        if (userObj.account && userObj.account.mobile) {
-                            $('.input-cellphone').val(userObj.account.mobile);
-                        }
-                    } else {
-                        J.showToast(data.detail, 'error');
-                    }
-
-                }
-            });
-            //初始化下面按钮链接
-            $('.warehouseDetail-footer-btn.btn-modify').attr('href','#modifyCount_section?repoId='+repoId+'&title='+title);
-            $('.warehouseDetail-footer-btn.btn-apply').attr('href','#applyReplenishment_section?repoId='+repoId+'&title='+title);
-        };
-        this.init = function () {
-
-
-        }
-    });
-
-});
-/*!components/warehouseManage/warehouseDetailReplenishment_section/warehouseDetailReplenishment_section.js*/
-;/**
- * Created with PhpStorm.
- * User: Administrator
- * Date: 2015/10/23
- * Time: 15:44
- * To change this template use File | Settings | File Templates.
- */
-define('components/warehouseManage/warehouseDetailReplenishment_section/warehouseDetailReplenishment_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
-    var $=require('spm_modules/zepto/0.0.1/zepto');
-    var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
-    var cookie=require('spm_modules/cookie/0.0.1/cookie');
-    var App=require('components/util/App');
-    var utilFunctions=require('components/util/utilFunctions');
-
-    var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
-    var template=require('spm_modules/template/3.0.0/template');
-    template.helper('$',$);
-    template.helper('Number',Number);
-    template.helper('decodeURIComponent', decodeURIComponent);
-
-    var startPage = 0,
-        pageSize = 10,
-        totalPage;
-
-    App.page('warehouseDetailReplenishment', function () {
-        this.show=function() {
-            var $currSection = $('#warehouseDetailReplenishment_section');
-            var title = getQueryString('title', $currSection.data('query'));
-            $currSection.find('.title').html(title);
-
-            //加载补货列表
-            var item_detail_table_item_tpl="\n<% $.each( supplementDetails , function(i,item){ %>\n    <li data-selected=\"selected\" class=\"warehouseDetailReplenishment-list-item\">\n        <div class=\"tag\">\n            <% if(item.status==0){ %>\n            已完成\n            <% }else{ %>\n            进行中\n            <% } %>\n        </div>\n        <strong>\n\n            <% if(item.isEmergency==1){ %>\n                <span class=\"yellow\">补货中-加急</span>\n            <% }else{ %>\n                补货中\n            <% } %>\n        </strong>\n        <div class=\"item-detail\">\n            <table class=\"item-detail-table\">\n                <% $.each( item.detailsList , function(i,detailsListItem){ %>\n                <tr>\n                    <td>\n                        <% if(detailsListItem.goodsStatus==0){ %>\n                            <%= detailsListItem.goodsName %> &nbsp;&nbsp;&nbsp;&nbsp;<%= detailsListItem.unit %>\n                        <% }else{ %>\n                            <span class=\"gray\">\n                                <%= detailsListItem.goodsName %> &nbsp;&nbsp;&nbsp;&nbsp;<%= detailsListItem.unit %>\n                                 <br/>【停售】\n                            </span>\n\n                        <% } %>\n                    </td>\n                    <td></td>\n                    <td class=\"textRight\"><%= detailsListItem.supplement %> 份</td>\n                </tr>\n                <% }) %>\n                <tr>\n                    <td class=\"textRight\">商品合计：</td>\n                    <td></td>\n                    <td class=\"textRight\"><%= item.sumSupplement %> 份</td>\n                </tr>\n            </table>\n            <div class=\"textRight\">\n                <a class=\"button btn-confirm\" data-id=\"<%= item.supplyRecordId %>\" href=\"#\">\n                    确认\n                </a>\n            </div>\n\n        </div>\n        <i class=\"icon next\"></i>\n    </li>\n<% }) %>\n";
-            $.ajax({
-                url: apiHost + 'areaManagement/queryReplenishmentList.do',
-                dataType: 'json',
-                data:{
-                    key:window.userObj.account.key,
-                    repoId:getQueryString('repoId', $currSection.data('query')),
-                    page:0,
-                    size:100
-                },
-                success: function (data) {
-                    if (data.status == 1) {
-                        if(data.data){
-                            var render=template.compile(item_detail_table_item_tpl);
-                            $currSection.find('.warehouseDetailReplenishment-list').html(render(data.data));
-                        }
-                    } else if (data.status == '-99') {
-                        J.Router.goTo('#login_section');
-                        //根据缓存自动填写手机号
-                        if (userObj.account && userObj.account.mobile) {
-                            $('.input-cellphone').val(userObj.account.mobile);
-                        }
-                    } else {
-                        J.showToast(data.detail, 'error');
-                    }
-
-                },
-                beforeSend: function () {
-
-                },
-                complete: function () {
-
-                }
-            });
-        };
-        this.init = function () {
-            var $currSection = $('#warehouseDetailReplenishment_section');
-            var title = getQueryString('title', $currSection.data('query'));
-
-            //补货列表下拉
-            $currSection.on('tap','.warehouseDetailReplenishment-list-item',function(){
-                var $this=$(this),
-                    id=$this.data('id');
-                $this.siblings().find('.item-detail').hide();
-                $this.siblings().find('.icon').removeClass('arrow-down').addClass('next');
-                if ( $this.find('.icon').hasClass('next') && id != '') {
-                    $this.find('.item-detail').show();
-                    $this.find('.icon').removeClass('next').addClass('arrow-down');
-                }else {
-                    $this.find('.item-detail').hide();
-                    $this.find('.icon').removeClass('arrow-down').addClass('next');
-                }
-                return false;
-            });
-            //确认按钮动作
-            $currSection.on('tap','.btn-confirm',function(){
-                var $this=$(this),
-                    id=$this.data('id');
-                if ( id != '') {
-                    J.confirm(
-                        '',
-                        '确认 '+title+' 已经收到货物?',
-                        function(){
-                            $.ajax({
-                                url: apiHost + 'areaManagement/replenishmentConfirmation.do',
-                                dataType: 'json',
-                                data: {
-                                    key: window.userObj.account.key,
-                                    repoId: getQueryString('repoId', $currSection.data('query')),
-                                    supplyRecordId:id
-                                },
-                                success: function (data) {
-                                    if (data.status == 1) {
-                                        J.showToast('确认成功！', 'success');
-                                        $this.parents('.warehouseDetailReplenishment-list-item').remove();
-                                    } else if (data.status == '-99') {
-                                        J.Router.goTo('#login_section');
-                                        //根据缓存自动填写手机号
-                                        if (userObj.account && userObj.account.mobile) {
-                                            $('.input-cellphone').val(userObj.account.mobile);
-                                        }
-                                    } else {
-                                        J.showToast(data.detail, 'error');
-                                    }
-
-                                },
-                                beforeSend: function () {
-
-                                },
-                                complete: function () {
-
-                                }
-                            });
-                        },function(){
-
-                        }
-                    );
-
-                } else {
-                    J.showToast('补货id不能为空！', 'error', 0);
-                }
-                return false;
-            });
-        }
-    });
-
-});
-/*!components/warehouseManage/modifyCount_section/modifyCount_section.js*/
-;/**
- * Created with PhpStorm.
- * User: Administrator
- * Date: 2015/10/23
- * Time: 15:44
- * To change this template use File | Settings | File Templates.
- */
-define('components/warehouseManage/modifyCount_section/modifyCount_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
-    var $=require('spm_modules/zepto/0.0.1/zepto');
-    var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
-    var cookie=require('spm_modules/cookie/0.0.1/cookie');
-    var App=require('components/util/App');
-    var utilFunctions=require('components/util/utilFunctions');
-    var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
-
-    var template=require('spm_modules/template/3.0.0/template');
-    template.helper('$',$);
-    template.helper('Number',Number);
-    template.helper('decodeURIComponent', decodeURIComponent);
-
-    var startPage = 0,
-        pageSize = 10,
-        totalPage;
-
-    App.page('modifyCount', function () {
-        this.show=function(){
-            var $currSection = $('#modifyCount_section');
-            var title = getQueryString('title', $currSection.data('query'));
-            var repoId=getQueryString('repoId', $currSection.data('query'));
-            $currSection.find('.item-detail-tit').html(title);
-
-            //reset
-            $currSection.find('.item-detail-form')[0].reset();
-
-            //加载分仓详情
-            var item_detail_table_item_tpl="<% var count=0; %>\n<tr>\n    <th>商品名称</th>\n    <th></th>\n    <th class=\"textCenter\">库存剩余</th>\n</tr>\n<% $.each( goodsDetails.content , function(i,item){ %>\n    <tr>\n        <td>\n            <% if(item.status==0){ %>\n            <%= item.goodsName %><br/>\n            <% }else{ %>\n                <span class=\"gray\">\n                    <%= item.goodsName %><br/>【停售】\n                </span>\n            <% } %>\n        </td>\n        <td></td>\n        <td class=\"textCenter\">\n            <input class=\"item-detail-form-input\" data-unit=\"<%= item.unit %>\" data-goodsId=\"<%= item.goodsId %>\" name=\"<%= item.goodsName %>\" data-before=\"<%= item.stock %>\" value=\"<%= item.stock %>\" type=\"text\"/>\n        </td>\n    </tr>\n    <% count+=Number(item.stock) %>\n<% }) %>\n<tr>\n    <td class=\"textRight\">商品合计：</td>\n    <td></td>\n    <td class=\"textCenter total\">\n        <span class=\"num\"><%= sumToday %></span>份\n    </td>\n</tr>\n<tr>\n    <td></td>\n    <td></td>\n    <td class=\"textCenter red\">\n        <% if( sumOutOfStock && sumOutOfStock<0 ){ %>\n            缺 <span class=\"minus\"><%= Math.abs(sumOutOfStock) %></span>份\n        <% } %>\n    </td>\n</tr>";
-            $.ajax({
-                url: apiHost + 'areaManagement/queryBranchWarehouseDetails.do',
-                dataType: 'json',
-                data:{
-                    key:window.userObj.account.key,
-                    repoId:repoId,
-                    page:0,
-                    size:100
-                },
-                success: function (data) {
-                    if (data.status == 1) {
-                        if(data.data){
-                            var render=template.compile(item_detail_table_item_tpl);
-                            $currSection.find('.item-detail-table').html(render(data.data));
-                            utilFunctions.calculateInput($currSection.find('.item-detail-form-input'),$currSection.find('.total .num'),$currSection.find('.minus'));
-                        }
-                    } else if (data.status == '-99') {
-                        J.Router.goTo('#login_section');
-                        //根据缓存自动填写手机号
-                        if (userObj.account && userObj.account.mobile) {
-                            $('.input-cellphone').val(userObj.account.mobile);
-                        }
-                    } else {
-                        J.showToast(data.detail, 'error');
-                    }
-
-                }
-            });
-        };
-        this.init = function () {
-            var $currSection = $('#modifyCount_section');
-            //修改库存按钮动作
-            $currSection.find('.btn-modify').on('tap',function(){
-                var $itemInput=$currSection.find('.item-detail-form-input');
-                var $changeReason=$currSection.find('#changeReason');
-                var $this = $(this);
-                if ($this.hasClass('disable')) {
-                    return false;
-                }
-                if ($changeReason.val()) {
-                    $.ajax({
-                        url: apiHost + 'areaManagement/updateStock.do',
-                        data: {
-                            key:window.userObj.account.key,
-                            repoId:getQueryString('repoId', $currSection.data('query')),
-                            updateJson: JSON.stringify(cellectParamJson($itemInput)),
-                            changeReason : $changeReason.val()
-                        },
-                        dataType: 'json',
-                        success: function (data) {
-                            //var data=JSON.parse(data);
-                            if (data.status == 1) {
-                                J.showToast('修改成功！', 'success');
-                                $currSection.find('.btn-back').trigger('tap');
-                            } else if (data.status == '-99') {
-                                J.Router.goTo('#login_section');
-                            } else {
-                                J.showToast(data.detail, 'error');
-                            }
-
-                        },
-                        beforeSend: function () {
-                            $this.addClass('disable');
-                        },
-                        complete: function () {
-                            $this.removeClass('disable');
-                        }
-                    });
-                } else {
-                    J.showToast('请填写修改库存理由！', 'error');
-                }
-            });
-            function cellectParamJson($inputs){
-                var json=[];
-                $inputs.each(function(){
-                    var obj={};
-                    var $this=$(this);
-                    obj.goodsId=$this.attr('data-goodsId');
-                    obj.goodsName=$this.attr('name');
-                    obj.unit=$this.attr('data-unit');
-                    obj.before=$this.attr('data-before');
-                    obj.after=$this.attr('value');
-                    json.push(obj);
-                });
-                return json;
-            }
-        }
-    });
-
-});
-/*!spm_modules/radio/0.0.1/radio.js*/
-;define("spm_modules/radio/0.0.1/radio",["spm_modules/zepto/0.0.1/zepto"],function(e,t,s){var a=e("spm_modules/zepto/0.0.1/zepto");s.exports=function(e,t){var s="String"==typeof e?a("."+e):e;return s.click(function(){var e=a(this),s=e.siblings();return s.removeClass(t),e.hasClass(t)||(e.addClass(t),e.attr("data-selected","selected")),!1}),s.find("input").length>0&&s.find("input").click(function(){var e=a(this).parent(),s=e.siblings();return s.removeClass(t),e.addClass(t),e.attr("data-selected","selected"),!1}),!1}});
-/*!components/warehouseManage/applyReplenishment_section/applyReplenishment_section.js*/
-;/**
- * Created with PhpStorm.
- * User: Administrator
- * Date: 2015/10/23
- * Time: 15:44
- * To change this template use File | Settings | File Templates.
- */
-define('components/warehouseManage/applyReplenishment_section/applyReplenishment_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/radio/0.0.1/radio', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
-    var $=require('spm_modules/zepto/0.0.1/zepto');
-    var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
-    var cookie=require('spm_modules/cookie/0.0.1/cookie');
-    var App=require('components/util/App');
-    var utilFunctions=require('components/util/utilFunctions');
-    var radio=require('spm_modules/radio/0.0.1/radio');
-    var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
-
-    var template=require('spm_modules/template/3.0.0/template');
-    template.helper('$',$);
-    template.helper('Number',Number);
-    template.helper('Math',Math);
-    template.helper('decodeURIComponent', decodeURIComponent);
-
-    App.page('applyReplenishment', function () {
-        this.show=function(){
-            var $currSection = $('#applyReplenishment_section');
-            var title = getQueryString('title', $currSection.data('query'));
-            var repoId=getQueryString('repoId', $currSection.data('query'));
-            $currSection.find('.item-detail-tit').html(title);
-
-            //reset
-            $currSection.find('.item-detail-form')[0].reset();
-
-            //加载分仓详情
-            var item_detail_table_item_tpl="<% var count=0; %>\n<tr>\n    <th>商品名称</th>\n    <th>库存剩余</th>\n    <th class=\"textCenter\">补货数量</th>\n</tr>\n<% $.each( goodsDetails.content , function(i,item){ %>\n    <tr>\n        <td>\n\n            <% if(item.status==0){ %>\n                <%= item.goodsName %><br/>\n            <% }else{ %>\n                <span class=\"gray\">\n                    <%= item.goodsName %><br/>【停售】\n                </span>\n            <% } %>\n        </td>\n        <td>\n            <% if( Number(item.stock) < 0){ %>\n                <span class=\"red\"><%= item.stock %></span>份\n            <% }else{ %>\n                <%= item.stock %>份\n            <% } %>\n\n        </td>\n        <td class=\"textCenter\">\n            <% if( item.status==1 && item.stock==0){ %>\n                <input class=\"item-detail-form-input\" readonly=\"true\" data-unit=\"<%= item.unit %>\" data-goodsId=\"<%= item.goodsId %>\" name=\"<%= item.goodsName %>\" value=\"\" type=\"text\"/>\n            <% }else if(item.status==1 && item.stock<0){ %>\n                <input class=\"item-detail-form-input\" data-maxNum=\"<%= Math.abs(item.stock) %>\" data-unit=\"<%= item.unit %>\"  data-goodsId=\"<%= item.goodsId %>\" name=\"<%= item.goodsName %>\" value=\"\" type=\"text\"/>\n            <% }else{ %>\n                <input class=\"item-detail-form-input\" data-unit=\"<%= item.unit %>\" data-goodsId=\"<%= item.goodsId %>\" name=\"<%= item.goodsName %>\" value=\"\" type=\"text\"/>\n            <% } %>\n        </td>\n    </tr>\n    <% count+=Number(item.stock) %>\n<% }) %>\n<tr>\n    <td class=\"textRight\">商品合计：</td>\n    <td></td>\n    <td class=\"textCenter total\">\n        <span class=\"num\"><%= sumToday %></span>份\n    </td>\n</tr>\n<tr>\n    <td></td>\n    <td></td>\n    <td class=\"textCenter red\">\n        <% if( sumOutOfStock && sumOutOfStock<0 ){ %>\n            缺 <span class=\"minus\"><%= Math.abs(sumOutOfStock) %></span>份\n        <% } %>\n    </td>\n</tr>";
-            $.ajax({
-                url: apiHost + 'areaManagement/queryBranchWarehouseDetails.do',
-                dataType: 'json',
-                data:{
-                    key:window.userObj.account.key,
-                    repoId:repoId,
-                    page:0,
-                    size:100
-                },
-                success: function (data) {
-                    if (data.status == 1) {
-                        if(data.data){
-                            var render=template.compile(item_detail_table_item_tpl);
-                            $currSection.find('.item-detail-table').html(render(data.data));
-                            utilFunctions.calculateInput($currSection.find('.item-detail-form-input'),$currSection.find('.total .num'),$currSection.find('.minus'));
-                        }
-                    } else if (data.status == '-99') {
-                        J.Router.goTo('#login_section');
-                        //根据缓存自动填写手机号
-                        if (userObj.account && userObj.account.mobile) {
-                            $('.input-cellphone').val(userObj.account.mobile);
-                        }
-                    } else {
-                        J.showToast(data.detail, 'error');
-                    }
-
-                }
-            });
-        };
-        this.init = function () {
-            var $currSection = $('#applyReplenishment_section');
-
-            radio($currSection.find('.radio'),'active');
-            //申请补货按钮动作
-            $currSection.find('.btn-confirm').on('tap',function(){
-                var $itemInput=$currSection.find('.item-detail-form-input');
-                var $radio=$currSection.find('.radio.active');
-                var $this = $(this);
-                if ($this.hasClass('disable')) {
-                    return false;
-                }
-                J.confirm('','确认申请'+($radio.data('id')=='1'?'加急':'')+'补货？',function(){
-                    $.ajax({
-                        url: apiHost + 'areaManagement/replenishmentApply.do',
-                        data: {
-                            key:window.userObj.account.key,
-                            repoId:getQueryString('repoId', $currSection.data('query')),
-                            applyJson: JSON.stringify(cellectParamJson($itemInput)),
-                            isEmergency: $radio.data('id')
-                        },
-                        dataType: 'json',
-                        success: function (data) {
-                            //var data=JSON.parse(data);
-                            if (data.status == 1) {
-                                J.showToast('申请成功！', 'success');
-                                $currSection.find('.btn-back').trigger('tap');
-                            } else if (data.status == '-99') {
-                                J.Router.goTo('#login_section');
-                            } else {
-                                J.showToast(data.detail, 'error');
-                            }
-
-                        },
-                        beforeSend: function () {
-                            $this.addClass('disable');
-                        },
-                        complete: function () {
-                            $this.removeClass('disable');
-                        }
-                    });
-                },function(){
-
-                });
-                return false;
-            });
-            function cellectParamJson($inputs){
-                var json=[];
-                $inputs.each(function(){
-                    var obj={};
-                    var $this=$(this);
-                    obj.goodsId=$this.attr('data-goodsId');
-                    obj.goodsName=$this.attr('name');
-                    obj.unit=$this.attr('data-unit');
-                    //obj.before=$this.attr('data-before');
-                    obj.supplement=$this.attr('value');
-                    if(!$this.attr('readonly')&&obj.supplement>0){
-                        json.push(obj);
-                    }
-
-                });
-                return json;
-            }
-        };
-
-    });
-
-});
-/*!spm_modules/date-extend/0.0.1/date-extend.js*/
-;define("spm_modules/date-extend/0.0.1/date-extend",[],function(){var t={getYesterday:function(){var t=this.now(),e=new Date(t.getFullYear(),t.getMonth(),t.getDate()-1);return this.toString(e)},now:function(){return new Date},getToday:function(){return this.toString(this.now())},getMonthFirstDay:function(){var t=this.now();return t.setDate(1)},getMonthLastDay:function(){var t=this.now(),e=t.getMonth(),n=++e,r=new Date(t.getFullYear(),n,1),a=864e5;return new Date(r-a)},getPrevMonthToday:function(){var t=this.now(),e=new Date(t.getFullYear(),t.getMonth()-1,t.getDate());return this.toString(e)},getNextMonthToday:function(){var t=this.now(),e=new Date(t.getFullYear(),t.getMonth()+1,t.getDate());return this.toString(e)},getWeekFirstDay:function(){var t=this.now(),e=new Date(t-864e5*(t.getDay()-1));return this.toString(e)},getWeekLastDay:function(){var t=this.now(),e=new Date(t-864e5*(t.getDay()-1)),n=new Date(1e3*(e/1e3+518400));return this.toString(n)},getMonthCurrent:function(){var t=this.now(),e=t.getMonth()+1;return e=10>e?"-0"+e:"-"+e,t.getFullYear()+e},getPrevMonthFirstDay:function(t){var e=this.now(),n=t?new Date(1*t.substring(0,4),1*t.substring(5,7)-1):e,r=new Date(n.getFullYear(),n.getMonth()-1,1);return this.toString(r)},getPrevMonthLastDay:function(t){var e=this.now(),n=t?new Date(1*t.substring(0,4),1*t.substring(5,7)-1):e,r=new Date(n.getFullYear(),n.getMonth(),1),a=new Date(r-864e5);return this.toString(a)},getPrevMonthDays:function(t){return 1*this.getPrevMonthLastDay(t).substring(8,10)},getMonthFirstDay:function(t){var e=this.now(),n=t?new Date(1*t.substring(0,4),1*t.substring(5,7)-1):new Date(e.getFullYear(),e.getMonth(),1);return this.toString(n,"yyyy-mm-dd")},getMonthLastDay:function(t){var e=this.now(),n=t?new Date(1*t.substring(0,4),1*t.substring(5,7)):new Date(e.getFullYear(),e.getMonth()+1),r=new Date(n-864e5);return this.toString(r,"yyyy-mm-dd")},getMonthDays:function(t){return 1*this.getMonthLastDay(t).substring(8,10)},getNextMonthFirstDay:function(t){var e=t?new Date(1*t.substring(0,4),1*t.substring(5,7)-1):now,n=new Date(e.getFullYear(),e.getMonth()+1,1);return this.toString(n)},getNextMonthLastDay:function(t){var e=this.now(),n=new Date(e.getFullYear(),e.getMonth()+1+1,1),r=t?new Date(1*t.substring(0,4),1*t.substring(5,7)+1):n;return r=new Date(r-864e5),this.toString(r)},getNextMonthDays:function(t){return 1*this.getNextMonthLastDay(t).substring(8,10)},getQuarterFirstDay:function(){var t=this.now(),e=null;return t.getMonth()<3?e=new Date(t.getFullYear(),0,1):t.getMonth()>2&&t.getMonth()<6?e=new Date(t.getFullYear(),3,1):t.getMonth()>5&&t.getMonth()<9?e=new Date(t.getFullYear(),6,1):t.getMonth()>8&&(e=new Date(t.getFullYear(),9,1)),this.toString(e)},getQuarterLastDay:function(){var t=this.now();return t.getMonth()<3?returnDate=new Date(t.getFullYear(),2,31):t.getMonth()>2&&t.getMonth()<6?returnDate=new Date(t.getFullYear(),5,30):t.getMonth()>5&&t.getMonth()<9?returnDate=new Date(t.getFullYear(),8,30):t.getMonth()>8&&(returnDate=new Date(t.getFullYear(),11,31)),this.toString(returnDate)},getFullYearFirstDay:function(){var t=this.now(),e=new Date(t.getFullYear(),0,1);return this.toString(e)},getFullYearLastDay:function(){var t=this.now(),e=new Date(t.getFullYear(),11,31);return this.toString(e)},getQuarterFirstMonth:function(){var t=this.now();return t.getMonth()<3?t.getFullYear()+"-01":t.getMonth()>2&&t.getMonth()<6?t.getFullYear()+"-04":t.getMonth()>5&&t.getMonth()<9?t.getFullYear()+"-07":t.getMonth()>8?t.getFullYear()+"-10":void 0},getQuarterLastMonth:function(){var t=this.now();return t.getMonth()<3?t.getFullYear()+"-03":t.getMonth()>2&&t.getMonth()<6?t.getFullYear()+"-06":t.getMonth()>5&&t.getMonth()<9?t.getFullYear()+"-09":t.getMonth()>8?t.getFullYear()+"-12":void 0},getFullYearFirstMonth:function(){var t=this.now();return t.getFullYear()+"-01"},getFullYearLastMonth:function(){var t=this.now();return t.getFullYear()+"-12"},getDay:function(t){return t=t||this.now(),"[object String]"==Object.prototype.toString.call(t)&&(t=this.toDate(t)),t.getDay()},getNowDateTime:function(){var t=this.now();return this.toString(t,"yyyy-mm-dd hh:ii:ss")},getPreMonthDateTime:function(){var t=this.now(),e=new Date(t.getFullYear(),t.getMonth()-1,t.getDate());return this.toString(e)+" "+this.toString(t,"hh:ii:ss")},toString:function(t,e){if(e=e||"yyyy-mm-dd",t){var n,r,a,o,i,g,s="";if("[object Date]"==Object.prototype.toString.call(t)){switch(n=t.getFullYear(),r=t.getMonth()+1,10>1*r&&(r="0"+1*r),a=t.getDate(),10>1*a&&(a="0"+1*a),o=t.getHours(),10>1*o&&(o="0"+1*o),i=t.getMinutes(),10>1*i&&(i="0"+1*i),g=t.getSeconds(),10>1*g&&(g="0"+1*g),e){case"yyyy-mm-dd":s=n+"-"+r+"-"+a;break;case"yyyy/mm/dd":s=n+"/"+r+"/"+a;break;case"yyyy-mm-dd hh:ii":s=n+"-"+r+"-"+a+" "+o+":"+i;break;case"yyyy-mm-dd hh:ii:ss":s=n+"-"+r+"-"+a+" "+o+":"+i+":"+g;break;case"hh:ii:ss":s=o+":"+i+":"+g;break;case"hh:ii":s=o+":"+i;break;case"yyyy/mm":s=n+"/"+r}return s}if("[object String]"==Object.prototype.toString.call(t)){var h,u=t.split(" "),l=u[0];1==u.length?h="00:00:00":2==u.length&&(h=u[1]);var y=l.split("-");switch(n=y[0],r=y[1],10>1*r&&(r="0"+1*r),a=y[2],10>1*a&&(a="0"+1*a),y=h.split(":"),o=y[0],10>1*o&&(o="0"+1*o),i=y[1],10>1*i&&(i="0"+1*i),g=y[2],10>1*g&&(g="0"+1*g),e){case"yyyy-mm-dd":s=n+"-"+r+"-"+a;break;case"yyyy/mm/dd":s=n+"/"+r+"/"+a;break;case"yyyy-mm-dd hh:ii":s=n+"-"+r+"-"+a+" "+o+":"+i;break;case"yyyy-mm-dd hh:ii:ss":s=n+"-"+r+"-"+a+" "+o+":"+i+":"+g;break;case"hh:ii:ss":s=o+":"+i+":"+g;break;case"hh:ii":s=o+":"+i;break;case"yyyy/mm":s=n+"/"+r}return s}}return null},toDate:function(t){var e,n=t.split(" "),r=n[0];1==n.length?e="00:00:00":2==n.length&&(e=n[1]);var a=r.split("-"),o=a[0],i=a[1],g=a[2],a=e.split(":"),s=a[0],h=a[1],u=a[2];return new Date(o,i-1,g,s,h,u)},parseTime:function(t,e){var n,r,a,o,i=parseInt(t),e=e||"ms";return"s"==e?(n=Math.floor(i/60/60/24),r=Math.floor(i/60/60%24),a=Math.floor(i/60%60),o=Math.floor(i%60)):(n=Math.floor(i/1e3/60/60/24),r=Math.floor(i/1e3/60/60%24),a=Math.floor(i/1e3/60%60),o=Math.floor(i/1e3%60)),{day:n,hour:r,min:a,sec:o}}};return t});
-/*!components/deliveryManage/deliveryDetail_section/deliveryDetail_section.js*/
-;/**
- * Created with PhpStorm.
- * User: Administrator
- * Date: 2015/10/23
- * Time: 15:44
- * To change this template use File | Settings | File Templates.
- */
-define('components/deliveryManage/deliveryDetail_section/deliveryDetail_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/date-extend/0.0.1/date-extend', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
-    var $=require('spm_modules/zepto/0.0.1/zepto');
-    var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
-    var cookie=require('spm_modules/cookie/0.0.1/cookie');
-    var App=require('components/util/App');
-    var utilFunctions=require('components/util/utilFunctions');
-    var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
-    var dateExtend=require('spm_modules/date-extend/0.0.1/date-extend');
-
-    var template=require('spm_modules/template/3.0.0/template');
-    template.helper('$',$);
-    template.helper('Number',Number);
-    template.helper('decodeURIComponent', decodeURIComponent);
-
-    var startPage = 0,
-        pageSize = 10,
-        totalPage;
-
-    App.page('deliveryDetail', function () {
-        this.show=function(){
-            var $currSection = $('#deliveryDetail_section');
-            var title = getQueryString('title', $currSection.data('query'));
-            var repoId=getQueryString('repoId', $currSection.data('query'));
-            var repoName=getQueryString('repoName', $currSection.data('query'));
-            var staffMobile=getQueryString('staffMobile', $currSection.data('query'));
-            var staffId =getQueryString('staffId', $currSection.data('query'));
-            var staffName=title;
-            $currSection.find('.title').html(title);
-            $currSection.find('.staffName').html(staffName);
-            $currSection.find('.repoName').html(repoName);
-            $currSection.find('.staffMobile').html(staffMobile);
-            //初始化查看绩效按钮链接
-            $currSection.find('.right a').attr('href','#checkPerformance_section?staffId='+staffId+'&staffName='+staffName);
-            //加载片区订单列表
-            var list_item_tpl="<% $.each( content , function(i,item){ %>\n<li class=\"notDelivery-order-list-item\">\n    <strong>\n        <%= item.address %><br/>\n        买家：<%= item.residentMobile %><br/>\n        <%= item.productQuantity %> 份 <%= item.productName %><br/>\n        (<%= item.unit %>)\n    </strong>\n    <p>\n        备注：<%= item.remark %>\n    </p>\n    <div class=\"tag\" data-currentTime=\"<%= item.currentTime %>\" data-receiveTime=\"<%= item.receiveTime %>\">\n        已用时:<br/>\n        <span class=\"time\">\n\n        </span>\n    </div>\n</li>\n<% }) %>";
-            $.ajax({
-                url: apiHost + 'areaManagement/queryDelivererDetailsPage.do',
-                dataType: 'json',
-                data:{
-                    key:window.userObj.account.key,
-                    repoId:getQueryString('repoId', $currSection.data('query')),
-                    staffId :getQueryString('staffId', $currSection.data('query')),
-                    page:0,
-                    size:100
-                },
-                success: function (data) {
-                    if (data.status == 1) {
-                        if(data.data.delivererDetailsPage.content){
-                            var render=template.compile(list_item_tpl);
-                            $currSection.find('.notDelivery-order-list').html(render(data.data.delivererDetailsPage));
-                            $currSection.find('.totalOrders').html(data.data.delivererDetailsPage.content.length);
-                            //计算已用时间
-                            var $tags=$currSection.find('.notDelivery-order-list-item').find('.tag');
-                            $tags.each(function(){
-                                var $this=$(this),
-                                    currentTime=$this.attr('data-currentTime'),
-                                    receiveTime=$this.attr('data-receiveTime'),
-                                    time=currentTime-receiveTime,
-                                    timeObj=dateExtend.parseTime(time);
-                                $this.find('.time').html((timeObj.day!=0?(timeObj.day+'天'):'')+(timeObj.hour!=0?(timeObj.hour+'时'):'')+timeObj.min+'分');
-                            });
-                        }
-                    } else if (data.status == '-99') {
-                        J.Router.goTo('#login_section');
-                        //根据缓存自动填写手机号
-                        if (userObj.account && userObj.account.mobile) {
-                            $('.input-cellphone').val(userObj.account.mobile);
-                        }
-                    } else {
-                        J.showToast(data.detail, 'error');
-                    }
-
-                },
-                beforeSend: function () {
-
-                },
-                complete: function () {
-
-                }
-            });
-        };
-        this.init = function () {
-
-        }
-    });
-
-});
-/*!components/deliveryManage/checkPerformance_section/checkPerformance_section.js*/
-;/**
- * Created with PhpStorm.
- * User: Administrator
- * Date: 2015/10/23
- * Time: 15:44
- * To change this template use File | Settings | File Templates.
- */
-define('components/deliveryManage/checkPerformance_section/checkPerformance_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/date-extend/0.0.1/date-extend', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
-    var $=require('spm_modules/zepto/0.0.1/zepto');
-    var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
-    var cookie=require('spm_modules/cookie/0.0.1/cookie');
-    var App=require('components/util/App');
-    var utilFunctions=require('components/util/utilFunctions');
-    var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
-    var dateExtend=require('spm_modules/date-extend/0.0.1/date-extend');
-
-    var template=require('spm_modules/template/3.0.0/template');
-    template.helper('$',$);
-    template.helper('Number',Number);
-    template.helper('decodeURIComponent', decodeURIComponent);
-
-    var startPage = 0,
-        pageSize = 10,
-        totalPage;
-
-    App.page('checkPerformance', function () {
-        this.show=function(){
-            var $currSection = $('#checkPerformance_section');
-            var staffId =getQueryString('staffId', $currSection.data('query'));
-            var staffName=getQueryString('staffName', $currSection.data('query'));
-
-            $currSection.find('.title .name').html(staffName);
-
-            //加载绩效
-            var item_detail_table_item_tpl="<table class=\"performance-table performance-table-today\">\n    <tr>\n        <td>\n            今日接单：\n        </td>\n        <td class=\"textRight\">\n            <%= data.todayReceive %>\n            单\n        </td>\n    </tr>\n    <tr>\n        <td>今日派送：</td>\n        <td class=\"textRight\">\n            <%= data.todayDeliver %> 单\n        </td>\n    </tr>\n    <tr>\n        <td>今日去重订单数：</td>\n        <td class=\"textRight\">\n            <%= data.todayOrder %> 单\n        </td>\n    </tr>\n    <tr>\n        <td>派送平均耗时：</td>\n        <td class=\"time textRight\" data-time=\"<%= data.todayTime %>\">\n\n        </td>\n    </tr>\n</table>\n<hr/>\n<table class=\"performance-table performance-table-month\">\n    <tr>\n        <td>本月接单：</td>\n        <td class=\"textRight\">\n            <%= data.monthReceive %> 单\n        </td>\n    </tr>\n    <tr>\n        <td>本月派送：</td>\n        <td class=\"textRight\">\n            <%= data.monthDeliver %> 单\n        </td>\n    </tr>\n    <tr>\n        <td>本月去重订单数：</td>\n        <td class=\"textRight\">\n            <%= data.monthOrder %> 单\n        </td>\n    </tr>\n    <tr>\n        <td>派送平均耗时：</td>\n        <td class=\"time textRight\" data-time=\"<%= data.monthTime %>\">\n\n        </td>\n    </tr>\n</table>\n<hr/>\n<table class=\"performance-table performance-table-history\">\n    <tr>\n        <td>历史接单：</td>\n        <td class=\"textRight\">\n            <%= data.historyReceive %> 单\n        </td>\n    </tr>\n    <tr>\n        <td>历史派送：</td>\n        <td class=\"textRight\">\n            <%= data.historyDeliver %> 单\n        </td>\n    </tr>\n    <tr>\n        <td>历史去重订单数：</td>\n        <td class=\"textRight\">\n            <%= data.historyOrder %> 单\n        </td>\n    </tr>\n    <tr>\n        <td>派送平均耗时：</td>\n        <td class=\"time textRight\" data-time=\"<%= data.historyTime %>\">\n\n        </td>\n    </tr>\n</table>\n";
-            $.ajax({
-                url: apiHost + 'areaManagement/queryDelivererAchievements.do',
-                dataType: 'json',
-                data:{
-                    key:window.userObj.account.key,
-                    staffId :getQueryString('staffId', $currSection.data('query'))
-                },
-                success: function (data) {
-                    if (data.status == 1) {
-                        if(data.data){
-                            var render=template.compile(item_detail_table_item_tpl);
-                            $currSection.find('.scrollWrapper').html(render(data));
-                            //计算已用时间
-                            var $tags=$currSection.find('.time');
-                            $tags.each(function(){
-                                var $this=$(this),
-                                    time=$this.attr('data-time'),
-                                    timeObj=dateExtend.parseTime(time,'s');
-                                $this.html((timeObj.day!=0?(timeObj.day+'天'):'')+(timeObj.hour!=0?(timeObj.hour+'时'):'')+timeObj.min+'分');
-                            });
-
-                        }
-                    } else if (data.status == '-99') {
-                        J.Router.goTo('#login_section');
-                        //根据缓存自动填写手机号
-                        if (userObj.account && userObj.account.mobile) {
-                            $('.input-cellphone').val(userObj.account.mobile);
-                        }
-                    } else {
-                        J.showToast(data.detail, 'error');
-                    }
-
-                },
-                beforeSend: function () {
-
-                },
-                complete: function () {
-
-                }
-            });
-        };
-        this.init = function () {
-
-        }
-    });
-
-});
-/*!spm_modules/checkbox/0.0.1/checkbox.js*/
-;define("spm_modules/checkbox/0.0.1/checkbox",["spm_modules/zepto/0.0.1/zepto"],function(e,t,s){var i=e("spm_modules/zepto/0.0.1/zepto");s.exports=function(e,t,s,n){var d="String"==typeof e?i("."+e):e,a=n||"noLimit";return d.click(function(){var e=i(this),n=e.siblings();return"noLimit"!=a&&n.filter("[data-selected=selected]").length>=a?!1:(e.hasClass(t)?(e.removeClass(t),e.attr("data-selected","undefind")):(e.addClass(t),e.attr("data-selected","selected")),i.isFunction(s)&&s(i(this)),!1)}),d.find("input").length>0&&d.find("input").click(function(){var e=i(this).parent(),s=e.siblings();return"noLimit"!=a&&s.filter("[data-selected=selected]").length>=a?!1:(e.addClass(t),e.attr("data-selected","selected"),!1)}),!1}});
-/*!components/deliveryManage/addDelivery_section/addDelivery_section.js*/
-;/**
- * Created with PhpStorm.
- * User: Administrator
- * Date: 2015/10/23
- * Time: 15:44
- * To change this template use File | Settings | File Templates.
- */
-define('components/deliveryManage/addDelivery_section/addDelivery_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/checkbox/0.0.1/checkbox', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
-    var $=require('spm_modules/zepto/0.0.1/zepto');
-    var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
-    var cookie=require('spm_modules/cookie/0.0.1/cookie');
-    var App=require('components/util/App');
-    var utilFunctions=require('components/util/utilFunctions');
-    var checkbox=require('spm_modules/checkbox/0.0.1/checkbox');
-    var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
-
-    var template=require('spm_modules/template/3.0.0/template');
-    template.helper('$',$);
-    template.helper('Number',Number);
-    template.helper('decodeURIComponent', decodeURIComponent);
-
-    var startPage = 0,
-        pageSize = 10,
-        totalPage;
-
-    App.page('addDelivery', function () {
-        this.show=function(){
-            var $currSection = $('#addDelivery_section');
-            var staffId =getQueryString('staffId', $currSection.data('query'));
-            var staffName=getQueryString('staffName', $currSection.data('query'));
-
-            $currSection.find('.title .name').html(staffName);
-
-            //加载片区选择框
-            var select_item_tpl="<% $.each( content , function(i,item){ %>\n    <option value=\"<%= item.repoId %>\">\n        <%= item.repoName %>\n    </option>\n<% }) %>\n";
-            $.ajax({
-                url: apiHost + 'areaManagement/queryBranchWarehouseList.do',
-                dataType: 'json',
-                data:{
-                    key:window.userObj.account.key,
-                    staffId :getQueryString('staffId', $currSection.data('query')),
-                    page:0,
-                    size:100
-                },
-                success: function (data) {
-                    if (data.status == 1) {
-                        if(data.data){
-                            var render=template.compile(select_item_tpl);
-                            $currSection.find('.select-warehouse').html(render(data.data));
-                        }
-                    } else if (data.status == '-99') {
-                        J.Router.goTo('#login_section');
-                        //根据缓存自动填写手机号
-                        if (userObj.account && userObj.account.mobile) {
-                            $('.input-cellphone').val(userObj.account.mobile);
-                        }
-                    } else {
-                        J.showToast(data.detail, 'error');
-                    }
-
-                },
-                beforeSend: function () {
-
-                },
-                complete: function () {
-
-                }
-            });
-        };
-        this.init = function () {
-            var $currSection = $('#addDelivery_section');
-            checkbox($currSection.find('.input-row-authority .checkbox'),'active');
-            //新增派送员动作
-            $currSection.find('.btn-confirm').on('tap',function(){
-                var $this = $(this);
-                if ($this.hasClass('disable')) {
-                    return false;
-                }
-                if ($currSection.find('#name').val()&&$currSection.find('#mobile').val()) {
-                    $.ajax({
-                        url: apiHost + 'areaManagement/addDeliverer.do',
-                        data: {
-                            key:window.userObj.account.key,
-                            name:encodeURIComponent($.trim($currSection.find('#name').val())),
-                            mobile:$currSection.find('#mobile').val(),
-                            repoId: $currSection.find('#select-warehouse').find('option:selected').val(),
-                            isConnector: $currSection.find('#isConnector').hasClass('active')?true:false,
-                            isSelfDelivery : $currSection.find('#isSelfDelivery').hasClass('active')?true:false,
-                            isSelfFetch : $currSection.find('#isSelfFetch').hasClass('active')?true:false,
-                            isActivity : $currSection.find('#isActivity').hasClass('active')?true:false
-                        },
-                        dataType: 'json',
-                        success: function (data) {
-                            //var data=JSON.parse(data);
-                            if (data.status == 1) {
-                                J.showToast('新增成功！', 'success');
-                                $currSection.find('form')[0].reset();
-                                $currSection.find('.btn-back').trigger('tap');
-                            } else if (data.status == '-99') {
-                                J.Router.goTo('#login_section');
-                            } else {
-                                J.showToast(data.detail, 'error');
-                            }
-
-                        },
-                        beforeSend: function () {
-                            $this.addClass('disable');
-                        },
-                        complete: function () {
-                            $this.removeClass('disable');
-                        }
-                    });
-                } else {
-                    J.showToast('请先完善信息！', 'error');
-                }
-                return false;
-            });
-
-            $('#mobile').on('input', function () {
-                var $this = $(this),
-                    value = $this.val(),
-                    maxLength = parseInt($this.attr('maxlength'));
-
-                maxLength = isNaN(maxLength) ? 11: maxLength;
-
-                if (value.length > maxLength) {
-                    $this.val(value.slice(0, maxLength));
-                }
-            });
-        }
-    });
-
-});
 /*!static/js/index.js*/
-;define('static/js/index', ['components/util/deviceSetting', 'spm_modules/zepto/0.0.1/zepto', 'spm_modules/cookie/0.0.1/cookie', 'components/navigation/navigation', 'components/util/App', 'components/login_section/login_section', 'components/gatherMain_section/gatherMain_section', 'components/gatherCheapBuy_section/gatherCheapBuy_section', 'components/gatherGroupBuy_section/gatherGroupBuy_section', 'components/gatherSeaBuy_section/gatherSeaBuy_section', 'components/gatherHeadline/gatherHeadlineList_section/gatherHeadlineList_section', 'components/gatherActs/gatherActsList_section/gatherActsList_section', 'components/gatherSearch/search_section/search_section', 'components/gatherIntelligentSearch/gatherIntelligentSearch_section/gatherIntelligentSearch_section', 'components/user_section/user_section', 'components/modifyPassword_section/modifyPassword_section', 'components/main_section/main_section', 'components/warehouseManage/warehouseDetail_section/warehouseDetail_section', 'components/warehouseManage/warehouseDetailReplenishment_section/warehouseDetailReplenishment_section', 'components/warehouseManage/modifyCount_section/modifyCount_section', 'components/warehouseManage/applyReplenishment_section/applyReplenishment_section', 'components/deliveryManage/deliveryDetail_section/deliveryDetail_section', 'components/deliveryManage/checkPerformance_section/checkPerformance_section', 'components/deliveryManage/addDelivery_section/addDelivery_section'], function (require, exports, module) {
+;define('static/js/index', ['components/util/deviceSetting', 'spm_modules/zepto/0.0.1/zepto', 'spm_modules/cookie/0.0.1/cookie', 'components/navigation/navigation', 'components/util/App', 'components/login_section/login_section', 'components/gatherMain_section/gatherMain_section', 'components/gatherCheapBuy_section/gatherCheapBuy_section', 'components/gatherGroupBuy_section/gatherGroupBuy_section', 'components/gatherSeaBuy_section/gatherSeaBuy_section', 'components/gatherHeadline/gatherHeadlineList_section/gatherHeadlineList_section', 'components/gatherActs/gatherActsList_section/gatherActsList_section', 'components/gatherSearch/search_section/search_section', 'components/gatherIntelligentSearch/gatherIntelligentSearch_section/gatherIntelligentSearch_section', 'components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section', 'components/navigation/navigation', 'components/user_section/user_section', 'components/modifyPassword_section/modifyPassword_section', 'components/main_section/main_section'], function (require, exports, module) {
 
     //初始化app的native设置
     require('components/util/deviceSetting');
@@ -1821,19 +1084,14 @@ define('components/deliveryManage/addDelivery_section/addDelivery_section', ['sp
     require('components/gatherActs/gatherActsList_section/gatherActsList_section');
     require('components/gatherSearch/search_section/search_section');
     require('components/gatherIntelligentSearch/gatherIntelligentSearch_section/gatherIntelligentSearch_section');
+    require('components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section');
 
+    require('components/navigation/navigation');
     require('components/user_section/user_section');
     require('components/modifyPassword_section/modifyPassword_section');
 
     require('components/main_section/main_section');
-    require('components/warehouseManage/warehouseDetail_section/warehouseDetail_section');
-    require('components/warehouseManage/warehouseDetailReplenishment_section/warehouseDetailReplenishment_section');
-    require('components/warehouseManage/modifyCount_section/modifyCount_section');
-    require('components/warehouseManage/applyReplenishment_section/applyReplenishment_section');
 
-    require('components/deliveryManage/deliveryDetail_section/deliveryDetail_section');
-    require('components/deliveryManage/checkPerformance_section/checkPerformance_section');
-    require('components/deliveryManage/addDelivery_section/addDelivery_section');
 
 
     var $aside = $('#section_container');

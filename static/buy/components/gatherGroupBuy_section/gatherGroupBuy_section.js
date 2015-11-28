@@ -43,8 +43,21 @@ define('components/gatherGroupBuy_section/gatherGroupBuy_section', ['spm_modules
             tab({
                 btns:$currentSection.find('.tabBtn'),
                 conts:$currentSection.find('.tabCont'),
-                current:'active',
-                trigerType:'tap'
+                current:'button-link-active-lock',
+                trigerType:'tap',
+                initCallback:function(currIndex){
+                    var $currTabCont=$currentSection.find('.tabCont').eq(currIndex);
+                    if(!$currTabCont.attr('src')){
+                        $currTabCont.attr('src',$currTabCont.attr('data-src'));
+                    }
+
+                },
+                triggerCallback:function(lastOneIndex,currIndex){
+                    var $currTabCont=$currentSection.find('.tabCont').eq(currIndex);
+                    if(!$currTabCont.attr('src')){
+                        $currTabCont.attr('src',$currTabCont.attr('data-src'));
+                    }
+                }
             });
         }
     });

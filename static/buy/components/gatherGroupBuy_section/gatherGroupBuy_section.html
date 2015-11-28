@@ -1,21 +1,21 @@
-<section id="gatherGroupBuy_section" data-transition="slideUp">
+<section id="gatherGroupBuy_section" data-transition="cover">
     <header>
         <div class="button-links grid">
             <div class="col-0">
-                <a data-icon="previous" class="btn-back" href="#" data-target="back"></a>
+                <a href="#" class="icon icon-leftArrow btn-back" data-target="back"></a>
             </div>
             <div class="col-1">
-                <a class="button-link button-link-active-lock" href="#">
+                <a class="button-link button-link tabBtn" href="#">
                     美团
                 </a>
             </div>
             <div class="col-1">
-                <a class="button-link button-link" href="#">
+                <a class="button-link button-link tabBtn" href="#">
                     百度糯米
                 </a>
             </div>
             <div class="col-1">
-                <a class="button-link button-link" href="#">
+                <a class="button-link button-link tabBtn" href="#">
                     大众点评
                 </a>
             </div>
@@ -56,24 +56,10 @@
         </div>
     </nav>
 
-    <article class="tabCont active" id="gatherActs-article-1" data-scroll="false">
-        <iframe src="http://m.jd.com/" frameborder="0"></iframe>
-        <div class="bottomHeight"></div>
-    </article>
-    <article class="tabCont" id="gatherActs-article-2" data-scroll="false">
-        <iframe src="http://m.tmall.com" frameborder="0"></iframe>
-        <div class="bottomHeight"></div>
-    </article>
-    <article class="tabCont" id="gatherActs-article-3" data-scroll="false">
-        <iframe src="http://m.tmall.com" frameborder="0"></iframe>
-        <div class="bottomHeight"></div>
-    </article>
-    <article class="tabCont" id="gatherActs-article-4" data-scroll="false">
-        <iframe src="http://m.tmall.com" frameborder="0"></iframe>
-        <div class="bottomHeight"></div>
-    </article>
-    <article class="tabCont" id="gatherActs-article-5" data-scroll="false">
-        <iframe src="http://m.tmall.com" frameborder="0"></iframe>
+    <article class="active" id="gatherActs-article" data-scroll="false">
+        <iframe class="tabCont" data-src="http://m.taobao.com" frameborder="0"></iframe>
+        <iframe class="tabCont" data-src="http://m.meituan.com" frameborder="0"></iframe>
+        <iframe class="tabCont" data-src="http://m.tmall.com" frameborder="0"></iframe>
         <div class="bottomHeight"></div>
     </article>
 
@@ -82,17 +68,17 @@
     <i class="icon icon-search-goods"></i>
     搜物
 </a>
-<a href="#layout_book_article">
-    <i class="icon previous"></i>
+<a href="#" data-target="back">
+    <i class="icon icon-noText icon-leftArrow"></i>
 </a>
 <a href="#layout_book_article">
-    <i class="icon next"></i>
+    <i class="icon icon-noText icon-rightArrow"></i>
 </a>
 <a href="#main_section" data-target="section">
-    <i class="icon home"></i>
+    <i class="icon icon-noText icon-home"></i>
 </a>
-<a href="#layout_book_article">
-    <i class="icon loop"></i>
+<a href="#" class="btn-refresh">
+    <i class="icon icon-noText icon-refresh"></i>
 </a>
     </footer>
 </section>
