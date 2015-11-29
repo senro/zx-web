@@ -39,6 +39,14 @@ define('components/gatherSearch/search_section/search_section', ['spm_modules/ze
                     $currSection.find('.category-viewport').hide();
                 }
             });
+
+            $currSection.find('.history-words .btn-delAll').on('tap',function(){
+                $currSection.find('.history-words .history-words-list').html('');
+            });
+            $currSection.find('.history-words').on('tap','.btn-del',function(){
+                var $currItem=$(this).parents('.history-words-list-item');
+                $currItem.remove();
+            });
         }
     });
 

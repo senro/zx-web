@@ -40,6 +40,7 @@ define('components/util/App', ['spm_modules/jingle/0.0.1/Jingle.debug.qymodify']
                 //首页列表
                 '#main_section': 'components/main_section/main_section.html',
                 '#search_section': 'components/gatherSearch/search_section/search_section.html',
+                '#searchResult_section': 'components/gatherSearch/searchResult_section/searchResult_section.html',
                 '#change_section': 'components/gatherSearch/change_section/change_section.html',
                 '#searchToBuy_section': 'components/waitBuy/searchToBuy_section/searchToBuy_section.html',
                 '#searchToBuyDetail_section': 'components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section.html',

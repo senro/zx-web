@@ -91,6 +91,7 @@ define('components/util/App', ['spm_modules/jingle/0.0.1/Jingle.debug.qymodify']
                 //首页列表
                 '#main_section': 'components/main_section/main_section.html',
                 '#search_section': 'components/gatherSearch/search_section/search_section.html',
+                '#searchResult_section': 'components/gatherSearch/searchResult_section/searchResult_section.html',
                 '#change_section': 'components/gatherSearch/change_section/change_section.html',
                 '#searchToBuy_section': 'components/waitBuy/searchToBuy_section/searchToBuy_section.html',
                 '#searchToBuyDetail_section': 'components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section.html',
@@ -753,6 +754,95 @@ define('components/gatherSearch/search_section/search_section', ['spm_modules/ze
                     $currSection.find('.category-viewport').hide();
                 }
             });
+
+            $currSection.find('.history-words .btn-delAll').on('tap',function(){
+                $currSection.find('.history-words .history-words-list').html('');
+            });
+            $currSection.find('.history-words').on('tap','.btn-del',function(){
+                var $currItem=$(this).parents('.history-words-list-item');
+                $currItem.remove();
+            });
+        }
+    });
+
+});
+/*!components/gatherSearch/searchResult_section/searchResult_section.js*/
+;/**
+ * Created with PhpStorm.
+ * User: Administrator
+ * Date: 2015/10/23
+ * Time: 15:44
+ * To change this template use File | Settings | File Templates.
+ */
+define('components/gatherSearch/searchResult_section/searchResult_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+    var $=require('spm_modules/zepto/0.0.1/zepto');
+    var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
+    var cookie=require('spm_modules/cookie/0.0.1/cookie');
+    var App=require('components/util/App');
+    var utilFunctions=require('components/util/utilFunctions');
+    var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
+    var tab=require('spm_modules/tab/0.0.2/tab');
+    var template=require('spm_modules/template/3.0.0/template');
+    template.helper('$',$);
+    template.helper('decodeURIComponent', decodeURIComponent);
+
+    var startPage = 0,
+        pageSize = 10,
+        totalPage;
+
+    App.page('searchResult', function () {
+        this.show=function(){
+
+        };
+        this.init = function () {
+            var $currentSection=$('#searchResult_section');
+
+            tab({
+                btns:$currentSection.find('.header-tabBtns .tabBtn'),
+                conts:$currentSection.find('.tabConts-iframe .tabCont'),
+                current:'button-link-active-lock',
+                trigerType:'tap',
+                initCallback:function(currIndex){
+                    var $currTabCont=$currentSection.find('.tabConts-iframe .tabCont').eq(currIndex);
+                    if(!$currTabCont.attr('src')){
+                        $currTabCont.attr('src',$currTabCont.attr('data-src'));
+                    }
+
+                },
+                triggerCallback:function(lastOneIndex,currIndex){
+                    var $currTabCont=$currentSection.find('.tabConts-iframe .tabCont').eq(currIndex);
+                    if(!$currTabCont.attr('src')){
+                        $currTabCont.attr('src',$currTabCont.attr('data-src'));
+                    }
+                }
+            });
+
+            tab({
+                btns:$currentSection.find('.searchToolBar .tabBtn'),
+                conts:$currentSection.find('.searchToolBar .tabCont'),
+                current:'color-blue',
+                trigerType:'tap'
+            });
+
+            $('.searchToolBar-footer-btn-cancel').on('tap', function () {
+                var $this=$(this);
+                $this.parents('.searchToolBar').hide();
+            });
+
+            $('.searchToolIcon').on('tap', function () {
+                var $this=$(this);
+                $('.searchToolBar').show();
+            });
+
+            $('.searchKeywordsIcon').on('tap', function () {
+                var $this=$(this);
+                $('.searchKeywordsBar').show();
+            });
+
+            $('.searchKeywordsBar .searchKeywordsBar-tit-btn-cancel').on('tap', function () {
+                var $this=$(this);
+                $('.searchKeywordsBar').hide();
+            });
         }
     });
 
@@ -880,6 +970,62 @@ define('components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section',
                     }
                 }
             });
+        }
+    });
+
+});
+/*!components/gatherSearch/change_section/change_section.js*/
+;/**
+ * Created with PhpStorm.
+ * User: Administrator
+ * Date: 2015/10/23
+ * Time: 15:44
+ * To change this template use File | Settings | File Templates.
+ */
+define('components/gatherSearch/change_section/change_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+    var $=require('spm_modules/zepto/0.0.1/zepto');
+    var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
+    var cookie=require('spm_modules/cookie/0.0.1/cookie');
+    var App=require('components/util/App');
+    var utilFunctions=require('components/util/utilFunctions');
+    var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
+    var tab=require('spm_modules/tab/0.0.2/tab');
+    var template=require('spm_modules/template/3.0.0/template');
+    template.helper('$',$);
+    template.helper('decodeURIComponent', decodeURIComponent);
+
+    var startPage = 0,
+        pageSize = 10,
+        totalPage;
+
+    App.page('change', function () {
+        this.show=function(){
+
+        };
+        this.init = function () {
+            var $currentSection=$('#change_section');
+            tab({
+                btns:$currentSection.find('.tabBtn'),
+                conts:$currentSection.find('.tabCont'),
+                current:'dark-orange',
+                trigerType:'tap',
+                initCallback:function(currIndex){
+                    var $currTabCont=$currentSection.find('.tabCont').eq(currIndex);
+                    $currentSection.find('.tabCont').removeClass('active');
+                    $currTabCont.addClass('active');
+                },
+                triggerCallback:function(lastOneIndex,currIndex){
+                    var $currTabCont=$currentSection.find('.tabCont').eq(currIndex);
+                    $currentSection.find('.tabCont').removeClass('active');
+                    $currTabCont.addClass('active');
+                }
+            });
+
+            $('.search-result').on('tap','.search-result-word',function(){
+                var $this=$(this);
+                $currentSection.find('.tabCont.active').find('.btn-replace').eq(0).css('display','block !important');
+            });
+
         }
     });
 
@@ -1020,14 +1166,14 @@ define('components/modifyPassword_section/modifyPassword_section', ['spm_modules
  * Time: 15:44
  * To change this template use File | Settings | File Templates.
  */
-define('components/main_section/main_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+define('components/main_section/main_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
     var $=require('spm_modules/zepto/0.0.1/zepto');
     var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
     var cookie=require('spm_modules/cookie/0.0.1/cookie');
     var App=require('components/util/App');
     var utilFunctions=require('components/util/utilFunctions');
     var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
-
+    var tab=require('spm_modules/tab/0.0.2/tab');
     var template=require('spm_modules/template/3.0.0/template');
     template.helper('$',$);
     template.helper('decodeURIComponent', decodeURIComponent);
@@ -1042,6 +1188,8 @@ define('components/main_section/main_section', ['spm_modules/zepto/0.0.1/zepto',
         };
         this.init = function () {
             var slider;
+            var $currentSection=$('#main_section');
+
             slider = new J.Slider({
                 selector : '#main_banner',
                 onBeforeSlide : function(){
@@ -1053,12 +1201,19 @@ define('components/main_section/main_section', ['spm_modules/zepto/0.0.1/zepto',
             });
             $('#slider_prev').tap(function(){slider.prev()});
             $('#slider_next').tap(function(){slider.next()});
+
+            tab({
+                btns:$currentSection.find('.tabBtn'),
+                conts:$currentSection.find('.tabCont'),
+                current:'dark-orange',
+                trigerType:'tap'
+            });
         }
     });
 
 });
 /*!static/js/index.js*/
-;define('static/js/index', ['components/util/deviceSetting', 'spm_modules/zepto/0.0.1/zepto', 'spm_modules/cookie/0.0.1/cookie', 'components/navigation/navigation', 'components/util/App', 'components/login_section/login_section', 'components/gatherMain_section/gatherMain_section', 'components/gatherCheapBuy_section/gatherCheapBuy_section', 'components/gatherGroupBuy_section/gatherGroupBuy_section', 'components/gatherSeaBuy_section/gatherSeaBuy_section', 'components/gatherHeadline/gatherHeadlineList_section/gatherHeadlineList_section', 'components/gatherActs/gatherActsList_section/gatherActsList_section', 'components/gatherSearch/search_section/search_section', 'components/gatherIntelligentSearch/gatherIntelligentSearch_section/gatherIntelligentSearch_section', 'components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section', 'components/navigation/navigation', 'components/user_section/user_section', 'components/modifyPassword_section/modifyPassword_section', 'components/main_section/main_section'], function (require, exports, module) {
+;define('static/js/index', ['components/util/deviceSetting', 'spm_modules/zepto/0.0.1/zepto', 'spm_modules/cookie/0.0.1/cookie', 'components/navigation/navigation', 'components/util/App', 'components/login_section/login_section', 'components/gatherMain_section/gatherMain_section', 'components/gatherCheapBuy_section/gatherCheapBuy_section', 'components/gatherGroupBuy_section/gatherGroupBuy_section', 'components/gatherSeaBuy_section/gatherSeaBuy_section', 'components/gatherHeadline/gatherHeadlineList_section/gatherHeadlineList_section', 'components/gatherActs/gatherActsList_section/gatherActsList_section', 'components/gatherSearch/search_section/search_section', 'components/gatherSearch/searchResult_section/searchResult_section', 'components/gatherIntelligentSearch/gatherIntelligentSearch_section/gatherIntelligentSearch_section', 'components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section', 'components/gatherSearch/change_section/change_section', 'components/navigation/navigation', 'components/user_section/user_section', 'components/modifyPassword_section/modifyPassword_section', 'components/main_section/main_section'], function (require, exports, module) {
 
     //初始化app的native设置
     require('components/util/deviceSetting');
@@ -1083,8 +1238,10 @@ define('components/main_section/main_section', ['spm_modules/zepto/0.0.1/zepto',
     require('components/gatherHeadline/gatherHeadlineList_section/gatherHeadlineList_section');
     require('components/gatherActs/gatherActsList_section/gatherActsList_section');
     require('components/gatherSearch/search_section/search_section');
+    require('components/gatherSearch/searchResult_section/searchResult_section');
     require('components/gatherIntelligentSearch/gatherIntelligentSearch_section/gatherIntelligentSearch_section');
     require('components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section');
+    require('components/gatherSearch/change_section/change_section');
 
     require('components/navigation/navigation');
     require('components/user_section/user_section');
