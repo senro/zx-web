@@ -387,6 +387,8 @@ define('components/util/utilFunctions', ['spm_modules/zepto/0.0.1/zepto', 'spm_m
 ;define("spm_modules/tab/0.0.2/tab",["spm_modules/zepto/0.0.1/zepto","spm_modules/wn-core/0.0.4/wn-core"],function(e,r,s){var a=e("spm_modules/zepto/0.0.1/zepto"),n=e("spm_modules/wn-core/0.0.4/wn-core"),t=new n,o=t.parseArgus;s.exports=function(e,r,s,n,t,c,l,d){function i(e){return f.eq(w).hide().removeClass("active"),C.eq(w).removeClass(s),f.eq(e).show().addClass("active"),C.eq(e).addClass(s),d&&d(w,e),!1}function u(e){return f.eq(w).fadeOut(200).removeClass("active"),C.eq(w).removeClass(s),f.eq(e).fadeIn(200).addClass(s),C.eq(e).addClass(s),d&&d(w,e),!1}var m={btns:a,conts:a,current:"",trigerType:"mouseover",transType:"normal",currIndex:0,initCallback:function(){},triggerCallback:function(){}};o(arguments,m);var e=m.btns,r=m.conts,s=m.current,n=m.trigerType,t=m.transType,c=m.currIndex,p=m.initCallback,v=m.triggerCallback,C=e,f=r,q=n||"mouseover",b=t||"normal",g=c||0,w=c||0,l=p,d=v;C.eq(g).addClass(s);for(var h=0;h<f.length;h++)h!=g?f.eq(h).hide():f.eq(h).show();return l&&l(g),C.bind(q,function(){var e=C.index(this);switch(b){case"normal":i(e);break;case"fade":u(e)}return w=e,!1}),!1}});
 /*!spm_modules/template/3.0.0/template.js*/
 ;!function(){function e(e){return e.replace(y,"").replace(w,",").replace(b,"").replace(x,"").replace(T,"").split(E)}function n(e){return"'"+e.replace(/('|\\)/g,"\\$1").replace(/\r/g,"\\r").replace(/\n/g,"\\n")+"'"}function t(t,r){function a(e){return p+=e.split(/\n/).length-1,s&&(e=e.replace(/\s+/g," ").replace(/<!--[\w\W]*?-->/g,"")),e&&(e=v[1]+n(e)+v[2]+"\n"),e}function o(n){var t=p;if(u?n=u(n,r):i&&(n=n.replace(/\n/g,function(){return p++,"$line="+p+";"})),0===n.indexOf("=")){var a=f&&!/^=[=#]/.test(n);if(n=n.replace(/^=[=#]?|[\s;]*$/g,""),a){var o=n.replace(/\s*\([^\)]+\)/,"");$[o]||/^(include|print)$/.test(o)||(n="$escape("+n+")")}else n="$string("+n+")";n=v[1]+n+v[2]}return i&&(n="$line="+t+";"+n),h(e(n),function(e){if(e&&!d[e]){var n;n="print"===e?w:"include"===e?b:$[e]?"$utils."+e:g[e]?"$helpers."+e:"$data."+e,x+=e+"="+n+",",d[e]=!0}}),n+"\n"}var i=r.debug,l=r.openTag,c=r.closeTag,u=r.parser,s=r.compress,f=r.escape,p=1,d={$data:1,$filename:1,$utils:1,$helpers:1,$out:1,$line:1},m="".trim,v=m?["$out='';","$out+=",";","$out"]:["$out=[];","$out.push(",");","$out.join('')"],y=m?"$out+=text;return $out;":"$out.push(text);",w="function(){var text=''.concat.apply('',arguments);"+y+"}",b="function(filename,data){data=data||$data;var text=$utils.$include(filename,data,$filename);"+y+"}",x="'use strict';var $utils=this,$helpers=$utils.$helpers,"+(i?"$line=0,":""),T=v[0],E="return new String("+v[3]+");";h(t.split(l),function(e){e=e.split(c);var n=e[0],t=e[1];1===e.length?T+=a(n):(T+=o(n),t&&(T+=a(t)))});var j=x+T+E;i&&(j="try{"+j+"}catch(e){throw {filename:$filename,name:'Render Error',message:e.message,line:$line,source:"+n(t)+".split(/\\n/)[$line-1].replace(/^\\s+/,'')};}");try{var S=new Function("$data","$filename",j);return S.prototype=$,S}catch(W){throw W.temp="function anonymous($data,$filename) {"+j+"}",W}}var r=function(e,n){return"string"==typeof n?m(n,{filename:e}):i(e,n)};r.version="3.0.0",r.config=function(e,n){a[e]=n};var a=r.defaults={openTag:"<%",closeTag:"%>",escape:!0,cache:!0,compress:!1,parser:null},o=r.cache={};r.render=function(e,n){return m(e,n)};var i=r.renderFile=function(e,n){var t=r.get(e)||d({filename:e,name:"Render Error",message:"Template not found"});return n?t(n):t};r.get=function(e){var n;if(o[e])n=o[e];else if("object"==typeof document){var t=document.getElementById(e);if(t){var r=(t.value||t.innerHTML).replace(/^\s*|\s*$/g,"");n=m(r,{filename:e})}}return n};var l=function(e,n){return"string"!=typeof e&&(n=typeof e,"number"===n?e+="":e="function"===n?l(e.call(e)):""),e},c={"<":"&#60;",">":"&#62;",'"':"&#34;","'":"&#39;","&":"&#38;"},u=function(e){return c[e]},s=function(e){return l(e).replace(/&(?![\w#]+;)|[<>"']/g,u)},f=Array.isArray||function(e){return"[object Array]"==={}.toString.call(e)},p=function(e,n){var t,r;if(f(e))for(t=0,r=e.length;r>t;t++)n.call(e,e[t],t,e);else for(t in e)n.call(e,e[t],t)},$=r.utils={$helpers:{},$include:i,$string:l,$escape:s,$each:p};r.helper=function(e,n){g[e]=n};var g=r.helpers=$.$helpers;r.onerror=function(e){var n="Template Error\n\n";for(var t in e)n+="<"+t+">\n"+e[t]+"\n\n";"object"==typeof console&&console.error(n)};var d=function(e){return r.onerror(e),function(){return"{Template Error}"}},m=r.compile=function(e,n){function r(t){try{return new c(t,l)+""}catch(r){return n.debug?d(r)():(n.debug=!0,m(e,n)(t))}}n=n||{};for(var i in a)void 0===n[i]&&(n[i]=a[i]);var l=n.filename;try{var c=t(e,n)}catch(u){return u.filename=l||"anonymous",u.name="Syntax Error",d(u)}return r.prototype=c.prototype,r.toString=function(){return c.toString()},l&&n.cache&&(o[l]=r),r},h=$.$each,v="break,case,catch,continue,debugger,default,delete,do,else,false,finally,for,function,if,in,instanceof,new,null,return,switch,this,throw,true,try,typeof,var,void,while,with,abstract,boolean,byte,char,class,const,double,enum,export,extends,final,float,goto,implements,import,int,interface,long,native,package,private,protected,public,short,static,super,synchronized,throws,transient,volatile,arguments,let,yield,undefined",y=/\/\*[\w\W]*?\*\/|\/\/[^\n]*\n|\/\/[^\n]*$|"(?:[^"\\]|\\[\w\W])*"|'(?:[^'\\]|\\[\w\W])*'|\s*\.\s*[$\w\.]+/g,w=/[^\w$]+/g,b=new RegExp(["\\b"+v.replace(/,/g,"\\b|\\b")+"\\b"].join("|"),"g"),x=/^\d[^,]*|,\d[^,]*/g,T=/^,+|,+$/g,E=/^$|,+/;"function"==typeof define?define("spm_modules/template/3.0.0/template",[],function(){return r}):"undefined"!=typeof exports?module.exports=r:this.template=r}();
+/*!spm_modules/cssTriangle/0.0.1/cssTriangle.js*/
+;define("spm_modules/cssTriangle/0.0.1/cssTriangle",[],function(r,e,o){o.exports=function(r,e,o,t){var n={up:{borderWidth:"0 "+o+" "+o+" "+o,borderColor:"#000000 #000000 "+t+" #000000",ie6borderColor:"transparent transparent "+t+" transparent"},right:{borderWidth:o+" 0 "+o+" "+o,borderColor:"#000000 #000000 #000000 "+t,ie6borderColor:"transparent transparent transparent "+t},down:{borderWidth:o+" "+o+" 0 "+o,borderColor:t+" #000000 #000000 #000000",ie6borderColor:t+" transparent transparent transparent"},left:{borderWidth:o+" "+o+" "+o+" 0",borderColor:"#000000 "+t+" #000000 #000000",ie6borderColor:"transparent "+t+" transparent transparent"}};return r.css({width:0,height:0,lineHeight:"0",borderStyle:"solid",borderWidth:n[e].borderWidth}),r.css({borderColor:n[e].ie6borderColor}),!1}});
 /*!components/gatherMain_section/gatherMain_section.js*/
 ;/**
  * Created with PhpStorm.
@@ -395,7 +397,7 @@ define('components/util/utilFunctions', ['spm_modules/zepto/0.0.1/zepto', 'spm_m
  * Time: 15:44
  * To change this template use File | Settings | File Templates.
  */
-define('components/gatherMain_section/gatherMain_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+define('components/gatherMain_section/gatherMain_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template', 'spm_modules/cssTriangle/0.0.1/cssTriangle'], function (require, exports, module) {
     var $=require('spm_modules/zepto/0.0.1/zepto');
     var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
     var cookie=require('spm_modules/cookie/0.0.1/cookie');
@@ -404,6 +406,8 @@ define('components/gatherMain_section/gatherMain_section', ['spm_modules/zepto/0
     var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
     var tab=require('spm_modules/tab/0.0.2/tab');
     var template=require('spm_modules/template/3.0.0/template');
+    var cssTriangle=require('spm_modules/cssTriangle/0.0.1/cssTriangle');
+
     template.helper('$',$);
     template.helper('decodeURIComponent', decodeURIComponent);
 
@@ -447,6 +451,9 @@ define('components/gatherMain_section/gatherMain_section', ['spm_modules/zepto/0
                     }
                 }
             });
+
+            //初始化更多按钮的三角
+            cssTriangle($('.triangle-down'),'down','5px','#3498DB');
         }
     });
 
@@ -959,18 +966,61 @@ define('components/gatherIntelligentSearch/gatherIntelligentSearch_section/gathe
                 var $currItem=$(this).parents('.history-words-list-item');
                 $currItem.remove();
             });
-            //$currSection.find('.btn-cats').on('tap',function(){
-            //    var $this=$(this);
-            //    if($this.hasClass('list')){
-            //        $this.removeClass('list').addClass('pencil');
-            //        $currSection.find('.hot-words,.history-words').hide();
-            //        $currSection.find('.category-viewport').show();
-            //    }else{
-            //        $this.removeClass('pencil').addClass('list');
-            //        $currSection.find('.hot-words,.history-words').show();
-            //        $currSection.find('.category-viewport').hide();
-            //    }
-            //});
+            $currSection.find('.button-lookup').on('tap',function(){
+                var $this=$(this);
+                J.Router.goTo('#gatherIntelligentSearchAll_section?'+cellectKeywordsToParams($currSection.find('.input-keywords')));
+                return false;
+            });
+            function cellectKeywordsToParams($inputs){
+                var keywords={};
+                $inputs.each(function(){
+                    var $currInput=$(this),
+                        index=$currInput.index();
+                    keywords[index]=$currInput.val();
+                });
+                return 'keywords='+JSON.stringify(keywords);
+            }
+        }
+    });
+
+});
+/*!components/gatherIntelligentSearch/gatherIntelligentSearchAll_section/gatherIntelligentSearchAll_section.js*/
+;/**
+ * Created with PhpStorm.
+ * User: Administrator
+ * Date: 2015/10/23
+ * Time: 15:44
+ * To change this template use File | Settings | File Templates.
+ */
+define('components/gatherIntelligentSearch/gatherIntelligentSearchAll_section/gatherIntelligentSearchAll_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+    var $=require('spm_modules/zepto/0.0.1/zepto');
+    var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
+    var cookie=require('spm_modules/cookie/0.0.1/cookie');
+    var App=require('components/util/App');
+    var utilFunctions=require('components/util/utilFunctions');
+    var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
+
+    var tab=require('spm_modules/tab/0.0.2/tab');
+    var template=require('spm_modules/template/3.0.0/template');
+    template.helper('$',$);
+    template.helper('decodeURIComponent', decodeURIComponent);
+
+    var startPage = 0,
+        pageSize = 10,
+        totalPage;
+
+    App.page('gatherIntelligentSearchAll', function () {
+        this.show=function(){
+
+        };
+        this.init = function () {
+            var $currSection=$('#gatherIntelligentSearchAll_section');
+
+            var keywords=JSON.parse(getQueryString('keywords'));
+            $.each(keywords,function(i,item){
+                $currSection.find('.input-keywords').eq(Number(i)).val(item);
+            });
+
         }
     });
 
@@ -1328,7 +1378,7 @@ define('components/main_section/main_section', ['spm_modules/zepto/0.0.1/zepto',
 
 });
 /*!static/js/index.js*/
-;define('static/js/index', ['components/util/deviceSetting', 'spm_modules/zepto/0.0.1/zepto', 'spm_modules/cookie/0.0.1/cookie', 'components/navigation/navigation', 'components/util/App', 'components/login_section/login_section', 'components/gatherMain_section/gatherMain_section', 'components/gatherCheapBuy_section/gatherCheapBuy_section', 'components/gatherGroupBuy_section/gatherGroupBuy_section', 'components/gatherSeaBuy_section/gatherSeaBuy_section', 'components/gatherHeadline/gatherHeadlineList_section/gatherHeadlineList_section', 'components/gatherActs/gatherActsList_section/gatherActsList_section', 'components/gatherSearch/search_section/search_section', 'components/gatherSearch/searchResult_section/searchResult_section', 'components/gatherIntelligentSearch/gatherIntelligentSearch_section/gatherIntelligentSearch_section', 'components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section', 'components/gatherSearch/change_section/change_section', 'components/gatherAccount/addAccount_section/addAccount_section', 'components/navigation/navigation', 'components/user_section/user_section', 'components/modifyPassword_section/modifyPassword_section', 'components/main_section/main_section'], function (require, exports, module) {
+;define('static/js/index', ['components/util/deviceSetting', 'spm_modules/zepto/0.0.1/zepto', 'spm_modules/cookie/0.0.1/cookie', 'components/navigation/navigation', 'components/util/App', 'components/login_section/login_section', 'components/gatherMain_section/gatherMain_section', 'components/gatherCheapBuy_section/gatherCheapBuy_section', 'components/gatherGroupBuy_section/gatherGroupBuy_section', 'components/gatherSeaBuy_section/gatherSeaBuy_section', 'components/gatherHeadline/gatherHeadlineList_section/gatherHeadlineList_section', 'components/gatherActs/gatherActsList_section/gatherActsList_section', 'components/gatherSearch/search_section/search_section', 'components/gatherSearch/searchResult_section/searchResult_section', 'components/gatherIntelligentSearch/gatherIntelligentSearch_section/gatherIntelligentSearch_section', 'components/gatherIntelligentSearch/gatherIntelligentSearchAll_section/gatherIntelligentSearchAll_section', 'components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section', 'components/gatherSearch/change_section/change_section', 'components/gatherAccount/addAccount_section/addAccount_section', 'components/navigation/navigation', 'components/user_section/user_section', 'components/modifyPassword_section/modifyPassword_section', 'components/main_section/main_section'], function (require, exports, module) {
 
     //初始化app的native设置
     require('components/util/deviceSetting');
@@ -1355,6 +1405,7 @@ define('components/main_section/main_section', ['spm_modules/zepto/0.0.1/zepto',
     require('components/gatherSearch/search_section/search_section');
     require('components/gatherSearch/searchResult_section/searchResult_section');
     require('components/gatherIntelligentSearch/gatherIntelligentSearch_section/gatherIntelligentSearch_section');
+    require('components/gatherIntelligentSearch/gatherIntelligentSearchAll_section/gatherIntelligentSearchAll_section');
     require('components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section');
     require('components/gatherSearch/change_section/change_section');
     require('components/gatherAccount/addAccount_section/addAccount_section');
