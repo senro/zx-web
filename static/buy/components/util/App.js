@@ -62,7 +62,7 @@ define('components/util/App', ['spm_modules/jingle/0.0.1/Jingle.debug.qymodify']
 
                 '#gatherIntelligentSearch_section': 'components/gatherIntelligentSearch/gatherIntelligentSearch_section/gatherIntelligentSearch_section.html',
                 '#gatherIntelligentSearchAll_section': 'components/gatherIntelligentSearch/gatherIntelligentSearchAll_section/gatherIntelligentSearchAll_section.html',
-
+                '#gatherIntelligentSearchAllDetail_section': 'components/gatherIntelligentSearch/gatherIntelligentSearchAllDetail_section/gatherIntelligentSearchAllDetail_section.html'
             }
         });
 

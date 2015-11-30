@@ -5,7 +5,7 @@
  * Time: 15:44
  * To change this template use File | Settings | File Templates.
  */
-define('components/gatherSearch/searchResult_section/searchResult_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+define('components/gatherSearch/searchResult_section/searchResult_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template', 'components/navigation/navigation'], function (require, exports, module) {
     var $=require('spm_modules/zepto/0.0.1/zepto');
     var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
     var cookie=require('spm_modules/cookie/0.0.1/cookie');
@@ -16,6 +16,8 @@ define('components/gatherSearch/searchResult_section/searchResult_section', ['sp
     var template=require('spm_modules/template/3.0.0/template');
     template.helper('$',$);
     template.helper('decodeURIComponent', decodeURIComponent);
+
+    var navigation=require('components/navigation/navigation');
 
     var startPage = 0,
         pageSize = 10,
@@ -111,6 +113,12 @@ define('components/gatherSearch/searchResult_section/searchResult_section', ['sp
             $('.btn-searchAllWeb').on('tap', function () {
                 var $this=$(this);
                 $('.searchKeywordsDetail-allWeb').show();
+                return false;
+            });
+
+            //切换导航菜单
+            $currentSection.find('footer').on('tap','.footer-btn-searchGoods',function(){
+                $currentSection.find('footer').html(navigation.mainNavHtml);
                 return false;
             });
         }
