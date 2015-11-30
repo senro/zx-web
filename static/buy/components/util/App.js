@@ -41,7 +41,10 @@ define('components/util/App', ['spm_modules/jingle/0.0.1/Jingle.debug.qymodify']
                 '#main_section': 'components/main_section/main_section.html',
                 '#search_section': 'components/gatherSearch/search_section/search_section.html',
                 '#searchResult_section': 'components/gatherSearch/searchResult_section/searchResult_section.html',
+<<<<<<< HEAD
                 '#searchResultAllWebDetail_section': 'components/gatherSearch/searchResultAllWebDetail_section/searchResultAllWebDetail_section.html',
+=======
+>>>>>>> 00047d71614adb34b26336c3b57f4203da4386b3
                 '#change_section': 'components/gatherSearch/change_section/change_section.html',
                 '#searchToBuy_section': 'components/waitBuy/searchToBuy_section/searchToBuy_section.html',
                 '#searchToBuyDetail_section': 'components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section.html',
@@ -54,7 +57,10 @@ define('components/util/App', ['spm_modules/jingle/0.0.1/Jingle.debug.qymodify']
                 '#gatherGroupBuy_section': 'components/gatherGroupBuy_section/gatherGroupBuy_section.html',
                 '#gatherSeaBuy_section': 'components/gatherSeaBuy_section/gatherSeaBuy_section.html',
                 '#addAccount_section': 'components/gatherAccount/addAccount_section/addAccount_section.html',
+<<<<<<< HEAD
                 '#accountDetail_section': 'components/gatherAccount/accountDetail_section/accountDetail_section.html',
+=======
+>>>>>>> 00047d71614adb34b26336c3b57f4203da4386b3
                 '#accountManage_section': 'components/gatherAccount/accountManage_section/accountManage_section.html',
                 '#gatherIntelligentSearch_section': 'components/gatherIntelligentSearch/gatherIntelligentSearch_section/gatherIntelligentSearch_section.html',
                 '#gatherIntelligentSearchAll_section': 'components/gatherIntelligentSearch/gatherIntelligentSearchAll_section/gatherIntelligentSearchAll_section.html',

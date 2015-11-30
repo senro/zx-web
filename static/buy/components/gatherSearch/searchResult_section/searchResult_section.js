@@ -58,24 +58,34 @@ define('components/gatherSearch/searchResult_section/searchResult_section', ['sp
             $('.searchToolBar-footer-btn-cancel').on('tap', function () {
                 var $this=$(this);
                 $this.parents('.searchToolBar').hide();
+<<<<<<< HEAD
                 return false;
+=======
+>>>>>>> 00047d71614adb34b26336c3b57f4203da4386b3
             });
 
             $('.searchToolIcon').on('tap', function () {
                 var $this=$(this);
                 $('.searchToolBar').show();
+<<<<<<< HEAD
                 return false;
+=======
+>>>>>>> 00047d71614adb34b26336c3b57f4203da4386b3
             });
 
             $('.searchKeywordsIcon').on('tap', function () {
                 var $this=$(this);
                 $('.searchKeywordsBar').show();
+<<<<<<< HEAD
                 return false;
+=======
+>>>>>>> 00047d71614adb34b26336c3b57f4203da4386b3
             });
 
             $('.searchKeywordsBar .searchKeywordsBar-tit-btn-cancel').on('tap', function () {
                 var $this=$(this);
                 $('.searchKeywordsBar').hide();
+<<<<<<< HEAD
                 return false;
             });
 
@@ -112,6 +122,8 @@ define('components/gatherSearch/searchResult_section/searchResult_section', ['sp
                 var $this=$(this);
                 $('.searchKeywordsDetail-allWeb').show();
                 return false;
+=======
+>>>>>>> 00047d71614adb34b26336c3b57f4203da4386b3
             });
         }
     });
