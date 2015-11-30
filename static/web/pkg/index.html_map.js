@@ -1,0 +1,23 @@
+seajs.config({alias:{
+  "components/cordova/statusBar/setStatusBar": "/web/components/cordova/statusBar/setStatusBar",
+  "components/util/deviceSetting": "/web/components/util/deviceSetting",
+  "spm_modules/zepto/zepto": "/web/spm_modules/zepto/zepto",
+  "spm_modules/cookie/cookie": "/web/spm_modules/cookie/cookie",
+  "spm_modules/template/3.0.0/template": "/web/spm_modules/template/3.0.0/template",
+  "components/navigation/navigation": "/web/components/navigation/navigation",
+  "spm_modules/iscroll/iscroll": "/web/spm_modules/iscroll/iscroll",
+  "spm_modules/jingle/Jingle.debug.qymodify": "/web/spm_modules/jingle/Jingle.debug.qymodify",
+  "components/util/App": "/web/components/util/App",
+  "spm_modules/jquery/1.11.3/jquery": "/web/spm_modules/jquery/1.11.3/jquery",
+  "spm_modules/system-message/system-message": "/web/spm_modules/system-message/system-message",
+  "spm_modules/xhr/xhr": "/web/spm_modules/xhr/xhr",
+  "spm_modules/signal/signal": "/web/spm_modules/signal/signal",
+  "components/signals/signals": "/web/components/signals/signals",
+  "components/cordova/geolocation/getCurrPos": "/web/components/cordova/geolocation/getCurrPos",
+  "components/login_section/login_section": "/web/components/login_section/login_section",
+  "components/register_section/register_section": "/web/components/register_section/register_section",
+  "components/cordova/camera/getPicture": "/web/components/cordova/camera/getPicture",
+  "components/userCenter_section/userCenter_section": "/web/components/userCenter_section/userCenter_section",
+  "components/main_section/main_section": "/web/components/main_section/main_section",
+  "static/js/index": "/web/static/js/index"
+}});

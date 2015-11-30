@@ -11,7 +11,15 @@ module.exports = function(sequelize, DataTypes) {
       description:DataTypes.STRING,
       userPic:DataTypes.STRING,
       Lng:DataTypes.STRING,
-      Lat:DataTypes.STRING
+      Lat:DataTypes.STRING,
+      address:DataTypes.STRING,
+      country:DataTypes.STRING,
+      city:DataTypes.STRING,
+      province:DataTypes.STRING,
+      district:DataTypes.STRING,
+      street:DataTypes.STRING,
+      street_number:DataTypes.STRING,
+      country_code:DataTypes.STRING
   }
 //      {
 //    classMethods: {

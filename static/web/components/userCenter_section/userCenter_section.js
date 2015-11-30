@@ -36,7 +36,7 @@ define('components/userCenter_section/userCenter_section', ['spm_modules/zepto/z
                     var $currInput=$(this);
                     if($currInput.val()==''){
                         canSubmit=false;
-                        alert($currInput.data('vd-msg'));
+                        J.showToast($currInput.data('vd-msg'),'error');
                         return false;
                     }
                 });

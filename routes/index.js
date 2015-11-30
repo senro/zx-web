@@ -1,5 +1,7 @@
 var models  = require('../models');
 var http = require('http');
+var baiduMap = require('baidumap');
+var bdmap = baiduMap.create({'ak':'XoGIq1S4vnlzaTVuTQZsHSPi'});
 
 exports.index = function(req, res,next){
     //res.send('respond with a resource');
@@ -49,16 +51,41 @@ exports.doRegister = function(req, res){
                                 res.on('data', function (chunk) {
                                     console.log('BODY: ' + JSON.parse(chunk));
                                     if(JSON.parse(chunk).status==0){
+                                        var Lng=String(JSON.parse(chunk).result[0].x);
+                                        var Lat=String(JSON.parse(chunk).result[0].y);
                                         //坐标转换成功
-                                        models.User.update({
-                                            Lng: String(JSON.parse(chunk).result[0].x)||null,
-                                            Lat: String(JSON.parse(chunk).result[0].y)||null
-                                        },{
-                                            where: {username: req.session.user.username}
-                                        }).then(function(array) {
-                                            console.log('保存地理坐标成功！');
+                                        //创建地理编码实例
+                                        var reverseGeocoderOption = {'location':Lat+','+Lng,'pois':0};
+                                        bdmap.reverseGeocoder(reverseGeocoderOption,function(err,json){
 
+                                            var Json=JSON.parse(json);
+                                            console.log(Json);
+                                            console.log(Json.status);
+                                            console.log(Json.result);
+                                            if (Json.status==0){
+                                                var result=Json.result;
+                                                //alert(result.address);
+                                                console.log(result.formatted_address);
+                                                models.User.update({
+                                                    Lng: Lng||null,
+                                                    Lat: Lat||null,
+                                                    address:result.formatted_address,
+                                                    country:result.addressComponent.country,
+                                                    city:result.addressComponent.city,
+                                                    province:result.addressComponent.province,
+                                                    district:result.addressComponent.district,
+                                                    street:result.addressComponent.street,
+                                                    street_number:result.addressComponent.street_number,
+                                                    country_code:result.addressComponent.country_code
+                                                },{
+                                                    where: {username: req.session.user.username}
+                                                }).then(function(array) {
+                                                    console.log('保存地理坐标成功！');
+
+                                                });
+                                            }
                                         });
+
                                     }
                                 });
                             }
