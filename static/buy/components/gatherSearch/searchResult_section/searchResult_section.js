@@ -5,7 +5,7 @@
  * Time: 15:44
  * To change this template use File | Settings | File Templates.
  */
-define('components/gatherSearch/searchResult_section/searchResult_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+define('components/gatherSearch/searchResult_section/searchResult_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template', 'components/navigation/navigation'], function (require, exports, module) {
     var $=require('spm_modules/zepto/0.0.1/zepto');
     var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
     var cookie=require('spm_modules/cookie/0.0.1/cookie');
@@ -16,6 +16,8 @@ define('components/gatherSearch/searchResult_section/searchResult_section', ['sp
     var template=require('spm_modules/template/3.0.0/template');
     template.helper('$',$);
     template.helper('decodeURIComponent', decodeURIComponent);
+
+    var navigation=require('components/navigation/navigation');
 
     var startPage = 0,
         pageSize = 10,
@@ -58,21 +60,66 @@ define('components/gatherSearch/searchResult_section/searchResult_section', ['sp
             $('.searchToolBar-footer-btn-cancel').on('tap', function () {
                 var $this=$(this);
                 $this.parents('.searchToolBar').hide();
+                return false;
             });
 
             $('.searchToolIcon').on('tap', function () {
                 var $this=$(this);
                 $('.searchToolBar').show();
+                return false;
             });
 
             $('.searchKeywordsIcon').on('tap', function () {
                 var $this=$(this);
                 $('.searchKeywordsBar').show();
+                return false;
             });
 
             $('.searchKeywordsBar .searchKeywordsBar-tit-btn-cancel').on('tap', function () {
                 var $this=$(this);
                 $('.searchKeywordsBar').hide();
+                return false;
+            });
+
+            //搜索详情取消按钮
+            $('.searchKeywordsDetail-btn-cancel').on('tap', function () {
+                var $this=$(this);
+                $('.searchKeywordsDetail').hide();
+                return false;
+            });
+
+            //搜本站按钮
+            $('.btn-searchSelfWeb').on('tap', function () {
+                var $this=$(this);
+                $('.searchKeywordsDetail-selfWeb').show();
+                return false;
+            });
+
+            //搜三家按钮
+            $('.btn-searchThreeWeb').on('tap', function () {
+                var $this=$(this);
+                $('.searchKeywordsDetail-threeWeb').show();
+                return false;
+            });
+
+            //搜淘宝按钮
+            $('.btn-searchTaobao').on('tap', function () {
+                var $this=$(this);
+                $('.searchKeywordsDetail-taobao').show();
+                return false;
+            });
+
+            //搜全网按钮
+            $('.btn-searchAllWeb').on('tap', function () {
+                var $this=$(this);
+                $('.searchKeywordsDetail-allWeb').show();
+                return false;
+            });
+
+            //切换导航菜单
+            $currentSection.find('footer').on('tap','.footer-btn-searchGoods',function(){
+                $currentSection.find('footer').html(navigation.mainNavHtml);
+                return false;
             });
         }
     });

@@ -48,18 +48,20 @@ define('components/gatherIntelligentSearch/gatherIntelligentSearch_section/gathe
                 var $currItem=$(this).parents('.history-words-list-item');
                 $currItem.remove();
             });
-            //$currSection.find('.btn-cats').on('tap',function(){
-            //    var $this=$(this);
-            //    if($this.hasClass('list')){
-            //        $this.removeClass('list').addClass('pencil');
-            //        $currSection.find('.hot-words,.history-words').hide();
-            //        $currSection.find('.category-viewport').show();
-            //    }else{
-            //        $this.removeClass('pencil').addClass('list');
-            //        $currSection.find('.hot-words,.history-words').show();
-            //        $currSection.find('.category-viewport').hide();
-            //    }
-            //});
+            $currSection.find('.button-lookup').on('tap',function(){
+                var $this=$(this);
+                J.Router.goTo('#gatherIntelligentSearchAll_section?'+cellectKeywordsToParams($currSection.find('.input-keywords')));
+                return false;
+            });
+            function cellectKeywordsToParams($inputs){
+                var keywords={};
+                $inputs.each(function(){
+                    var $currInput=$(this),
+                        index=$currInput.index();
+                    keywords[index]=$currInput.val();
+                });
+                return 'keywords='+JSON.stringify(keywords);
+            }
         }
     });
 

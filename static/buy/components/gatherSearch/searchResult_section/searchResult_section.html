@@ -72,13 +72,104 @@
             </div>
         </div>
         <div class="tabConts-iframe">
-            <iframe class="tabCont" data-src="https://s.m.tmall.com/m/search.htm?q=%D3%F0%C8%DE%B7%FE&type=p&spm=875.7403452.a2227oh.d100&from=mallfp..m_1_searchbutton" frameborder="0"></iframe>
+            <iframe class="tabCont" data-src="http://m.tmall.com" frameborder="0"></iframe>
             <iframe class="tabCont" data-src="http://m.meituan.com" frameborder="0"></iframe>
             <iframe class="tabCont" data-src="http://m.tmall.com" frameborder="0"></iframe>
         </div>
 
         <a class="searchToolIcon" href="#"></a>
-        <div class="searchToolBar absoluteHorizontalCenter">
+
+
+        <a class="searchKeywordsIcon" href="#"></a>
+        <div class="searchKeywordsBar absoluteHorizontalCenter">
+            <div class="searchKeywordsBar-tit grid">
+                <div class="col-0">
+                    <a class="button icon icon-cancel-circle-active searchKeywordsBar-tit-btn-cancel" href="#"></a>
+                </div>
+                <div class="col-1">
+                    <input class="searchKeywordsBar-tit-input" type="search"/>
+                </div>
+                <div class="col-0">
+                    <a class="button orange-bg searchKeywordsBar-tit-btn-copy" href="#">
+                        拷贝商品<br/>
+                        名称
+                    </a>
+                </div>
+            </div>
+            <div class="searchKeywordsBar-cont">
+                <div class="searchKeywordsBar-cont-check grid">
+                    <div class="col-0">
+                        <a class="button white color-blue searchKeywordsBar-cont-bigBtn searchKeywordsBar-cont-check-bigBtn" href="#">
+                            查
+                        </a>
+                    </div>
+                    <div class="col-1 grid">
+                        <div class="col-1">
+                            <a class="button white color-blue searchKeywordsBar-cont-smallBtn searchKeywordsBar-cont-check-smallBtn btn-searchSelfWeb" href="#">
+                                搜本站
+                            </a>
+                        </div>
+                        <div class="col-1">
+                            <a class="button white color-blue searchKeywordsBar-cont-smallBtn searchKeywordsBar-cont-check-smallBtn btn-searchThreeWeb" href="#">
+                                搜三家
+                            </a>
+                        </div>
+                        <div class="col-1">
+                            <a class="button white color-blue searchKeywordsBar-cont-smallBtn searchKeywordsBar-cont-check-smallBtn btn-searchTaobao" href="#">
+                                搜淘宝
+                            </a>
+                        </div>
+                        <div class="col-1">
+                            <a class="button white color-blue searchKeywordsBar-cont-smallBtn searchKeywordsBar-cont-check-smallBtn btn-searchAllWeb" href="#">
+                                搜全网
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="searchKeywordsBar-cont-compare grid">
+                    <div class="col-0">
+                        <a class="button white color-yellow searchKeywordsBar-cont-bigBtn searchKeywordsBar-cont-bigBtn searchKeywordsBar-cont-compare-bigBtn" href="#">
+                            比
+                        </a>
+                    </div>
+                    <div class="col-1 grid">
+                        <div class="col-1">
+                            <a class="button white color-yellow searchKeywordsBar-cont-smallBtn searchKeywordsBar-cont-compare-smallBtn" href="#">
+                                惠惠比
+                            </a>
+                        </div>
+                        <div class="col-1">
+                            <a class="button white color-yellow searchKeywordsBar-cont-smallBtn searchKeywordsBar-cont-compare-smallBtn" href="#">
+                                etao比
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="searchKeywordsBar-cont-buy grid">
+                    <div class="col-0">
+                        <a class="button white color-pink searchKeywordsBar-cont-bigBtn searchKeywordsBar-cont-buy-bigBtn" href="#">
+                            购
+                        </a>
+                    </div>
+                    <div class="col-1 grid">
+                        <div class="col-1">
+                            <a class="button white color-pink searchKeywordsBar-cont-smallBtn searchKeywordsBar-cont-buy-smallBtn" href="#">
+                                存预购
+                            </a>
+                        </div>
+                        <div class="col-1">
+                            <a class="button white color-pink searchKeywordsBar-cont-smallBtn searchKeywordsBar-cont-buy-smallBtn" href="#">
+                                发起集人购
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottomHeight"></div>
+    </article>
+    <div class="searchToolBar absoluteHorizontalCenter">
+        <div class="searchToolBar-scrollWrap">
             <div class="grid searchInputs">
                 <div class="col-1">
                     <input class="input-keywords" type="search" placeholder="请输入第一个关键词"/>
@@ -337,107 +428,243 @@
                     </div>
                 </div>
             </div>
-            <div class="searchToolBar-footer grid">
-                <div class="col-1">
-                    <a class="icon checkmark-circle color-blue searchToolBar-footer-btn searchToolBar-footer-btn-confirm" href="#"></a>
-                </div>
-                <div class="col-1">
-                    <a class="icon cancel-circle color-orange searchToolBar-footer-btn searchToolBar-footer-btn-cancel" href="#"></a>
-                </div>
+            <div class="bottomHeight"></div>
+        </div>
+        <div class="searchToolBar-footer grid">
+            <div class="col-1">
+                <a class="icon checkmark-circle color-blue searchToolBar-footer-btn searchToolBar-footer-btn-confirm" href="#"></a>
+            </div>
+            <div class="col-1">
+                <a class="icon cancel-circle color-orange searchToolBar-footer-btn searchToolBar-footer-btn-cancel" href="#"></a>
             </div>
         </div>
+    </div>
+    <!--搜本站详情-->
+    <div class="searchKeywordsDetail searchKeywordsDetail-selfWeb absoluteHorizontalCenter">
+        <div class="searchKeywordsDetail-header">
+            <a class="button icon icon-cancel-circle-active searchKeywordsDetail-btn-cancel" href="#"></a>
+            <button class="button button-single button-link-equal-active">
+                <span class="color-orange">搜本站</span>
+                &nbsp;&nbsp;
+                淘宝
+            </button>
+        </div>
+        <div class="searchKeywordsDetail-body">
+            <iframe src="http://m.tmall.com" frameborder="0"></iframe>
+        </div>
+        <div class="bottomHeight"></div>
+        <footer class="searchKeywordsDetail-footer grid">
+            <a href="#" data-target="back">
+                <i class="icon icon-noText icon-leftArrow"></i>
+            </a>
+            <a href="#layout_book_article">
+                <i class="icon icon-noText icon-rightArrow"></i>
+            </a>
+            <a href="#main_section" data-target="section">
+                <i class="icon icon-noText icon-home"></i>
+            </a>
+            <a href="#" class="btn-refresh">
+                <i class="icon icon-noText icon-refresh"></i>
+            </a>
+        </footer>
+    </div>
 
-        <a class="searchKeywordsIcon" href="#"></a>
-        <div class="searchKeywordsBar absoluteHorizontalCenter">
-            <div class="searchKeywordsBar-tit grid">
-                <div class="col-0">
-                    <a class="button icon icon-cancel-circle-active searchKeywordsBar-tit-btn-cancel" href="#"></a>
+    <!--搜三家详情-->
+    <div class="searchKeywordsDetail searchKeywordsDetail-threeWeb absoluteHorizontalCenter">
+        <div class="searchKeywordsDetail-header clearfix">
+            <a class="button icon icon-cancel-circle-active searchKeywordsDetail-btn-cancel" href="#"></a>
+            <button class="button button-link button-link-1 button-link-active-lock">
+                淘宝
+            </button>
+            <button class="button button-link">
+                京东
+            </button>
+            <button class="button button-link">
+                亚马逊
+            </button>
+        </div>
+        <div class="searchKeywordsDetail-body">
+            <iframe src="http://m.tmall.com" frameborder="0"></iframe>
+        </div>
+        <div class="bottomHeight"></div>
+        <footer class="searchKeywordsDetail-footer grid">
+            <a href="#" data-target="back">
+                <i class="icon icon-noText icon-leftArrow"></i>
+            </a>
+            <a href="#layout_book_article">
+                <i class="icon icon-noText icon-rightArrow"></i>
+            </a>
+            <a href="#main_section" data-target="section">
+                <i class="icon icon-noText icon-home"></i>
+            </a>
+            <a href="#" class="btn-refresh">
+                <i class="icon icon-noText icon-refresh"></i>
+            </a>
+        </footer>
+    </div>
+
+    <!--搜淘宝详情-->
+    <div class="searchKeywordsDetail searchKeywordsDetail-taobao absoluteHorizontalCenter">
+        <div class="searchKeywordsDetail-header clearfix">
+            <a class="button icon icon-cancel-circle-active searchKeywordsDetail-btn-cancel" href="#"></a>
+            <button class="button button-link button-link-active">
+                淘宝
+            </button>
+        </div>
+        <div class="searchKeywordsDetail-body">
+            <iframe src="http://m.tmall.com" frameborder="0"></iframe>
+        </div>
+        <div class="bottomHeight"></div>
+        <footer class="searchKeywordsDetail-footer grid">
+            <a href="#" data-target="back">
+                <i class="icon icon-noText icon-leftArrow"></i>
+            </a>
+            <a href="#layout_book_article">
+                <i class="icon icon-noText icon-rightArrow"></i>
+            </a>
+            <a href="#main_section" data-target="section">
+                <i class="icon icon-noText icon-home"></i>
+            </a>
+            <a href="#" class="btn-refresh">
+                <i class="icon icon-noText icon-refresh"></i>
+            </a>
+        </footer>
+    </div>
+
+    <!--搜全网详情-->
+    <div class="searchKeywordsDetail searchKeywordsDetail-allWeb absoluteHorizontalCenter">
+        <div class="searchKeywordsDetail-header clearfix">
+            <a class="button icon icon-cancel-circle-active searchKeywordsDetail-btn-cancel" href="#"></a>
+            搜全网
+        </div>
+        <div class="searchKeywordsDetail-body">
+            <div class="searchKeywordsDetail-body-tit">
+                货 <span class="orange-bg">比</span> <span class="smaller-text">三家</span>
+            </div>
+            <div class="compareWebBtns grid">
+                <div class="col-1">
+                    <a class="button dark-orange" href="#">
+                        淘宝
+                    </a>
                 </div>
                 <div class="col-1">
-                    <input class="searchKeywordsBar-tit-input" type="search"/>
+                    <a class="button dark-orange" href="#">
+                        京东
+                    </a>
                 </div>
-                <div class="col-0">
-                    <a class="button orange-bg searchKeywordsBar-tit-btn-copy" href="#">
-                        拷贝商品<br/>
-                        名称
+                <div class="col-1">
+                    <a class="button dark-orange" href="#">
+                        亚马逊
                     </a>
                 </div>
             </div>
-            <div class="searchKeywordsBar-cont">
-                <div class="searchKeywordsBar-cont-check grid">
-                    <div class="col-0">
-                        <a class="button white color-blue searchKeywordsBar-cont-bigBtn searchKeywordsBar-cont-check-bigBtn" href="#">
-                            查
-                        </a>
-                    </div>
-                    <div class="col-1 grid">
-                        <div class="col-1">
-                            <a class="button white color-blue searchKeywordsBar-cont-smallBtn searchKeywordsBar-cont-check-smallBtn" href="#">
-                                搜本站
-                            </a>
-                        </div>
-                        <div class="col-1">
-                            <a class="button white color-blue searchKeywordsBar-cont-smallBtn searchKeywordsBar-cont-check-smallBtn" href="#">
-                                搜三家
-                            </a>
-                        </div>
-                        <div class="col-1">
-                            <a class="button white color-blue searchKeywordsBar-cont-smallBtn searchKeywordsBar-cont-check-smallBtn" href="#">
-                                搜淘宝
-                            </a>
-                        </div>
-                        <div class="col-1">
-                            <a class="button white color-blue searchKeywordsBar-cont-smallBtn searchKeywordsBar-cont-check-smallBtn" href="#">
-                                搜全网
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="searchKeywordsBar-cont-compare grid">
-                    <div class="col-0">
-                        <a class="button white color-yellow searchKeywordsBar-cont-bigBtn searchKeywordsBar-cont-bigBtn searchKeywordsBar-cont-compare-bigBtn" href="#">
-                            比
-                        </a>
-                    </div>
-                    <div class="col-1 grid">
-                        <div class="col-1">
-                            <a class="button white color-yellow searchKeywordsBar-cont-smallBtn searchKeywordsBar-cont-compare-smallBtn" href="#">
-                                惠惠比
-                            </a>
-                        </div>
-                        <div class="col-1">
-                            <a class="button white color-yellow searchKeywordsBar-cont-smallBtn searchKeywordsBar-cont-compare-smallBtn" href="#">
-                                etao比
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="searchKeywordsBar-cont-buy grid">
-                    <div class="col-0">
-                        <a class="button white color-pink searchKeywordsBar-cont-bigBtn searchKeywordsBar-cont-buy-bigBtn" href="#">
-                            购
-                        </a>
-                    </div>
-                    <div class="col-1 grid">
-                        <div class="col-1">
-                            <a class="button white color-pink searchKeywordsBar-cont-smallBtn searchKeywordsBar-cont-buy-smallBtn" href="#">
-                                存预购
-                            </a>
-                        </div>
-                        <div class="col-1">
-                            <a class="button white color-pink searchKeywordsBar-cont-smallBtn searchKeywordsBar-cont-buy-smallBtn" href="#">
-                                发起集人购
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div class="websiteList-tit">
+                <span class="websiteList-tit-text">
+                    有 <span class="color-blue">•</span>货<span class="color-orange">•</span>电<span class="color-blue">•</span>商
+                </span>
+                <div class="websiteList-tit-bg"></div>
+                <div class="websiteList-tit-border websiteList-tit-border-top"></div>
+                <div class="websiteList-tit-border websiteList-tit-border-bottom"></div>
             </div>
+            <ul class="websiteListItems">
+                <li class="websiteListItem">
+                    <div class="websiteListItem-gradual-bg grid">
+                        <div class="button-link button-link-rightArrow websiteListItem-tit col-0">
+                            当当网
+                        </div>
+                        <a class="websiteListItem-link col-1" href="#">
+                            删除
+                        </a>
+                        <a class="websiteListItem-link-button col-0" href="#searchResultAllWebDetail_section" data-target="section">
+                            浏览
+                        </a>
+                    </div>
+                </li>
+                <li class="websiteListItem">
+                    <div class="websiteListItem-gradual-bg grid">
+                        <div class="button-link button-link-rightArrow websiteListItem-tit col-0">
+                            当当网
+                        </div>
+                        <a class="websiteListItem-link col-1" href="#">
+                            删除
+                        </a>
+                        <a class="websiteListItem-link-button col-0" href="#searchResultAllWebDetail_section" data-target="section">
+                            浏览
+                        </a>
+                    </div>
+                </li>
+                <li class="websiteListItem">
+                    <div class="websiteListItem-gradual-bg grid">
+                        <div class="button-link button-link-rightArrow websiteListItem-tit col-0">
+                            当当网
+                        </div>
+                        <a class="websiteListItem-link col-1" href="#">
+                            删除
+                        </a>
+                        <a class="websiteListItem-link-button col-0" href="#searchResultAllWebDetail_section" data-target="section">
+                            浏览
+                        </a>
+                    </div>
+                </li>
+                <li class="websiteListItem">
+                    <div class="websiteListItem-gradual-bg grid">
+                        <div class="button-link button-link-rightArrow websiteListItem-tit col-0">
+                            当当网
+                        </div>
+                        <a class="websiteListItem-link col-1" href="#">
+                            删除
+                        </a>
+                        <a class="websiteListItem-link-button col-0" href="#searchResultAllWebDetail_section" data-target="section">
+                            浏览
+                        </a>
+                    </div>
+                </li>
+                <li class="websiteListItem">
+                    <div class="websiteListItem-gradual-bg grid">
+                        <div class="button-link button-link-rightArrow websiteListItem-tit col-0">
+                            当当网
+                        </div>
+                        <a class="websiteListItem-link col-1" href="#">
+                            删除
+                        </a>
+                        <a class="websiteListItem-link-button col-0" href="#searchResultAllWebDetail_section" data-target="section">
+                            浏览
+                        </a>
+                    </div>
+                </li>
+                <li class="websiteListItem">
+                    <div class="websiteListItem-gradual-bg grid">
+                        <div class="button-link button-link-rightArrow websiteListItem-tit col-0">
+                            当当网
+                        </div>
+                        <a class="websiteListItem-link col-1" href="#">
+                            删除
+                        </a>
+                        <a class="websiteListItem-link-button col-0" href="#searchResultAllWebDetail_section" data-target="section">
+                            浏览
+                        </a>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div class="bottomHeight"></div>
-    </article>
-
+        <footer class="searchKeywordsDetail-footer grid">
+            <a href="#" data-target="back">
+                <i class="icon icon-noText icon-leftArrow"></i>
+            </a>
+            <a href="#layout_book_article">
+                <i class="icon icon-noText icon-rightArrow"></i>
+            </a>
+            <a href="#main_section" data-target="section">
+                <i class="icon icon-noText icon-home"></i>
+            </a>
+            <a href="#" class="btn-refresh">
+                <i class="icon icon-noText icon-refresh"></i>
+            </a>
+        </footer>
+    </div>
     <footer>
-        <a href="#layout_book_article">
+        <a class="footer-btn-searchGoods" href="#layout_book_article">
     <i class="icon icon-search-goods"></i>
     搜物
 </a>

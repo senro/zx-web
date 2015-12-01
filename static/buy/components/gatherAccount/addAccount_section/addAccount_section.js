@@ -5,7 +5,7 @@
  * Time: 15:44
  * To change this template use File | Settings | File Templates.
  */
-define('components/gatherSearch/change_section/change_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/radio/0.0.1/radio', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+define('components/gatherAccount/addAccount_section/addAccount_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/radio/0.0.1/radio', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
     var $=require('spm_modules/zepto/0.0.1/zepto');
     var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
     var cookie=require('spm_modules/cookie/0.0.1/cookie');
@@ -22,12 +22,12 @@ define('components/gatherSearch/change_section/change_section', ['spm_modules/ze
         pageSize = 10,
         totalPage;
 
-    App.page('change', function () {
+    App.page('addAccount', function () {
         this.show=function(){
 
         };
         this.init = function () {
-            var $currentSection=$('#change_section');
+            var $currentSection=$('#addAccount_section');
             tab({
                 btns:$currentSection.find('.tabBtn'),
                 conts:$currentSection.find('.tabCont'),
@@ -44,7 +44,6 @@ define('components/gatherSearch/change_section/change_section', ['spm_modules/ze
                     $currTabCont.addClass('active');
                 }
             });
-
             $currentSection.find('.search-result').on('tap','.search-result-word',function(){
                 var $this=$(this),
                     value= $.trim($this.html());

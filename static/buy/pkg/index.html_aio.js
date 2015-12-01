@@ -43,6 +43,14 @@ define('components/util/deviceSetting', ['components/cordova/statusBar/setStatus
     }
     $(document).ready(domReady);
 
+    var mainNavHtml="<a href=\"#layout_book_article\">\r\n    <i class=\"icon icon-person-buy\"></i>\r\n    集人购\r\n</a>\r\n<a href=\"#main_section\" data-target=\"section\">\r\n    <i class=\"icon icon-search-goods\"></i>\r\n    搜物\r\n</a>\r\n<a href=\"#searchToBuy_section\" data-target=\"section\">\r\n    <i class=\"icon icon-before-buy\"></i>\r\n    待购\r\n</a>\r\n<a href=\"#layout_book_article\">\r\n    <i class=\"icon icon-user-center\"></i>\r\n    个人中心\r\n</a>";
+    var detailNavHtml="<a class=\"footer-btn-searchGoods\" href=\"#layout_book_article\">\r\n    <i class=\"icon icon-search-goods\"></i>\r\n    搜物\r\n</a>\r\n<a href=\"#\" data-target=\"back\">\r\n    <i class=\"icon icon-noText icon-leftArrow\"></i>\r\n</a>\r\n<a href=\"#layout_book_article\">\r\n    <i class=\"icon icon-noText icon-rightArrow\"></i>\r\n</a>\r\n<a href=\"#main_section\" data-target=\"section\">\r\n    <i class=\"icon icon-noText icon-home\"></i>\r\n</a>\r\n<a href=\"#\" class=\"btn-refresh\">\r\n    <i class=\"icon icon-noText icon-refresh\"></i>\r\n</a>";
+
+    module.exports={
+        mainNavHtml:mainNavHtml,
+        detailNavHtml:detailNavHtml
+    };
+
 });
 /*!spm_modules/iscroll/0.0.1/iscroll.js*/
 ;define("spm_modules/iscroll/0.0.1/iscroll",[],function(o,t,r){!function(o,t){function e(o){return""===s?o:(o=o.charAt(0).toUpperCase()+o.substr(1),s+o)}var l=Math,n=t.createElement("div").style,s=function(){for(var o,t="t,webkitT,MozT,msT,OT".split(","),r=0,e=t.length;e>r;r++)if(o=t[r]+"ransform",o in n)return t[r].substr(0,t[r].length-1);return!1}(),i=s?"-"+s.toLowerCase()+"-":"",a=e("transform"),c=e("transitionProperty"),p=e("transitionDuration"),m=e("transformOrigin"),h=e("transitionTimingFunction"),u=e("transitionDelay"),S=/android/gi.test(navigator.appVersion),d=/iphone|ipad/gi.test(navigator.appVersion),b=/hp-tablet/gi.test(navigator.appVersion),f=e("perspective")in n,x="ontouchstart"in o&&!b,g=s!==!1,y=e("transition")in n,v="onorientationchange"in o?"orientationchange":"resize",Y=x?"touchstart":"mousedown",T=x?"touchmove":"mousemove",X=x?"touchend":"mouseup",_=x?"touchcancel":"mouseup",w=function(){if(s===!1)return!1;var o={"":"transitionend",webkit:"webkitTransitionEnd",Moz:"transitionend",O:"otransitionend",ms:"MSTransitionEnd"};return o[s]}(),z=function(){return o.requestAnimationFrame||o.webkitRequestAnimationFrame||o.mozRequestAnimationFrame||o.oRequestAnimationFrame||o.msRequestAnimationFrame||function(o){return setTimeout(o,1)}}(),M=function(){return o.cancelRequestAnimationFrame||o.webkitCancelAnimationFrame||o.webkitCancelRequestAnimationFrame||o.mozCancelRequestAnimationFrame||o.oCancelRequestAnimationFrame||o.msCancelRequestAnimationFrame||clearTimeout}(),E=f?" translateZ(0)":"",D=function(r,e){var l,n=this;n.wrapper="object"==typeof r?r:t.getElementById(r),n.wrapper.style.overflow="hidden",n.scroller=n.wrapper.children[0],n.options={hScroll:!0,vScroll:!0,x:0,y:0,bounce:!0,bounceLock:!1,momentum:!0,lockDirection:!0,useTransform:!0,useTransition:!1,topOffset:0,checkDOMChanges:!1,handleClick:!0,hScrollbar:!0,vScrollbar:!0,fixedScrollbar:S,hideScrollbar:d,fadeScrollbar:d&&f,scrollbarClass:"",zoom:!1,zoomMin:1,zoomMax:4,doubleTapZoom:2,wheelAction:"scroll",snap:!1,snapThreshold:1,onRefresh:null,onBeforeScrollStart:function(o){o.preventDefault()},onScrollStart:null,onBeforeScrollMove:null,onScrollMove:null,onBeforeScrollEnd:null,onScrollEnd:null,onTouchEnd:null,onDestroy:null,onZoomStart:null,onZoom:null,onZoomEnd:null};for(l in e)n.options[l]=e[l];n.x=n.options.x,n.y=n.options.y,n.options.useTransform=g&&n.options.useTransform,n.options.hScrollbar=n.options.hScroll&&n.options.hScrollbar,n.options.vScrollbar=n.options.vScroll&&n.options.vScrollbar,n.options.zoom=n.options.useTransform&&n.options.zoom,n.options.useTransition=y&&n.options.useTransition,n.options.zoom&&S&&(E=""),n.scroller.style[c]=n.options.useTransform?i+"transform":"top left",n.scroller.style[p]="0",n.scroller.style[m]="0 0",n.options.useTransition&&(n.scroller.style[h]="cubic-bezier(0.33,0.66,0.66,1)"),n.options.useTransform?n.scroller.style[a]="translate("+n.x+"px,"+n.y+"px)"+E:n.scroller.style.cssText+=";position:absolute;top:"+n.y+"px;left:"+n.x+"px",n.options.useTransition&&(n.options.fixedScrollbar=!0),n.refresh(),n._bind(v,o),n._bind(Y),x||"none"!=n.options.wheelAction&&(n._bind("DOMMouseScroll"),n._bind("mousewheel")),n.options.checkDOMChanges&&(n.checkDOMTime=setInterval(function(){n._checkDOMChanges()},500))};D.prototype={enabled:!0,x:0,y:0,steps:[],scale:1,currPageX:0,currPageY:0,pagesX:[],pagesY:[],aniTime:null,wheelZoomCount:0,handleEvent:function(o){var t=this;switch(o.type){case Y:if(!x&&0!==o.button)return;t._start(o);break;case T:t._move(o);break;case X:case _:t._end(o);break;case v:t._resize();break;case"DOMMouseScroll":case"mousewheel":t._wheel(o);break;case w:t._transitionEnd(o)}},_checkDOMChanges:function(){this.moved||this.zoomed||this.animating||this.scrollerW==this.scroller.offsetWidth*this.scale&&this.scrollerH==this.scroller.offsetHeight*this.scale||this.refresh()},_scrollbar:function(o){var r,e=this;return e[o+"Scrollbar"]?(e[o+"ScrollbarWrapper"]||(r=t.createElement("div"),e.options.scrollbarClass?r.className=e.options.scrollbarClass+o.toUpperCase():r.style.cssText="position:absolute;z-index:100;"+("h"==o?"height:7px;bottom:1px;left:2px;right:"+(e.vScrollbar?"7":"2")+"px":"width:7px;bottom:"+(e.hScrollbar?"7":"2")+"px;top:2px;right:1px"),r.style.cssText+=";pointer-events:none;"+i+"transition-property:opacity;"+i+"transition-duration:"+(e.options.fadeScrollbar?"350ms":"0")+";overflow:hidden;opacity:"+(e.options.hideScrollbar?"0":"1"),e.wrapper.appendChild(r),e[o+"ScrollbarWrapper"]=r,r=t.createElement("div"),e.options.scrollbarClass||(r.style.cssText="position:absolute;z-index:100;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.9);"+i+"background-clip:padding-box;"+i+"box-sizing:border-box;"+("h"==o?"height:100%":"width:100%")+";"+i+"border-radius:3px;border-radius:3px"),r.style.cssText+=";pointer-events:none;"+i+"transition-property:"+i+"transform;"+i+"transition-timing-function:cubic-bezier(0.33,0.66,0.66,1);"+i+"transition-duration:0;"+i+"transform: translate(0,0)"+E,e.options.useTransition&&(r.style.cssText+=";"+i+"transition-timing-function:cubic-bezier(0.33,0.66,0.66,1)"),e[o+"ScrollbarWrapper"].appendChild(r),e[o+"ScrollbarIndicator"]=r),"h"==o?(e.hScrollbarSize=e.hScrollbarWrapper.clientWidth,e.hScrollbarIndicatorSize=l.max(l.round(e.hScrollbarSize*e.hScrollbarSize/e.scrollerW),8),e.hScrollbarIndicator.style.width=e.hScrollbarIndicatorSize+"px",e.hScrollbarMaxScroll=e.hScrollbarSize-e.hScrollbarIndicatorSize,e.hScrollbarProp=e.hScrollbarMaxScroll/e.maxScrollX):(e.vScrollbarSize=e.vScrollbarWrapper.clientHeight,e.vScrollbarIndicatorSize=l.max(l.round(e.vScrollbarSize*e.vScrollbarSize/e.scrollerH),8),e.vScrollbarIndicator.style.height=e.vScrollbarIndicatorSize+"px",e.vScrollbarMaxScroll=e.vScrollbarSize-e.vScrollbarIndicatorSize,e.vScrollbarProp=e.vScrollbarMaxScroll/e.maxScrollY),void e._scrollbarPos(o,!0)):void(e[o+"ScrollbarWrapper"]&&(g&&(e[o+"ScrollbarIndicator"].style[a]=""),e[o+"ScrollbarWrapper"].parentNode.removeChild(e[o+"ScrollbarWrapper"]),e[o+"ScrollbarWrapper"]=null,e[o+"ScrollbarIndicator"]=null))},_resize:function(){var o=this;setTimeout(function(){o.refresh()},S?200:0)},_pos:function(o,t){this.zoomed||(o=this.hScroll?o:0,t=this.vScroll?t:0,this.options.useTransform?this.scroller.style[a]="translate("+o+"px,"+t+"px) scale("+this.scale+")"+E:(o=l.round(o),t=l.round(t),this.scroller.style.left=o+"px",this.scroller.style.top=t+"px"),this.x=o,this.y=t,this._scrollbarPos("h"),this._scrollbarPos("v"))},_scrollbarPos:function(o,t){var r,e=this,n="h"==o?e.x:e.y;e[o+"Scrollbar"]&&(n=e[o+"ScrollbarProp"]*n,0>n?(e.options.fixedScrollbar||(r=e[o+"ScrollbarIndicatorSize"]+l.round(3*n),8>r&&(r=8),e[o+"ScrollbarIndicator"].style["h"==o?"width":"height"]=r+"px"),n=0):n>e[o+"ScrollbarMaxScroll"]&&(e.options.fixedScrollbar?n=e[o+"ScrollbarMaxScroll"]:(r=e[o+"ScrollbarIndicatorSize"]-l.round(3*(n-e[o+"ScrollbarMaxScroll"])),8>r&&(r=8),e[o+"ScrollbarIndicator"].style["h"==o?"width":"height"]=r+"px",n=e[o+"ScrollbarMaxScroll"]+(e[o+"ScrollbarIndicatorSize"]-r))),e[o+"ScrollbarWrapper"].style[u]="0",e[o+"ScrollbarWrapper"].style.opacity=t&&e.options.hideScrollbar?"0":"1",e[o+"ScrollbarIndicator"].style[a]="translate("+("h"==o?n+"px,0)":"0,"+n+"px)")+E)},_start:function(t){var r,e,n,s,i,c=this,p=x?t.touches[0]:t;c.enabled&&(c.options.onBeforeScrollStart&&c.options.onBeforeScrollStart.call(c,t),(c.options.useTransition||c.options.zoom)&&c._transitionTime(0),c.moved=!1,c.animating=!1,c.zoomed=!1,c.distX=0,c.distY=0,c.absDistX=0,c.absDistY=0,c.dirX=0,c.dirY=0,c.options.zoom&&x&&t.touches.length>1&&(s=l.abs(t.touches[0].pageX-t.touches[1].pageX),i=l.abs(t.touches[0].pageY-t.touches[1].pageY),c.touchesDistStart=l.sqrt(s*s+i*i),c.originX=l.abs(t.touches[0].pageX+t.touches[1].pageX-2*c.wrapperOffsetLeft)/2-c.x,c.originY=l.abs(t.touches[0].pageY+t.touches[1].pageY-2*c.wrapperOffsetTop)/2-c.y,c.options.onZoomStart&&c.options.onZoomStart.call(c,t)),c.options.momentum&&(c.options.useTransform?(r=getComputedStyle(c.scroller,null)[a].replace(/[^0-9\-.,]/g,"").split(","),e=+(r[12]||r[4]),n=+(r[13]||r[5])):(e=+getComputedStyle(c.scroller,null).left.replace(/[^0-9-]/g,""),n=+getComputedStyle(c.scroller,null).top.replace(/[^0-9-]/g,"")),(e!=c.x||n!=c.y)&&(c.options.useTransition?c._unbind(w):M(c.aniTime),c.steps=[],c._pos(e,n),c.options.onScrollEnd&&c.options.onScrollEnd.call(c))),c.absStartX=c.x,c.absStartY=c.y,c.startX=c.x,c.startY=c.y,c.pointX=p.pageX,c.pointY=p.pageY,c.startTime=t.timeStamp||Date.now(),c.options.onScrollStart&&c.options.onScrollStart.call(c,t),c._bind(T,o),c._bind(X,o),c._bind(_,o))},_move:function(o){var t,r,e,n=this,s=x?o.touches[0]:o,i=s.pageX-n.pointX,c=s.pageY-n.pointY,p=n.x+i,m=n.y+c,h=o.timeStamp||Date.now();return n.options.onBeforeScrollMove&&n.options.onBeforeScrollMove.call(n,o),n.options.zoom&&x&&o.touches.length>1?(t=l.abs(o.touches[0].pageX-o.touches[1].pageX),r=l.abs(o.touches[0].pageY-o.touches[1].pageY),n.touchesDist=l.sqrt(t*t+r*r),n.zoomed=!0,e=1/n.touchesDistStart*n.touchesDist*this.scale,e<n.options.zoomMin?e=.5*n.options.zoomMin*Math.pow(2,e/n.options.zoomMin):e>n.options.zoomMax&&(e=2*n.options.zoomMax*Math.pow(.5,n.options.zoomMax/e)),n.lastScale=e/this.scale,p=this.originX-this.originX*n.lastScale+this.x,m=this.originY-this.originY*n.lastScale+this.y,this.scroller.style[a]="translate("+p+"px,"+m+"px) scale("+e+")"+E,void(n.options.onZoom&&n.options.onZoom.call(n,o))):(n.pointX=s.pageX,n.pointY=s.pageY,(p>0||p<n.maxScrollX)&&(p=n.options.bounce?n.x+i/2:p>=0||n.maxScrollX>=0?0:n.maxScrollX),(m>n.minScrollY||m<n.maxScrollY)&&(m=n.options.bounce?n.y+c/2:m>=n.minScrollY||n.maxScrollY>=0?n.minScrollY:n.maxScrollY),n.distX+=i,n.distY+=c,n.absDistX=l.abs(n.distX),n.absDistY=l.abs(n.distY),void(n.absDistX<6&&n.absDistY<6||(n.options.lockDirection&&(n.absDistX>n.absDistY+5?(m=n.y,c=0):n.absDistY>n.absDistX+5&&(p=n.x,i=0)),n.moved=!0,n._pos(p,m),n.dirX=i>0?-1:0>i?1:0,n.dirY=c>0?-1:0>c?1:0,h-n.startTime>300&&(n.startTime=h,n.startX=n.x,n.startY=n.y),n.options.onScrollMove&&n.options.onScrollMove.call(n,o))))},_end:function(r){if(!x||0===r.touches.length){var e,n,s,i,c,m,h,u=this,S=x?r.changedTouches[0]:r,d={dist:0,time:0},b={dist:0,time:0},f=(r.timeStamp||Date.now())-u.startTime,g=u.x,y=u.y;if(u._unbind(T,o),u._unbind(X,o),u._unbind(_,o),u.options.onBeforeScrollEnd&&u.options.onBeforeScrollEnd.call(u,r),u.zoomed)return h=u.scale*u.lastScale,h=Math.max(u.options.zoomMin,h),h=Math.min(u.options.zoomMax,h),u.lastScale=h/u.scale,u.scale=h,u.x=u.originX-u.originX*u.lastScale+u.x,u.y=u.originY-u.originY*u.lastScale+u.y,u.scroller.style[p]="200ms",u.scroller.style[a]="translate("+u.x+"px,"+u.y+"px) scale("+u.scale+")"+E,u.zoomed=!1,u.refresh(),void(u.options.onZoomEnd&&u.options.onZoomEnd.call(u,r));if(!u.moved)return x&&(u.doubleTapTimer&&u.options.zoom?(clearTimeout(u.doubleTapTimer),u.doubleTapTimer=null,u.options.onZoomStart&&u.options.onZoomStart.call(u,r),u.zoom(u.pointX,u.pointY,1==u.scale?u.options.doubleTapZoom:1),u.options.onZoomEnd&&setTimeout(function(){u.options.onZoomEnd.call(u,r)},200)):this.options.handleClick&&(u.doubleTapTimer=setTimeout(function(){for(u.doubleTapTimer=null,e=S.target;1!=e.nodeType;)e=e.parentNode;"SELECT"!=e.tagName&&"INPUT"!=e.tagName&&"TEXTAREA"!=e.tagName&&(n=t.createEvent("MouseEvents"),n.initMouseEvent("click",!0,!0,r.view,1,S.screenX,S.screenY,S.clientX,S.clientY,r.ctrlKey,r.altKey,r.shiftKey,r.metaKey,0,null),n._fake=!0,e.dispatchEvent(n))},u.options.zoom?250:0))),u._resetPos(400),void(u.options.onTouchEnd&&u.options.onTouchEnd.call(u,r));if(300>f&&u.options.momentum&&(d=g?u._momentum(g-u.startX,f,-u.x,u.scrollerW-u.wrapperW+u.x,u.options.bounce?u.wrapperW:0):d,b=y?u._momentum(y-u.startY,f,-u.y,u.maxScrollY<0?u.scrollerH-u.wrapperH+u.y-u.minScrollY:0,u.options.bounce?u.wrapperH:0):b,g=u.x+d.dist,y=u.y+b.dist,(u.x>0&&g>0||u.x<u.maxScrollX&&g<u.maxScrollX)&&(d={dist:0,time:0}),(u.y>u.minScrollY&&y>u.minScrollY||u.y<u.maxScrollY&&y<u.maxScrollY)&&(b={dist:0,time:0})),d.dist||b.dist)return c=l.max(l.max(d.time,b.time),10),u.options.snap&&(s=g-u.absStartX,i=y-u.absStartY,l.abs(s)<u.options.snapThreshold&&l.abs(i)<u.options.snapThreshold?u.scrollTo(u.absStartX,u.absStartY,200):(m=u._snap(g,y),g=m.x,y=m.y,c=l.max(m.time,c))),u.scrollTo(l.round(g),l.round(y),c),void(u.options.onTouchEnd&&u.options.onTouchEnd.call(u,r));if(u.options.snap)return s=g-u.absStartX,i=y-u.absStartY,l.abs(s)<u.options.snapThreshold&&l.abs(i)<u.options.snapThreshold?u.scrollTo(u.absStartX,u.absStartY,200):(m=u._snap(u.x,u.y),(m.x!=u.x||m.y!=u.y)&&u.scrollTo(m.x,m.y,m.time)),void(u.options.onTouchEnd&&u.options.onTouchEnd.call(u,r));u._resetPos(200),u.options.onTouchEnd&&u.options.onTouchEnd.call(u,r)}},_resetPos:function(o){var t=this,r=t.x>=0?0:t.x<t.maxScrollX?t.maxScrollX:t.x,e=t.y>=t.minScrollY||t.maxScrollY>0?t.minScrollY:t.y<t.maxScrollY?t.maxScrollY:t.y;return r==t.x&&e==t.y?(t.moved&&(t.moved=!1,t.options.onScrollEnd&&t.options.onScrollEnd.call(t)),t.hScrollbar&&t.options.hideScrollbar&&("webkit"==s&&(t.hScrollbarWrapper.style[u]="300ms"),t.hScrollbarWrapper.style.opacity="0"),void(t.vScrollbar&&t.options.hideScrollbar&&("webkit"==s&&(t.vScrollbarWrapper.style[u]="300ms"),t.vScrollbarWrapper.style.opacity="0"))):void t.scrollTo(r,e,o||0)},_wheel:function(o){var t,r,e,l,n,s=this;if("wheelDeltaX"in o)t=o.wheelDeltaX/12,r=o.wheelDeltaY/12;else if("wheelDelta"in o)t=r=o.wheelDelta/12;else{if(!("detail"in o))return;t=r=3*-o.detail}return"zoom"==s.options.wheelAction?(n=s.scale*Math.pow(2,1/3*(r?r/Math.abs(r):0)),n<s.options.zoomMin&&(n=s.options.zoomMin),n>s.options.zoomMax&&(n=s.options.zoomMax),void(n!=s.scale&&(!s.wheelZoomCount&&s.options.onZoomStart&&s.options.onZoomStart.call(s,o),s.wheelZoomCount++,s.zoom(o.pageX,o.pageY,n,400),setTimeout(function(){s.wheelZoomCount--,!s.wheelZoomCount&&s.options.onZoomEnd&&s.options.onZoomEnd.call(s,o)},400)))):(e=s.x+t,l=s.y+r,e>0?e=0:e<s.maxScrollX&&(e=s.maxScrollX),l>s.minScrollY?l=s.minScrollY:l<s.maxScrollY&&(l=s.maxScrollY),void(s.maxScrollY<0&&s.scrollTo(e,l,0)))},_transitionEnd:function(o){var t=this;o.target==t.scroller&&(t._unbind(w),t._startAni())},_startAni:function(){var o,t,r,e=this,n=e.x,s=e.y,i=Date.now();if(!e.animating){if(!e.steps.length)return void e._resetPos(400);if(o=e.steps.shift(),o.x==n&&o.y==s&&(o.time=0),e.animating=!0,e.moved=!0,e.options.useTransition)return e._transitionTime(o.time),e._pos(o.x,o.y),e.animating=!1,void(o.time?e._bind(w):e._resetPos(0));r=function(){var a,c,p=Date.now();return p>=i+o.time?(e._pos(o.x,o.y),e.animating=!1,e.options.onAnimationEnd&&e.options.onAnimationEnd.call(e),void e._startAni()):(p=(p-i)/o.time-1,t=l.sqrt(1-p*p),a=(o.x-n)*t+n,c=(o.y-s)*t+s,e._pos(a,c),void(e.animating&&(e.aniTime=z(r))))},r()}},_transitionTime:function(o){o+="ms",this.scroller.style[p]=o,this.hScrollbar&&(this.hScrollbarIndicator.style[p]=o),this.vScrollbar&&(this.vScrollbarIndicator.style[p]=o)},_momentum:function(o,t,r,e,n){var s=6e-4,i=l.abs(o)/t,a=i*i/(2*s),c=0,p=0;return o>0&&a>r?(p=n/(6/(a/i*s)),r+=p,i=i*r/a,a=r):0>o&&a>e&&(p=n/(6/(a/i*s)),e+=p,i=i*e/a,a=e),a*=0>o?-1:1,c=i/s,{dist:a,time:l.round(c)}},_offset:function(o){for(var t=-o.offsetLeft,r=-o.offsetTop;o=o.offsetParent;)t-=o.offsetLeft,r-=o.offsetTop;return o!=this.wrapper&&(t*=this.scale,r*=this.scale),{left:t,top:r}},_snap:function(o,t){var r,e,n,s,i,a,c=this;for(n=c.pagesX.length-1,r=0,e=c.pagesX.length;e>r;r++)if(o>=c.pagesX[r]){n=r;break}for(n==c.currPageX&&n>0&&c.dirX<0&&n--,o=c.pagesX[n],i=l.abs(o-c.pagesX[c.currPageX]),i=i?l.abs(c.x-o)/i*500:0,c.currPageX=n,n=c.pagesY.length-1,r=0;n>r;r++)if(t>=c.pagesY[r]){n=r;break}return n==c.currPageY&&n>0&&c.dirY<0&&n--,t=c.pagesY[n],a=l.abs(t-c.pagesY[c.currPageY]),a=a?l.abs(c.y-t)/a*500:0,c.currPageY=n,s=l.round(l.max(i,a))||200,{x:o,y:t,time:s}},_bind:function(o,t,r){(t||this.scroller).addEventListener(o,this,!!r)},_unbind:function(o,t,r){(t||this.scroller).removeEventListener(o,this,!!r)},destroy:function(){var t=this;t.scroller.style[a]="",t.hScrollbar=!1,t.vScrollbar=!1,t._scrollbar("h"),t._scrollbar("v"),t._unbind(v,o),t._unbind(Y),t._unbind(T,o),t._unbind(X,o),t._unbind(_,o),t.options.hasTouch||(t._unbind("DOMMouseScroll"),t._unbind("mousewheel")),t.options.useTransition&&t._unbind(w),t.options.checkDOMChanges&&clearInterval(t.checkDOMTime),t.options.onDestroy&&t.options.onDestroy.call(t)},refresh:function(){var o,t,r,e,n=this,s=0,i=0;if(n.scale<n.options.zoomMin&&(n.scale=n.options.zoomMin),n.wrapperW=n.wrapper.clientWidth||1,n.wrapperH=n.wrapper.clientHeight||1,n.minScrollY=-n.options.topOffset||0,n.scrollerW=l.round(n.scroller.offsetWidth*n.scale),n.scrollerH=l.round((n.scroller.offsetHeight+n.minScrollY)*n.scale),n.maxScrollX=n.wrapperW-n.scrollerW,n.maxScrollY=n.wrapperH-n.scrollerH+n.minScrollY,n.dirX=0,n.dirY=0,n.options.onRefresh&&n.options.onRefresh.call(n),n.hScroll=n.options.hScroll&&n.maxScrollX<0,n.vScroll=n.options.vScroll&&(!n.options.bounceLock&&!n.hScroll||n.scrollerH>n.wrapperH),n.hScrollbar=n.hScroll&&n.options.hScrollbar,n.vScrollbar=n.vScroll&&n.options.vScrollbar&&n.scrollerH>n.wrapperH,o=n._offset(n.wrapper),n.wrapperOffsetLeft=-o.left,n.wrapperOffsetTop=-o.top,"string"==typeof n.options.snap)for(n.pagesX=[],n.pagesY=[],e=n.scroller.querySelectorAll(n.options.snap),t=0,r=e.length;r>t;t++)s=n._offset(e[t]),s.left+=n.wrapperOffsetLeft,s.top+=n.wrapperOffsetTop,n.pagesX[t]=s.left<n.maxScrollX?n.maxScrollX:s.left*n.scale,n.pagesY[t]=s.top<n.maxScrollY?n.maxScrollY:s.top*n.scale;else if(n.options.snap){for(n.pagesX=[];s>=n.maxScrollX;)n.pagesX[i]=s,s-=n.wrapperW,i++;for(n.maxScrollX%n.wrapperW&&(n.pagesX[n.pagesX.length]=n.maxScrollX-n.pagesX[n.pagesX.length-1]+n.pagesX[n.pagesX.length-1]),s=0,i=0,n.pagesY=[];s>=n.maxScrollY;)n.pagesY[i]=s,s-=n.wrapperH,i++;n.maxScrollY%n.wrapperH&&(n.pagesY[n.pagesY.length]=n.maxScrollY-n.pagesY[n.pagesY.length-1]+n.pagesY[n.pagesY.length-1])}n._scrollbar("h"),n._scrollbar("v"),n.zoomed||(n.scroller.style[p]="0",n._resetPos(400))},scrollTo:function(o,t,r,e){var l,n,s=this,i=o;for(s.stop(),i.length||(i=[{x:o,y:t,time:r,relative:e}]),l=0,n=i.length;n>l;l++)i[l].relative&&(i[l].x=s.x-i[l].x,i[l].y=s.y-i[l].y),s.steps.push({x:i[l].x,y:i[l].y,time:i[l].time||0});s._startAni()},scrollToElement:function(o,t){var r,e=this;o=o.nodeType?o:e.scroller.querySelector(o),o&&(r=e._offset(o),r.left+=e.wrapperOffsetLeft,r.top+=e.wrapperOffsetTop,r.left=r.left>0?0:r.left<e.maxScrollX?e.maxScrollX:r.left,r.top=r.top>e.minScrollY?e.minScrollY:r.top<e.maxScrollY?e.maxScrollY:r.top,t=void 0===t?l.max(2*l.abs(r.left),2*l.abs(r.top)):t,e.scrollTo(r.left,r.top,t))},scrollToPage:function(o,t,r){var e,l,n=this;r=void 0===r?400:r,n.options.onScrollStart&&n.options.onScrollStart.call(n),n.options.snap?(o="next"==o?n.currPageX+1:"prev"==o?n.currPageX-1:o,t="next"==t?n.currPageY+1:"prev"==t?n.currPageY-1:t,o=0>o?0:o>n.pagesX.length-1?n.pagesX.length-1:o,t=0>t?0:t>n.pagesY.length-1?n.pagesY.length-1:t,n.currPageX=o,n.currPageY=t,e=n.pagesX[o],l=n.pagesY[t]):(e=-n.wrapperW*o,l=-n.wrapperH*t,e<n.maxScrollX&&(e=n.maxScrollX),l<n.maxScrollY&&(l=n.maxScrollY)),n.scrollTo(e,l,r)},disable:function(){this.stop(),this._resetPos(0),this.enabled=!1,this._unbind(T,o),this._unbind(X,o),this._unbind(_,o)},enable:function(){this.enabled=!0},stop:function(){this.options.useTransition?this._unbind(w):M(this.aniTime),this.steps=[],this.moved=!1,this.animating=!1},zoom:function(o,t,r,e){var l=this,n=r/l.scale;l.options.useTransform&&(l.zoomed=!0,e=void 0===e?200:e,o=o-l.wrapperOffsetLeft-l.x,t=t-l.wrapperOffsetTop-l.y,l.x=o-o*n+l.x,l.y=t-t*n+l.y,l.scale=r,l.refresh(),l.x=l.x>0?0:l.x<l.maxScrollX?l.maxScrollX:l.x,l.y=l.y>l.minScrollY?l.minScrollY:l.y<l.maxScrollY?l.maxScrollY:l.y,l.scroller.style[p]=e+"ms",l.scroller.style[a]="translate("+l.x+"px,"+l.y+"px) scale("+r+")"+E,l.zoomed=!1)},isReady:function(){return!this.moved&&!this.zoomed&&!this.animating}},n=null,"undefined"!=typeof r&&r.exports?r.exports=D:o.iScroll=D}(window,document)});
@@ -92,9 +100,12 @@ define('components/util/App', ['spm_modules/jingle/0.0.1/Jingle.debug.qymodify']
                 '#main_section': 'components/main_section/main_section.html',
                 '#search_section': 'components/gatherSearch/search_section/search_section.html',
                 '#searchResult_section': 'components/gatherSearch/searchResult_section/searchResult_section.html',
+                '#searchResultAllWebDetail_section': 'components/gatherSearch/searchResultAllWebDetail_section/searchResultAllWebDetail_section.html',
                 '#change_section': 'components/gatherSearch/change_section/change_section.html',
+
                 '#searchToBuy_section': 'components/waitBuy/searchToBuy_section/searchToBuy_section.html',
                 '#searchToBuyDetail_section': 'components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section.html',
+
                 '#gatherMain_section': 'components/gatherMain_section/gatherMain_section.html',
                 '#gatherCheapBuy_section': 'components/gatherCheapBuy_section/gatherCheapBuy_section.html',
                 '#gatherHeadlineList_section': 'components/gatherHeadline/gatherHeadlineList_section/gatherHeadlineList_section.html',
@@ -103,11 +114,14 @@ define('components/util/App', ['spm_modules/jingle/0.0.1/Jingle.debug.qymodify']
                 '#gatherActsListDetail_section': 'components/gatherActs/gatherActsListDetail_section/gatherActsListDetail_section.html',
                 '#gatherGroupBuy_section': 'components/gatherGroupBuy_section/gatherGroupBuy_section.html',
                 '#gatherSeaBuy_section': 'components/gatherSeaBuy_section/gatherSeaBuy_section.html',
+
                 '#addAccount_section': 'components/gatherAccount/addAccount_section/addAccount_section.html',
+                '#accountDetail_section': 'components/gatherAccount/accountDetail_section/accountDetail_section.html',
                 '#accountManage_section': 'components/gatherAccount/accountManage_section/accountManage_section.html',
+
                 '#gatherIntelligentSearch_section': 'components/gatherIntelligentSearch/gatherIntelligentSearch_section/gatherIntelligentSearch_section.html',
                 '#gatherIntelligentSearchAll_section': 'components/gatherIntelligentSearch/gatherIntelligentSearchAll_section/gatherIntelligentSearchAll_section.html',
-
+                '#gatherIntelligentSearchAllDetail_section': 'components/gatherIntelligentSearch/gatherIntelligentSearchAllDetail_section/gatherIntelligentSearchAllDetail_section.html'
             }
         });
 
@@ -373,6 +387,8 @@ define('components/util/utilFunctions', ['spm_modules/zepto/0.0.1/zepto', 'spm_m
 ;define("spm_modules/tab/0.0.2/tab",["spm_modules/zepto/0.0.1/zepto","spm_modules/wn-core/0.0.4/wn-core"],function(e,r,s){var a=e("spm_modules/zepto/0.0.1/zepto"),n=e("spm_modules/wn-core/0.0.4/wn-core"),t=new n,o=t.parseArgus;s.exports=function(e,r,s,n,t,c,l,d){function i(e){return f.eq(w).hide().removeClass("active"),C.eq(w).removeClass(s),f.eq(e).show().addClass("active"),C.eq(e).addClass(s),d&&d(w,e),!1}function u(e){return f.eq(w).fadeOut(200).removeClass("active"),C.eq(w).removeClass(s),f.eq(e).fadeIn(200).addClass(s),C.eq(e).addClass(s),d&&d(w,e),!1}var m={btns:a,conts:a,current:"",trigerType:"mouseover",transType:"normal",currIndex:0,initCallback:function(){},triggerCallback:function(){}};o(arguments,m);var e=m.btns,r=m.conts,s=m.current,n=m.trigerType,t=m.transType,c=m.currIndex,p=m.initCallback,v=m.triggerCallback,C=e,f=r,q=n||"mouseover",b=t||"normal",g=c||0,w=c||0,l=p,d=v;C.eq(g).addClass(s);for(var h=0;h<f.length;h++)h!=g?f.eq(h).hide():f.eq(h).show();return l&&l(g),C.bind(q,function(){var e=C.index(this);switch(b){case"normal":i(e);break;case"fade":u(e)}return w=e,!1}),!1}});
 /*!spm_modules/template/3.0.0/template.js*/
 ;!function(){function e(e){return e.replace(y,"").replace(w,",").replace(b,"").replace(x,"").replace(T,"").split(E)}function n(e){return"'"+e.replace(/('|\\)/g,"\\$1").replace(/\r/g,"\\r").replace(/\n/g,"\\n")+"'"}function t(t,r){function a(e){return p+=e.split(/\n/).length-1,s&&(e=e.replace(/\s+/g," ").replace(/<!--[\w\W]*?-->/g,"")),e&&(e=v[1]+n(e)+v[2]+"\n"),e}function o(n){var t=p;if(u?n=u(n,r):i&&(n=n.replace(/\n/g,function(){return p++,"$line="+p+";"})),0===n.indexOf("=")){var a=f&&!/^=[=#]/.test(n);if(n=n.replace(/^=[=#]?|[\s;]*$/g,""),a){var o=n.replace(/\s*\([^\)]+\)/,"");$[o]||/^(include|print)$/.test(o)||(n="$escape("+n+")")}else n="$string("+n+")";n=v[1]+n+v[2]}return i&&(n="$line="+t+";"+n),h(e(n),function(e){if(e&&!d[e]){var n;n="print"===e?w:"include"===e?b:$[e]?"$utils."+e:g[e]?"$helpers."+e:"$data."+e,x+=e+"="+n+",",d[e]=!0}}),n+"\n"}var i=r.debug,l=r.openTag,c=r.closeTag,u=r.parser,s=r.compress,f=r.escape,p=1,d={$data:1,$filename:1,$utils:1,$helpers:1,$out:1,$line:1},m="".trim,v=m?["$out='';","$out+=",";","$out"]:["$out=[];","$out.push(",");","$out.join('')"],y=m?"$out+=text;return $out;":"$out.push(text);",w="function(){var text=''.concat.apply('',arguments);"+y+"}",b="function(filename,data){data=data||$data;var text=$utils.$include(filename,data,$filename);"+y+"}",x="'use strict';var $utils=this,$helpers=$utils.$helpers,"+(i?"$line=0,":""),T=v[0],E="return new String("+v[3]+");";h(t.split(l),function(e){e=e.split(c);var n=e[0],t=e[1];1===e.length?T+=a(n):(T+=o(n),t&&(T+=a(t)))});var j=x+T+E;i&&(j="try{"+j+"}catch(e){throw {filename:$filename,name:'Render Error',message:e.message,line:$line,source:"+n(t)+".split(/\\n/)[$line-1].replace(/^\\s+/,'')};}");try{var S=new Function("$data","$filename",j);return S.prototype=$,S}catch(W){throw W.temp="function anonymous($data,$filename) {"+j+"}",W}}var r=function(e,n){return"string"==typeof n?m(n,{filename:e}):i(e,n)};r.version="3.0.0",r.config=function(e,n){a[e]=n};var a=r.defaults={openTag:"<%",closeTag:"%>",escape:!0,cache:!0,compress:!1,parser:null},o=r.cache={};r.render=function(e,n){return m(e,n)};var i=r.renderFile=function(e,n){var t=r.get(e)||d({filename:e,name:"Render Error",message:"Template not found"});return n?t(n):t};r.get=function(e){var n;if(o[e])n=o[e];else if("object"==typeof document){var t=document.getElementById(e);if(t){var r=(t.value||t.innerHTML).replace(/^\s*|\s*$/g,"");n=m(r,{filename:e})}}return n};var l=function(e,n){return"string"!=typeof e&&(n=typeof e,"number"===n?e+="":e="function"===n?l(e.call(e)):""),e},c={"<":"&#60;",">":"&#62;",'"':"&#34;","'":"&#39;","&":"&#38;"},u=function(e){return c[e]},s=function(e){return l(e).replace(/&(?![\w#]+;)|[<>"']/g,u)},f=Array.isArray||function(e){return"[object Array]"==={}.toString.call(e)},p=function(e,n){var t,r;if(f(e))for(t=0,r=e.length;r>t;t++)n.call(e,e[t],t,e);else for(t in e)n.call(e,e[t],t)},$=r.utils={$helpers:{},$include:i,$string:l,$escape:s,$each:p};r.helper=function(e,n){g[e]=n};var g=r.helpers=$.$helpers;r.onerror=function(e){var n="Template Error\n\n";for(var t in e)n+="<"+t+">\n"+e[t]+"\n\n";"object"==typeof console&&console.error(n)};var d=function(e){return r.onerror(e),function(){return"{Template Error}"}},m=r.compile=function(e,n){function r(t){try{return new c(t,l)+""}catch(r){return n.debug?d(r)():(n.debug=!0,m(e,n)(t))}}n=n||{};for(var i in a)void 0===n[i]&&(n[i]=a[i]);var l=n.filename;try{var c=t(e,n)}catch(u){return u.filename=l||"anonymous",u.name="Syntax Error",d(u)}return r.prototype=c.prototype,r.toString=function(){return c.toString()},l&&n.cache&&(o[l]=r),r},h=$.$each,v="break,case,catch,continue,debugger,default,delete,do,else,false,finally,for,function,if,in,instanceof,new,null,return,switch,this,throw,true,try,typeof,var,void,while,with,abstract,boolean,byte,char,class,const,double,enum,export,extends,final,float,goto,implements,import,int,interface,long,native,package,private,protected,public,short,static,super,synchronized,throws,transient,volatile,arguments,let,yield,undefined",y=/\/\*[\w\W]*?\*\/|\/\/[^\n]*\n|\/\/[^\n]*$|"(?:[^"\\]|\\[\w\W])*"|'(?:[^'\\]|\\[\w\W])*'|\s*\.\s*[$\w\.]+/g,w=/[^\w$]+/g,b=new RegExp(["\\b"+v.replace(/,/g,"\\b|\\b")+"\\b"].join("|"),"g"),x=/^\d[^,]*|,\d[^,]*/g,T=/^,+|,+$/g,E=/^$|,+/;"function"==typeof define?define("spm_modules/template/3.0.0/template",[],function(){return r}):"undefined"!=typeof exports?module.exports=r:this.template=r}();
+/*!spm_modules/cssTriangle/0.0.1/cssTriangle.js*/
+;define("spm_modules/cssTriangle/0.0.1/cssTriangle",[],function(r,e,o){o.exports=function(r,e,o,t){var n={up:{borderWidth:"0 "+o+" "+o+" "+o,borderColor:"#000000 #000000 "+t+" #000000",ie6borderColor:"transparent transparent "+t+" transparent"},right:{borderWidth:o+" 0 "+o+" "+o,borderColor:"#000000 #000000 #000000 "+t,ie6borderColor:"transparent transparent transparent "+t},down:{borderWidth:o+" "+o+" 0 "+o,borderColor:t+" #000000 #000000 #000000",ie6borderColor:t+" transparent transparent transparent"},left:{borderWidth:o+" "+o+" "+o+" 0",borderColor:"#000000 "+t+" #000000 #000000",ie6borderColor:"transparent "+t+" transparent transparent"}};return r.css({width:0,height:0,lineHeight:"0",borderStyle:"solid",borderWidth:n[e].borderWidth}),r.css({borderColor:n[e].ie6borderColor}),!1}});
 /*!components/gatherMain_section/gatherMain_section.js*/
 ;/**
  * Created with PhpStorm.
@@ -381,7 +397,7 @@ define('components/util/utilFunctions', ['spm_modules/zepto/0.0.1/zepto', 'spm_m
  * Time: 15:44
  * To change this template use File | Settings | File Templates.
  */
-define('components/gatherMain_section/gatherMain_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+define('components/gatherMain_section/gatherMain_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template', 'spm_modules/cssTriangle/0.0.1/cssTriangle'], function (require, exports, module) {
     var $=require('spm_modules/zepto/0.0.1/zepto');
     var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
     var cookie=require('spm_modules/cookie/0.0.1/cookie');
@@ -390,6 +406,8 @@ define('components/gatherMain_section/gatherMain_section', ['spm_modules/zepto/0
     var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
     var tab=require('spm_modules/tab/0.0.2/tab');
     var template=require('spm_modules/template/3.0.0/template');
+    var cssTriangle=require('spm_modules/cssTriangle/0.0.1/cssTriangle');
+
     template.helper('$',$);
     template.helper('decodeURIComponent', decodeURIComponent);
 
@@ -433,6 +451,9 @@ define('components/gatherMain_section/gatherMain_section', ['spm_modules/zepto/0
                     }
                 }
             });
+
+            //初始化更多按钮的三角
+            cssTriangle($('.triangle-down'),'down','5px','#3498DB');
         }
     });
 
@@ -774,7 +795,7 @@ define('components/gatherSearch/search_section/search_section', ['spm_modules/ze
  * Time: 15:44
  * To change this template use File | Settings | File Templates.
  */
-define('components/gatherSearch/searchResult_section/searchResult_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+define('components/gatherSearch/searchResult_section/searchResult_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template', 'components/navigation/navigation'], function (require, exports, module) {
     var $=require('spm_modules/zepto/0.0.1/zepto');
     var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
     var cookie=require('spm_modules/cookie/0.0.1/cookie');
@@ -785,6 +806,8 @@ define('components/gatherSearch/searchResult_section/searchResult_section', ['sp
     var template=require('spm_modules/template/3.0.0/template');
     template.helper('$',$);
     template.helper('decodeURIComponent', decodeURIComponent);
+
+    var navigation=require('components/navigation/navigation');
 
     var startPage = 0,
         pageSize = 10,
@@ -827,21 +850,66 @@ define('components/gatherSearch/searchResult_section/searchResult_section', ['sp
             $('.searchToolBar-footer-btn-cancel').on('tap', function () {
                 var $this=$(this);
                 $this.parents('.searchToolBar').hide();
+                return false;
             });
 
             $('.searchToolIcon').on('tap', function () {
                 var $this=$(this);
                 $('.searchToolBar').show();
+                return false;
             });
 
             $('.searchKeywordsIcon').on('tap', function () {
                 var $this=$(this);
                 $('.searchKeywordsBar').show();
+                return false;
             });
 
             $('.searchKeywordsBar .searchKeywordsBar-tit-btn-cancel').on('tap', function () {
                 var $this=$(this);
                 $('.searchKeywordsBar').hide();
+                return false;
+            });
+
+            //搜索详情取消按钮
+            $('.searchKeywordsDetail-btn-cancel').on('tap', function () {
+                var $this=$(this);
+                $('.searchKeywordsDetail').hide();
+                return false;
+            });
+
+            //搜本站按钮
+            $('.btn-searchSelfWeb').on('tap', function () {
+                var $this=$(this);
+                $('.searchKeywordsDetail-selfWeb').show();
+                return false;
+            });
+
+            //搜三家按钮
+            $('.btn-searchThreeWeb').on('tap', function () {
+                var $this=$(this);
+                $('.searchKeywordsDetail-threeWeb').show();
+                return false;
+            });
+
+            //搜淘宝按钮
+            $('.btn-searchTaobao').on('tap', function () {
+                var $this=$(this);
+                $('.searchKeywordsDetail-taobao').show();
+                return false;
+            });
+
+            //搜全网按钮
+            $('.btn-searchAllWeb').on('tap', function () {
+                var $this=$(this);
+                $('.searchKeywordsDetail-allWeb').show();
+                return false;
+            });
+
+            //切换导航菜单
+            $currentSection.find('footer').on('tap','.footer-btn-searchGoods',function(){
+                $currentSection.find('footer').html(navigation.mainNavHtml);
+                return false;
             });
         }
     });
@@ -898,18 +966,61 @@ define('components/gatherIntelligentSearch/gatherIntelligentSearch_section/gathe
                 var $currItem=$(this).parents('.history-words-list-item');
                 $currItem.remove();
             });
-            //$currSection.find('.btn-cats').on('tap',function(){
-            //    var $this=$(this);
-            //    if($this.hasClass('list')){
-            //        $this.removeClass('list').addClass('pencil');
-            //        $currSection.find('.hot-words,.history-words').hide();
-            //        $currSection.find('.category-viewport').show();
-            //    }else{
-            //        $this.removeClass('pencil').addClass('list');
-            //        $currSection.find('.hot-words,.history-words').show();
-            //        $currSection.find('.category-viewport').hide();
-            //    }
-            //});
+            $currSection.find('.button-lookup').on('tap',function(){
+                var $this=$(this);
+                J.Router.goTo('#gatherIntelligentSearchAll_section?'+cellectKeywordsToParams($currSection.find('.input-keywords')));
+                return false;
+            });
+            function cellectKeywordsToParams($inputs){
+                var keywords={};
+                $inputs.each(function(){
+                    var $currInput=$(this),
+                        index=$currInput.index();
+                    keywords[index]=$currInput.val();
+                });
+                return 'keywords='+JSON.stringify(keywords);
+            }
+        }
+    });
+
+});
+/*!components/gatherIntelligentSearch/gatherIntelligentSearchAll_section/gatherIntelligentSearchAll_section.js*/
+;/**
+ * Created with PhpStorm.
+ * User: Administrator
+ * Date: 2015/10/23
+ * Time: 15:44
+ * To change this template use File | Settings | File Templates.
+ */
+define('components/gatherIntelligentSearch/gatherIntelligentSearchAll_section/gatherIntelligentSearchAll_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+    var $=require('spm_modules/zepto/0.0.1/zepto');
+    var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
+    var cookie=require('spm_modules/cookie/0.0.1/cookie');
+    var App=require('components/util/App');
+    var utilFunctions=require('components/util/utilFunctions');
+    var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
+
+    var tab=require('spm_modules/tab/0.0.2/tab');
+    var template=require('spm_modules/template/3.0.0/template');
+    template.helper('$',$);
+    template.helper('decodeURIComponent', decodeURIComponent);
+
+    var startPage = 0,
+        pageSize = 10,
+        totalPage;
+
+    App.page('gatherIntelligentSearchAll', function () {
+        this.show=function(){
+
+        };
+        this.init = function () {
+            var $currSection=$('#gatherIntelligentSearchAll_section');
+
+            var keywords=JSON.parse(getQueryString('keywords'));
+            $.each(keywords,function(i,item){
+                $currSection.find('.input-keywords').eq(Number(i)).val(item);
+            });
+
         }
     });
 
@@ -974,6 +1085,122 @@ define('components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section',
     });
 
 });
+/*!components/waitBuy/searchToBuy_section/searchToBuy_section.js*/
+;/**
+ * Created with PhpStorm.
+ * User: Administrator
+ * Date: 2015/10/23
+ * Time: 15:44
+ * To change this template use File | Settings | File Templates.
+ */
+define('components/waitBuy/searchToBuy_section/searchToBuy_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+    var $=require('spm_modules/zepto/0.0.1/zepto');
+    var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
+    var cookie=require('spm_modules/cookie/0.0.1/cookie');
+    var App=require('components/util/App');
+    var utilFunctions=require('components/util/utilFunctions');
+    var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
+
+    var template=require('spm_modules/template/3.0.0/template');
+    template.helper('$',$);
+    template.helper('decodeURIComponent', decodeURIComponent);
+
+    var startPage = 0,
+        pageSize = 10,
+        totalPage;
+
+    App.page('searchToBuy', function () {
+        this.show=function(){
+
+        };
+        this.init = function () {
+            var $currentSection=$('#searchToBuy_section');
+
+            $currentSection.find('.goodsList').on('tap','.btn-checkbox',function(){
+                var $this=$(this).parents('.goodsBox'),
+                    thisTit= $.trim($this.find('.goodsBox-name').html()),
+                    $thisCheckBtn=$this.find('.btn-checkbox'),
+                    $thisCancelBtn=$this.find('.goodsBox-corner-circle'),
+                    canBeCheck=false;
+
+                $currentSection.find('.compareBar2').find('.btn-goods').each(function(){
+                    var $thisButton=$(this),
+                        thisIndex=$currentSection.find('.compareBar2').find('.btn-goods').index(this);
+                    if(!$thisButton.hasClass('active')){
+                        switch (thisIndex){
+                            case 0:
+                                $thisButton.html(thisTit.substr(0, 2)+'...').addClass('bgColor-blue active');
+                                $thisCheckBtn.addClass('color-blue active').attr('data-btnId','0');
+                                $thisCancelBtn.addClass('bgColor-blue').attr('data-btnId','0');
+                                break;
+                            case 1:
+                                $thisButton.html(thisTit.substr(0, 2)+'...').addClass('bgColor-yellow active');
+                                $thisCheckBtn.addClass('color-yellow active').attr('data-btnId','1');
+                                $thisCancelBtn.addClass('bgColor-yellow').attr('data-btnId','1');
+                                break;
+                            case 2:
+                                $thisButton.html(thisTit.substr(0, 2)+'...').addClass('bgColor-orange active');
+                                $thisCheckBtn.addClass('color-orange active').attr('data-btnId','2');
+                                $thisCancelBtn.addClass('bgColor-orange').attr('data-btnId','2');
+                                break;
+                            case 3:
+                                $thisButton.html(thisTit.substr(0, 2)+'...').addClass('bgColor-skyBlue active');
+                                $thisCheckBtn.addClass('color-skyBlue active').attr('data-btnId','3');
+                                $thisCancelBtn.addClass('bgColor-skyBlue').attr('data-btnId','3');
+                                break;
+                        }
+                        canBeCheck=true;
+                        return false;
+                    }else{
+                        canBeCheck=false;
+
+                    }
+                });
+                if(!canBeCheck){
+                    J.showToast('最多只能选择4个商品！','error');
+                }
+                return false;
+            });
+
+            $currentSection.find('.goodsList').on('tap','.goodsBox-corner-circle',function(){
+                var $this=$(this),
+                    $thisItem=$this.parents('.goodsBox'),
+                    $thisCheckBtn=$thisItem.find('.btn-checkbox'),
+                    btnId= Number($.trim($this.attr('data-btnId')));
+
+                if($this.attr('data-btnId')){
+                    console.log(btnId);
+                    switch (btnId){
+                        case 0:
+                            $currentSection.find('.compareBar2').find('.button').eq(btnId).removeClass('bgColor-blue active');
+                            $this.removeAttr('data-btnId').removeClass('bgColor-blue');
+                            $thisCheckBtn.removeClass('color-blue');
+                            break;
+                        case 1:
+                            $currentSection.find('.compareBar2').find('.button').eq(btnId).removeClass('bgColor-yellow active');
+                            $this.removeAttr('data-btnId').removeClass('bgColor-yellow');
+                            $thisCheckBtn.removeClass('color-yellow');
+                            break;
+                        case 2:
+                            $currentSection.find('.compareBar2').find('.button').eq(btnId).removeClass('bgColor-orange active');
+                            $this.removeAttr('data-btnId').removeClass('bgColor-orange');
+                            $thisCheckBtn.removeClass('color-orange');
+                            break;
+                        case 3:
+                            $currentSection.find('.compareBar2').find('.button').eq(btnId).removeClass('bgColor-skyBlue active');
+                            $this.removeAttr('data-btnId').removeClass('bgColor-skyBlue');
+                            $thisCheckBtn.removeClass('color-skyBlue');
+                            break;
+                    }
+                }
+                return false;
+            });
+        }
+    });
+
+});
+/*!spm_modules/radio/0.0.1/radio.js*/
+;define("spm_modules/radio/0.0.1/radio",["spm_modules/zepto/0.0.1/zepto"],function(e,t,s){var a=e("spm_modules/zepto/0.0.1/zepto");s.exports=function(e,t){var s="String"==typeof e?a("."+e):e;return s.click(function(){{var e=a(this);e.siblings()}return s.removeClass(t),e.hasClass(t)||(e.addClass(t),e.attr("data-selected","selected")),!1}),s.find("input").length>0&&s.find("input").click(function(){var e=a(this).parent(),s=e.siblings();return s.removeClass(t),e.addClass(t),e.attr("data-selected","selected"),!1}),!1}});
 /*!components/gatherSearch/change_section/change_section.js*/
 ;/**
  * Created with PhpStorm.
@@ -982,7 +1209,7 @@ define('components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section',
  * Time: 15:44
  * To change this template use File | Settings | File Templates.
  */
-define('components/gatherSearch/change_section/change_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+define('components/gatherSearch/change_section/change_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/radio/0.0.1/radio', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
     var $=require('spm_modules/zepto/0.0.1/zepto');
     var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
     var cookie=require('spm_modules/cookie/0.0.1/cookie');
@@ -990,6 +1217,7 @@ define('components/gatherSearch/change_section/change_section', ['spm_modules/ze
     var utilFunctions=require('components/util/utilFunctions');
     var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
     var tab=require('spm_modules/tab/0.0.2/tab');
+    var radio=require('spm_modules/radio/0.0.1/radio');
     var template=require('spm_modules/template/3.0.0/template');
     template.helper('$',$);
     template.helper('decodeURIComponent', decodeURIComponent);
@@ -1021,11 +1249,127 @@ define('components/gatherSearch/change_section/change_section', ['spm_modules/ze
                 }
             });
 
-            $('.search-result').on('tap','.search-result-word',function(){
-                var $this=$(this);
-                $currentSection.find('.tabCont.active').find('.btn-replace').eq(0).css('display','block !important');
+            $currentSection.find('.search-result').on('tap','.search-result-word',function(){
+                var $this=$(this),
+                    value= $.trim($this.html());
+                $currentSection.find('.tabCont.active').find('.btn-replace').attr('data-value',value).css('display','block !important');
+                return false;
             });
+            $currentSection.find('.tabCont.active').find('.btn-replace').on('tap',function(){
+                var $this=$(this),
+                    value=$this.attr('data-value'),canSubmit=true;
+                //替换按钮，应该会调接口
+                $currentSection.find('.tabCont.active').find('.btn-selected').each(function(){
+                    var $thisBtn=$(this);
 
+                    if($.trim($thisBtn.html())==value){
+                        canSubmit=false;
+                        return false;
+                    }
+                });
+                if(canSubmit){
+                    $this.siblings('.btn-selected').html(value);
+                    $currentSection.find('.tabCont.active').find('.btn-replace').css('display','none !important');
+                    $currentSection.find('.search-result').find('.search-result-word').removeClass('color-orange');
+                }else{
+                    J.showToast('已经有该网站，请选择其他网站替换！','error');
+                }
+
+                return false;
+            });
+            //点击body取消替换状态
+            $currentSection.on('tap',function(){
+                $currentSection.find('.tabCont.active').find('.btn-replace').css('display','none !important');
+                $currentSection.find('.search-result').find('.search-result-word').removeClass('color-orange');
+                return false;
+            });
+            radio($currentSection.find('.search-result').find('.search-result-word'),'color-orange');
+        }
+    });
+
+});
+/*!components/gatherAccount/addAccount_section/addAccount_section.js*/
+;/**
+ * Created with PhpStorm.
+ * User: Administrator
+ * Date: 2015/10/23
+ * Time: 15:44
+ * To change this template use File | Settings | File Templates.
+ */
+define('components/gatherAccount/addAccount_section/addAccount_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/radio/0.0.1/radio', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+    var $=require('spm_modules/zepto/0.0.1/zepto');
+    var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
+    var cookie=require('spm_modules/cookie/0.0.1/cookie');
+    var App=require('components/util/App');
+    var utilFunctions=require('components/util/utilFunctions');
+    var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
+    var tab=require('spm_modules/tab/0.0.2/tab');
+    var radio=require('spm_modules/radio/0.0.1/radio');
+    var template=require('spm_modules/template/3.0.0/template');
+    template.helper('$',$);
+    template.helper('decodeURIComponent', decodeURIComponent);
+
+    var startPage = 0,
+        pageSize = 10,
+        totalPage;
+
+    App.page('addAccount', function () {
+        this.show=function(){
+
+        };
+        this.init = function () {
+            var $currentSection=$('#addAccount_section');
+            tab({
+                btns:$currentSection.find('.tabBtn'),
+                conts:$currentSection.find('.tabCont'),
+                current:'dark-orange',
+                trigerType:'tap',
+                initCallback:function(currIndex){
+                    var $currTabCont=$currentSection.find('.tabCont').eq(currIndex);
+                    $currentSection.find('.tabCont').removeClass('active');
+                    $currTabCont.addClass('active');
+                },
+                triggerCallback:function(lastOneIndex,currIndex){
+                    var $currTabCont=$currentSection.find('.tabCont').eq(currIndex);
+                    $currentSection.find('.tabCont').removeClass('active');
+                    $currTabCont.addClass('active');
+                }
+            });
+            $currentSection.find('.search-result').on('tap','.search-result-word',function(){
+                var $this=$(this),
+                    value= $.trim($this.html());
+                $currentSection.find('.tabCont.active').find('.btn-replace').attr('data-value',value).css('display','block !important');
+                return false;
+            });
+            $currentSection.find('.tabCont.active').find('.btn-replace').on('tap',function(){
+                var $this=$(this),
+                    value=$this.attr('data-value'),canSubmit=true;
+                //替换按钮，应该会调接口
+                $currentSection.find('.tabCont.active').find('.btn-selected').each(function(){
+                    var $thisBtn=$(this);
+
+                    if($.trim($thisBtn.html())==value){
+                        canSubmit=false;
+                        return false;
+                    }
+                });
+                if(canSubmit){
+                    $this.siblings('.btn-selected').html(value);
+                    $currentSection.find('.tabCont.active').find('.btn-replace').css('display','none !important');
+                    $currentSection.find('.search-result').find('.search-result-word').removeClass('color-orange');
+                }else{
+                    J.showToast('已经有该网站，请选择其他网站替换！','error');
+                }
+
+                return false;
+            });
+            //点击body取消替换状态
+            $currentSection.on('tap',function(){
+                $currentSection.find('.tabCont.active').find('.btn-replace').css('display','none !important');
+                $currentSection.find('.search-result').find('.search-result-word').removeClass('color-orange');
+                return false;
+            });
+            radio($currentSection.find('.search-result').find('.search-result-word'),'color-orange');
         }
     });
 
@@ -1213,7 +1557,7 @@ define('components/main_section/main_section', ['spm_modules/zepto/0.0.1/zepto',
 
 });
 /*!static/js/index.js*/
-;define('static/js/index', ['components/util/deviceSetting', 'spm_modules/zepto/0.0.1/zepto', 'spm_modules/cookie/0.0.1/cookie', 'components/navigation/navigation', 'components/util/App', 'components/login_section/login_section', 'components/gatherMain_section/gatherMain_section', 'components/gatherCheapBuy_section/gatherCheapBuy_section', 'components/gatherGroupBuy_section/gatherGroupBuy_section', 'components/gatherSeaBuy_section/gatherSeaBuy_section', 'components/gatherHeadline/gatherHeadlineList_section/gatherHeadlineList_section', 'components/gatherActs/gatherActsList_section/gatherActsList_section', 'components/gatherSearch/search_section/search_section', 'components/gatherSearch/searchResult_section/searchResult_section', 'components/gatherIntelligentSearch/gatherIntelligentSearch_section/gatherIntelligentSearch_section', 'components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section', 'components/gatherSearch/change_section/change_section', 'components/navigation/navigation', 'components/user_section/user_section', 'components/modifyPassword_section/modifyPassword_section', 'components/main_section/main_section'], function (require, exports, module) {
+;define('static/js/index', ['components/util/deviceSetting', 'spm_modules/zepto/0.0.1/zepto', 'spm_modules/cookie/0.0.1/cookie', 'components/navigation/navigation', 'components/util/App', 'components/login_section/login_section', 'components/gatherMain_section/gatherMain_section', 'components/gatherCheapBuy_section/gatherCheapBuy_section', 'components/gatherGroupBuy_section/gatherGroupBuy_section', 'components/gatherSeaBuy_section/gatherSeaBuy_section', 'components/gatherHeadline/gatherHeadlineList_section/gatherHeadlineList_section', 'components/gatherActs/gatherActsList_section/gatherActsList_section', 'components/gatherSearch/search_section/search_section', 'components/gatherSearch/searchResult_section/searchResult_section', 'components/gatherIntelligentSearch/gatherIntelligentSearch_section/gatherIntelligentSearch_section', 'components/gatherIntelligentSearch/gatherIntelligentSearchAll_section/gatherIntelligentSearchAll_section', 'components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section', 'components/waitBuy/searchToBuy_section/searchToBuy_section', 'components/gatherSearch/change_section/change_section', 'components/gatherAccount/addAccount_section/addAccount_section', 'components/navigation/navigation', 'components/user_section/user_section', 'components/modifyPassword_section/modifyPassword_section', 'components/main_section/main_section'], function (require, exports, module) {
 
     //初始化app的native设置
     require('components/util/deviceSetting');
@@ -1240,8 +1584,11 @@ define('components/main_section/main_section', ['spm_modules/zepto/0.0.1/zepto',
     require('components/gatherSearch/search_section/search_section');
     require('components/gatherSearch/searchResult_section/searchResult_section');
     require('components/gatherIntelligentSearch/gatherIntelligentSearch_section/gatherIntelligentSearch_section');
+    require('components/gatherIntelligentSearch/gatherIntelligentSearchAll_section/gatherIntelligentSearchAll_section');
     require('components/waitBuy/searchToBuyDetail_section/searchToBuyDetail_section');
+    require('components/waitBuy/searchToBuy_section/searchToBuy_section');
     require('components/gatherSearch/change_section/change_section');
+    require('components/gatherAccount/addAccount_section/addAccount_section');
 
     require('components/navigation/navigation');
     require('components/user_section/user_section');

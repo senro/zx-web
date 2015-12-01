@@ -5,7 +5,7 @@
  * Time: 15:44
  * To change this template use File | Settings | File Templates.
  */
-define('components/gatherMain_section/gatherMain_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template'], function (require, exports, module) {
+define('components/gatherMain_section/gatherMain_section', ['spm_modules/zepto/0.0.1/zepto', 'spm_modules/jingle/0.0.1/Jingle.debug.qymodify', 'spm_modules/cookie/0.0.1/cookie', 'components/util/App', 'components/util/utilFunctions', 'spm_modules/get-query-string/0.0.1/get-query-string', 'spm_modules/tab/0.0.2/tab', 'spm_modules/template/3.0.0/template', 'spm_modules/cssTriangle/0.0.1/cssTriangle'], function (require, exports, module) {
     var $=require('spm_modules/zepto/0.0.1/zepto');
     var J=require('spm_modules/jingle/0.0.1/Jingle.debug.qymodify');
     var cookie=require('spm_modules/cookie/0.0.1/cookie');
@@ -14,6 +14,8 @@ define('components/gatherMain_section/gatherMain_section', ['spm_modules/zepto/0
     var getQueryString=require('spm_modules/get-query-string/0.0.1/get-query-string');
     var tab=require('spm_modules/tab/0.0.2/tab');
     var template=require('spm_modules/template/3.0.0/template');
+    var cssTriangle=require('spm_modules/cssTriangle/0.0.1/cssTriangle');
+
     template.helper('$',$);
     template.helper('decodeURIComponent', decodeURIComponent);
 
@@ -57,6 +59,9 @@ define('components/gatherMain_section/gatherMain_section', ['spm_modules/zepto/0
                     }
                 }
             });
+
+            //初始化更多按钮的三角
+            cssTriangle($('.triangle-down'),'down','5px','#3498DB');
         }
     });
 
