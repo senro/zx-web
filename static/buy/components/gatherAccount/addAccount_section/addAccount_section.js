@@ -56,7 +56,7 @@ define('components/gatherAccount/addAccount_section/addAccount_section', ['spm_m
                 //替换按钮，应该会调接口
                 $currentSection.find('.tabCont.active').find('.btn-selected').each(function(){
                     var $thisBtn=$(this);
-                    console.log($.trim($thisBtn.html()));
+
                     if($.trim($thisBtn.html())==value){
                         canSubmit=false;
                         return false;
