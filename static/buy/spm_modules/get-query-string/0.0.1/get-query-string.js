@@ -1,0 +1,1 @@
+define("spm_modules/get-query-string/0.0.1/get-query-string",[],function(){function n(n,e){var t=e||document.location.search||document.location.hash,o=null;return n&&""!==t?(o=t.match(new RegExp("(^|&|[?#])"+n+"=([^&]*)(&|$)")),null===o?o:decodeURIComponent(o[2])):o}return n});
