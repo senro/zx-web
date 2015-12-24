@@ -10,14 +10,25 @@
         欢迎使用雲转换-媳妇儿的云助手:)
     </title>
     <style>
+        html{
+            height: 100%;
+        }
+        body{
+            height: 100%;
+            background:#FCEFD5 url(images/bg2.jpg) center center no-repeat;
+            color: #000;
+            font-size: 14px;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
         .container{
             width: 1024px;
             margin: 0 auto;
+            padding: 25px 0 50px 0;
         }
         .tit{
             height: 50px;
             line-height: 50px;
-            font-size: 18px;
+            font-size: 24px;
             font-weight: bold;
             text-align: center;
         }
@@ -32,11 +43,11 @@
             display: block;
             width:60%;
             height:306px;
-            border-radius: 5px;
+            border-radius: 30px;
             margin: 0 auto;
         }
         .row{
-            height: 40px;
+            min-height: 40px;
             line-height: 40px;
             text-align: center;
         }
@@ -48,6 +59,22 @@
             border-radius: 10px;
             background-color: #ff565d;
             color:#fff;
+            margin: 10px 0 0 0;
+        }
+        .textCenter{
+            text-align: center;
+        }
+        .rule-introduce{
+            line-height: 22px;
+            padding: 15px 0 0 0;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .bold{
+            font-weight: bold;
+        }
+        .footer{
+            margin: 20px 0 0 0;
         }
     </style>
 </head>
@@ -61,7 +88,7 @@
             <div class="row">
                 <input name='inputFile' type='file' multiple='mutiple'/>（注意：目前只支持2007版excel）
             </div>
-            <div class="row">
+            <div class="row bold">
                 生成规则（如果不改，即用以下默认配置）<br/>
             </div>
               <textarea name="rule" class="textarea" placeholder="生成规则（如果不传，即用默认配置）">
@@ -83,9 +110,25 @@
               }
               </textarea>
             <div class="row">
-                <input name='btnUp' class="submitBtn" type='submit' value='上传'/>
+                <input name='btnUp' class="submitBtn" type='submit' value='交给我吧'/>
             </div>
+            <div class="rule-introduce textCenter">
+                配置说明：<br/>
+                newCol代表新表格里的第一列，tit代表它的列名称，value代表里面的值<br/>
+                col-0代表原表格里第一列，col-1代表第二列，依次类推，注意是从0开始计数的<br/>
+                比如：<br/>
+                {"newCol": 4, "tit": "条码", "value": "col-0"}的意思是<br/>
+                【新表格第5列是“条码”，它的值等于原表格的第1列的值】<br/>
+                {"newCol": 8, "tit": "销售价", "value": "col-3*0.85"}的意思是<br/>
+                【新表格第9列是“销售价”，它的值等于原表格的第4列乘以0.85】<br/>
+                {"newCol": 10, "tit": "库存数", "value": "1"}<br/>
+                【新表格第11列是“库存数”，它的值全部等于1】<br/>
 
+            </div>
+            <div class="footer textCenter">
+                Design by senro © 2015.12.24
+                <br/> happy christmas!
+            </div>
         </form>
     </div>
 </div>
