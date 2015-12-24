@@ -91,8 +91,13 @@
 <script>
     $('.submitBtn').click(function(){
         var fileName=$('input[name=inputFile]').val();
-        if(fileName&&/\.xlsx/.test(fileName)){
-            $('.form').trigger('submit');
+        if(fileName){
+            if(/\.xlsx/.test(fileName)){
+                $('.form').trigger('submit');
+            }else{
+                alert('你选择的不是2007版excel文件，请先打开另存为2007版再重新选择！');
+            }
+
         }else{
             alert('请先选择一个2007版excel文件！');
         }
