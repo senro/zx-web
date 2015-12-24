@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi"/>
+    <link rel="stylesheet" type="text/css" href="css/base.css"/>
+    <title>xxx</title>
+    <style>
+        .container{
+            width: 1024px;
+            margin: 0 auto;
+        }
+        .tit{
+            height: 50px;
+            line-height: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .rule-info-tit{
+            text-align: center;
+        }
+        .rule-info-json{
+            width: 300px;
+            margin: 0 auto;
+        }
+        .textarea{
+            display: block;
+            width:60%;
+            height:306px;
+            border-radius: 5px;
+            margin: 0 auto;
+        }
+        .row{
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+        .submitBtn{
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 10px;
+            background-color: #ff565d;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+<div class="bg">
+    <div class="container">
+        <div class="tit">
+            欢迎使用雲转换！
+        </div>
+        <form method='post' class="form" action='/file/uploading' enctype='multipart/form-data'>
+            <div class="row">
+                <input name='inputFile' type='file' multiple='mutiple'/>（注意：目前只支持2007版excel）
+            </div>
+            <div class="row">
+                生成规则（如果不改，即用以下默认配置）<br/>
+            </div>
+              <textarea name="rule" class="textarea" placeholder="生成规则（如果不传，即用默认配置）">
+              {
+                  "sortMap":null,
+                  "addMap":[
+                      {"newCol": 0, "tit": "商品编号", "value": "col-2"},
+                      {"newCol": 1, "tit": "名称", "value": "col-1"},
+                      {"newCol": 2, "tit": "类别", "value": ""},
+                      {"newCol": 3, "tit": "规格型号", "value": ""},
+                      {"newCol": 4, "tit": "条码", "value": "col-0"},
+                      {"newCol": 5, "tit": "款式", "value": ""},
+                      {"newCol": 6, "tit": "颜色", "value": ""},
+                      {"newCol": 7, "tit": "进价", "value": "col-3"},
+                      {"newCol": 8, "tit": "销售价", "value": "col-3*0.85"},
+                      {"newCol": 9, "tit": "会员价", "value": "col-3*0.8"},
+                      {"newCol": 10, "tit": "库存数", "value": "1"}
+                  ]
+              }
+              </textarea>
+            <div class="row">
+                <input name='btnUp' class="submitBtn" type='submit' value='上传'/>
+            </div>
+
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script>
+    $('.submitBtn').click(function(){
+        var fileName=$('input[name=inputFile]').val();
+        if(fileName&&/\.xlsx/.test(fileName)){
+            $('.form').trigger('submit');
+        }else{
+            alert('请先选择一个2007版excel文件！');
+        }
+        return false;
+    });
+</script>
+</body>
+</html>

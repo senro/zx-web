@@ -23,7 +23,7 @@ app.set('view engine', 'html');// app.set('view engine', 'ejs');
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 
 app.use(express.static(path.join(__dirname, 'static')));
-
+app.staticPath=path.join(__dirname, 'static');
 //路由控制
 app.get('/', routes.index);
 app.get('/login', routes.login);
@@ -34,6 +34,12 @@ app.get('/web/getAllUsers', routes.getAllUsers);
 app.post('/web/login', routes.doLogin);
 app.get('/web/logout', routes.logout);
 app.get('/home', routes.home);
+
+app.post('/file/uploading', routes.uploading);
+//app.get('/importExcel', routes.importExcel);
+//app.get('/exportExcel', routes.exportExcel);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
