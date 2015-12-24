@@ -382,7 +382,7 @@ exports.uploading=function (req, res, next) {
                         res.writeHead(200, {'content-type': 'text/html;charset=utf-8'});
                         res.write('转换成功！');
 
-                        res.end('<a href="'+resultPath+'">下载转换后excel(2007版)</a><a href="/love">返回</a>');
+                        res.end('<a href="'+resultPath+'">下载转换后excel(2007版)</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/love">返回首页</a>');
                         //res.end(util.inspect({fields: fields, files: filesTmp}));
                         //res.redirect(resultPath);
                     });
