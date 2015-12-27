@@ -329,9 +329,9 @@ exports.uploading=function (req, res, next) {
             {newCol: 4, tit: '条码	', value: 'col-0'},
             {newCol: 5, tit: '款式', value: ''},
             {newCol: 6, tit: '颜色', value: ''},
-            {newCol: 7, tit: '进价', value: 'col-3'},
-            {newCol: 8, tit: '销售价', value: 'col-3*0.85'},
-            {newCol: 9, tit: '会员价', value: 'col-3*0.8'},
+            {newCol: 7, tit: '进价', value: '0'},
+            {newCol: 8, tit: '销售价', value: 'col-3'},
+            {newCol: 9, tit: '会员价', value: 'col-3*0.85'},
             {newCol: 10, tit: '库存数', value: '1'}
         ]
     };
