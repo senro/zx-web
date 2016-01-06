@@ -1,11 +1,11 @@
 <html>
 <head>
-	<title>视频demo</title>
+	<title>视频演示</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1 ,maximum-scale=1, minimum-scale=1, user-scalable=no, target-densitydpi=medium-dpi">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
+    <link rel="shortcut icon" href="../images/LOGO.ico">
 	<style type="text/css">
 	*{
 		margin: 0;
@@ -17,34 +17,10 @@
 		overflow: hidden;
 	}
     .videoDemo{
-    	position: relative;
      	width: 100%;
      	height:100%;
     }
-	.videoDemo .videoBtn{
-		display: none;
-		position: absolute;
-		width: 62px;
-		height:62px;
-        left:50%;
-        top:50%;
-        margin: -31px 0 0 -31px;
-        z-index: 11;
-        background: url(media/playBtn.png) center center no-repeat;
-	}
-	.videoDemo .videoImg{
-		display: none;
-		position: absolute;
-		top:0;
-		left:0;
-		width:100%;
-		height:100%;
-		z-index: 10;
-		background: url(media/videoImg.jpg) center center no-repeat;
-		background-size: 100%;
-	}
     .videoDemo video{
-    	display: none;
         width: 100%;
      	height:100%;
      	background-color: #000;
@@ -60,15 +36,7 @@
 <body>
 
     <!-- autoplay="autoplay" -->
-	<div class="videoDemo">
-	<!-- 	<video controls="controls">
-			<source src="" type="video/mp4"></source>
-			<source src="media/test.ogv" type="video/ogg"></source>
-			<source src="media/test.webm" type="video/webm"></source>
-		</video> -->
-		<div id="video" class="video"></div>
-		<!--<div class="videoImg"></div>-->
-		<!--<a href="javascript:;" class="videoBtn"></a>-->
+	<div id="videoDemo" class="videoDemo">
 		<div class="error">
 			请先安装
 			 <a href="http://get.adobe.com/flashplayer/" target="_blank">
@@ -83,123 +51,160 @@
 <script type="text/javascript" src="js/plugins.js"></script>
 <script type="text/javascript" src="js/jwplayer/jwplayer.js"></script>
 <script type="text/javascript">
-/*根据传参修改视频地址，web，mobile，all*/
-var videoUrl;
-var videoImgUrl='media/videoImg.jpg';
+    $(function(){
+        /*根据传参修改视频地址，web，mobile，all*/
+        var videoUrl;
+        var videoImgUrl;
 
-var webUrl='media/video_web.mp4';
-var mobileUrl='media/video_mobile.mp4';
-var allUrl='media/video_all.mp4';
+        var webUrl='media/video_web.mp4';//视频地址
+        var webImgUrl='media/videoImg_web.jpg';//封面图地址
 
-if(getQueryString('web')){
-	//for web
-	videoUrl=webUrl;
-}else if(getQueryString('mobile')){
-	//for mobile
-	videoUrl=mobileUrl;
-}else if(getQueryString('all')){
-	//for all
-	videoUrl=allUrl;
-}else{
-	//默认allUrl
-	videoUrl=allUrl;
-}
+        var allUrl='media/video_all.mp4';
+        var allImgUrl='media/videoImg_web.jpg';
 
-if(isPC()){
-	//pc client
-	if(pluginlist.indexOf("Flash")!=-1){
-		//support flash
-		var player=addVideo('video',videoUrl,videoImgUrl);
-    }else if(Modernizr.video){
-    	//support html5 video
-		setMobileVideo();
-    }else{
-        $('.error').show();
-    }
-}else{
-	//mobile client
-	setMobileVideo();
-}
+        var mobileUrl='media/video_mobile.mp4';
+        var mobileImgUrl='media/videoImg_mobile.jpg';
 
-function setMobileVideo(){
-	$('.videoDemo').append(
-		'<video controls="controls" poster="'+videoImgUrl+'" preload="auto">'+
-			'<source src="'+videoUrl+'" type="video/mp4"></source>'+
-		'</video>');
+        if(getQueryString('web')){
+            //for web
+            videoUrl=webUrl;
+            videoImgUrl=webImgUrl;
+        }else if(getQueryString('mobile')){
+            //for mobile
+            videoUrl=mobileUrl;
+            videoImgUrl=mobileImgUrl;
+        }else if(getQueryString('all')){
+            //for all
+            videoUrl=allUrl;
+            videoImgUrl=allImgUrl;
+        }else{
+            //默认allUrl
+            videoUrl=allUrl;
+            videoImgUrl=allImgUrl;
+        }
 
-	//$('video').add($('.videoDemo .videoImg')).add($('.videoDemo .videoBtn')).show();
-    $('video').show();
-//	$('.videoDemo .videoBtn').click(function(){
-//       var $this=$(this);
-//       $this.add($('.videoDemo .videoImg')).hide();
-//       $('video').get(0).play();
-//       return false;
-//	});
-}
+        var player=addVideo('videoDemo',videoUrl,videoImgUrl);
 
-function isPC()  
-{  
-   var userAgentInfo = navigator.userAgent;  
-   var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");  
-   var flag = true;  
-   for (var v = 0; v < Agents.length; v++) {  
-       if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }  
-   }  
-   return flag;  
-}            
- function addVideo(str_id,str_file,str_image,num_width,num_height){
-    /*
-     * @位置： 常用界面交互方法；
-     * @名字：  addVideo；
-     * @翻译：  添加视频（ id，视频路径，截图路径，回调 ）；
-     * @参数：  addVideo(id,file,image,callback)【支持对象传参，以下是属性】
-     *         {
-     *         id（字符串）：【必填】视频dom容器id
-     *         file（字符串）：【必填】格式为flv的视频文件路径
-     *         image（字符串）：【可选】视频截图路径
-     *         callback（函数）：【可选】视频初始化完成后的回调函数，返回参数jwplayer对象，可以用来控制播放等
-     *         };
-     * @功能：  快速初始化视频，可以调用多次，并用回调传回控制对象；
-     * @返回：  无；
-     * @实例：  /test-html/3.2/UIInteractive/addVideo.html；
-     * @需要：  checkRequire；
-     * @备注：  路径相对于页面地址。回调返回的video有play(),pause(),stop(),方法控制播放
-     *         视频大小为传入的层的父层大小；
-     */
+        if(typeof player.onComplete == 'function'){
+            player.onComplete(function(){
+                player.load([{file:videoUrl+'?'+Math.random(),image:videoImgUrl}]);
+            });
+        }
+        $(window).resize(function(){
+            if(player && typeof player.resize == 'function'){
+                var windowWidth=$(window).width();
+                var windowHeight=$(window).height();
+                player.resize(windowWidth,windowHeight);
+            }
+        });
+        function addVideo(str_id,str_file,str_image){
+            /*
+             * @位置： 常用界面交互方法；
+             * @名字：  addVideo；
+             * @翻译：  添加视频（ id，视频路径，截图路径，回调 ）；
+             * @参数：  addVideo(id,file,image,callback)【支持对象传参，以下是属性】
+             *         {
+             *         id（字符串）：【必填】视频dom容器id
+             *         file（字符串）：【必填】格式为flv的视频文件路径
+             *         image（字符串）：【可选】视频截图路径
+             *         };
+             * @功能：  快速初始化视频，可以调用多次，如果是移动端则用video标签加载视频，
+             *         pc端支持flash的优先使用jwplayer，否则使用video，如果不支持flash和video则报错
+             *         最好用MP4，兼容性最好；
+             * @返回：  无；
+             * @实例：  /test-html/3.2/UIInteractive/addVideo.html；
+             * @需要：  checkRequire；
+             * @备注：  路径相对于页面地址。回调返回的video有play(),pause(),stop(),方法控制播放
+             *         视频大小为传入的层的父层大小；
+             */
 
-    var str_id=str_id||'',
-        str_file=str_file||'',
-        str_image=str_image||'';
+            var str_id=str_id||'',
+                str_file=str_file||'',
+                str_image=str_image||'';
 
-    var container=$('#'+str_id).parent(),
-        width=num_width||container.width(),
-        height=num_height||container.height();
+            //reset
+            var $container=$('#'+str_id),
+                videoId=str_id+"_video",
+                width=$container.width(),
+                height=$container.height(),
+                player=null,
+                errorElm=[
+                    '<div class="error">'+
+                            '请先安装'+
+                        '<a href="http://get.adobe.com/flashplayer/" target="_blank">'+
+                            'flash player'+
+                        '</a>'+
+                        '或者换现代浏览器访问！'+
+                    '</div>'
+                ].join('');
 
-    var player=jwplayer(str_id).setup({
-            flashplayer: 'js/jwplayer/player.swf',
-            skin: 'js/jwplayer/skin/bekle.zip',
-            file: str_file,
-            image: str_image||null,
-            width: width || 442,
-            height: height || 331
-        })
+            $container.append('<div id="'+videoId+'" class="video"></div>');
+            if(isPC()){
+                //pc client
+                if(pluginlist.indexOf("Flash")!=-1){
+                    //support flash
+                    player=jwplayer(videoId).setup({
+                        flashplayer: 'js/jwplayer/player.swf',
+                        skin: 'js/jwplayer/skin/bekle.zip',
+                        file: str_file,
+                        image: str_image||null,
+                        width: width || 480,
+                        height: height || 320
+                    });
+                }else if(Modernizr.video){
+                    //support html5 video
+                    player=setMobileVideo();
+                }else{
+                    if($container.find('.error').length>0){
+                        $container.find('.error').show();
+                    }else{
+                        $container.append(errorElm);
+                    }
+                }
+            }else{
+                //mobile client
+                player=setMobileVideo();
+            }
 
-    return player;
-}
-function getQueryString(name, url) {
-    var str = url || document.location.search || document.location.hash,
-        result = null;
+            function setMobileVideo(){
+                $container.append(
+                    '<video controls="controls" poster="'+str_image+'" preload="auto">'+
+                        '<source src="'+str_file+'" type="video/mp4"></source>'+
+                    '</video>'
+                );
+                return $container.find('video');
+            }
 
-    if (!name || str === '') {
-        return result;
-    }
+            function isPC()
+            {
+                var userAgentInfo = navigator.userAgent;
+                var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");
+                var flag = true;
+                for (var v = 0; v < Agents.length; v++) {
+                    if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }
+                }
+                return flag;
+            }
 
-    result = str.match(
-        new RegExp('(^|&|[\?#])' + name + '=([^&]*)(&|$)')
-    );
+            return player;
+        }
 
-    return result === null ? result : decodeURIComponent(result[2]);
-}
+        function getQueryString(name, url) {
+            var str = url || document.location.search || document.location.hash,
+                    result = null;
+
+            if (!name || str === '') {
+                return result;
+            }
+
+            result = str.match(
+                    new RegExp('(^|&|[\?#])' + name + '=([^&]*)(&|$)')
+            );
+
+            return result === null ? result : decodeURIComponent(result[2]);
+        }
+    });
+
 </script>
 </body>
 </html>
